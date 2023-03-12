@@ -1,15 +1,81 @@
+
 .App {
-  text-align: center;
-}
-
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
   color: white;
+  text-align: center;
+  margin: 0;
+  
+}
+
+.center-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100vw;
+  flex: 8;
+  align-items: stretch;
+
+}
+
+.dynamic-container {
+  flex: 3;
+  border: solid 1px white;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.contact-list {
+  display:grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 8vh;
+  grid-auto-rows: 8vh;
+  align-content: start;
+  overflow: auto;
+  max-height: 85vh;
+  min-width: 30vw;
+}
+
+.contact {
+  border: solid 1px white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px;
+}
+
+.navbar {
+  margin: 0;
+  width: 100vw;
+  border: solid 1px red;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.left-bar {
+  display: flex;
+  justify-content: center;
+  border: solid 1px white;
+  flex: 1;
+  align-items: stretch;
+  max-height: 85vh;
+}
+
+.footer {
+  width: 100vw;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.name {
+  justify-self: start;;
 }
