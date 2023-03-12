@@ -15,29 +15,28 @@
 .center-container {
   display: flex;
   justify-content: flex-start;
+  align-items: flex-start;
   width: 100vw;
   flex: 8;
-  align-items: stretch;
-
 }
 
 .dynamic-container {
-  flex: 3;
+  width: 75vw;
   border: solid 1px white;
-  max-height: 85vh;
-  overflow-y: auto;
+  min-height: 100vh;
 }
 
 .contact-list {
   display:grid;
-  width: 100%;
   grid-template-columns: 1fr;
   grid-template-rows: 8vh;
   grid-auto-rows: 8vh;
   align-content: start;
-  overflow: auto;
-  max-height: 85vh;
   min-width: 30vw;
+  overflow: auto;
+  max-height: 100vh;
+  position: sticky;
+  top: 0;
 }
 
 .contact {
@@ -60,12 +59,12 @@
 }
 
 .left-bar {
-  display: flex;
   justify-content: center;
   border: solid 1px white;
-  flex: 1;
-  align-items: stretch;
-  max-height: 85vh;
+  flex: 1 1 auto;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
 }
 
 .footer {
