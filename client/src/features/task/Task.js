@@ -19,14 +19,26 @@ const Task = () => {
                     type="checkbox"
                 />
             </div>
-            <div className="title">Task: fhdasjfkhdsajkflhadslkfhdkalsfhdffsadfsdaffsadfdas</div>
-            <div className="created">Date Created:</div>
-            <div className="date-due">Date Due:</div>
-            <div className="assigned">Assigned:</div>
-            <div className="created-by">Created By:</div>
+            <div className="title">Task: Prepare Tax Return</div>
+            <div className="project">Project: Project for Bob</div>
+            <div className="created">
+                <div><u>Created</u></div>
+                <div>10-23-23</div>
+            </div>
+            <div className="date-due">
+                <div><u>Due</u></div>
+                <div>10-23-23</div>
+            </div>
+            <div className="assigned">
+                <div><u>Assigned</u></div>
+                <div>Benjamin Klarer</div>
+            </div>
+            <div className="created-by">
+                <div><u>Created By</u></div>
+                <div>Benjamin Klarer</div>
+            </div>
             <div className="buttons button1"><button>View</button></div>
             <div className="buttons button2"><button>Edit</button></div>
-
         </div>
     )
 

@@ -28,7 +28,7 @@ li {
   align-items: flex-start;
   min-width: 100vw;
   min-height: 100vh;
-  flex: 1
+  flex: 1;
 }
 
 .dynamic-container {
@@ -68,11 +68,12 @@ li {
   display: grid;
   grid-template-columns: auto 2fr 2fr 2fr 2fr auto;
   grid-template-rows: 1fr 1fr;
+  border: 1px solid white;
+  font-size: 25px
 }
 
 .task-box > div {
   display: flex;
-  border: 1px solid white;
   justify-content: flex-start;
   align-items: center;
   padding: 5px;
@@ -86,13 +87,19 @@ li {
 }
 
 .checkbox > input {
-  height: 50px;
-  width: 50px;
+  height: 30px;
+  width: 30px;
 }
 
 .task-box > .title {
   grid-column-start: 2;
-  grid-column-end: span 4;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+}
+
+.task-box > .project {
+  grid-column-start: 4;
+  grid-column-end: span 2;
   grid-row-start: 1;
 }
 
@@ -100,6 +107,8 @@ li {
   grid-column-start: 2;
   grid-column-end: span 1;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
 
 }
 
@@ -107,16 +116,34 @@ li {
   grid-column-start: 3;
   grid-column-end: span 1;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-box > .assigned {
   grid-column-start: 4;
   grid-column-end: span 1;
   grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .task-box > .created-by {
   grid-column-start: 5;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-box > .button1 {
+  grid-column-start: 6;
+  grid-column-end: span 1;
+  grid-row-start: 1;
+}
+
+.task-box > .button2 {
+  grid-column-start: 6;
   grid-column-end: span 1;
   grid-row-start: 2;
 }
@@ -126,11 +153,22 @@ li {
   flex-wrap: wrap;
 }
 
+.button1 > button {
+  background-color: greenyellow;
+}
+
+.button2 > button {
+  background-color: yellow;
+}
+
 .buttons > button {
-  padding: 5px;
-  width: 40px;
-  margin: 5px;
+  padding: 10px;
+  width: 60px;
+  margin-top: 5px;
+  margin-bottom:5px;
   margin-right: 10px;
+  border-radius: 25px;
+  text-align: center;
 }
 
 .contact {
@@ -177,11 +215,11 @@ li {
   padding-right: 10px;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .task-box {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
     border: 1px solid white;
     overflow-x: auto;
   }
@@ -196,7 +234,7 @@ li {
     border: none;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px;
+    padding: 2px;
   }
 
   .button1 {
@@ -218,30 +256,61 @@ li {
     grid-column-end: span 3;
     grid-row-start: 2;
   }
-  
-  .task-box > .created {
+
+  .task-box > .project {
     grid-column-start: 1;
     grid-column-end: span 3;
     grid-row-start: 3;
   }
   
-  .task-box > .date-due {
+  .task-box > .created {
     grid-column-start: 1;
     grid-column-end: span 3;
     grid-row-start: 4;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .task-box > .date-due {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 5;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
   .task-box > .assigned {
     grid-column-start: 1;
     grid-column-end: span 3;
-    grid-row-start: 5;
+    grid-row-start: 6;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
   .task-box > .created-by {
     grid-column-start: 1;
     grid-column-end: span 3;
-    grid-row-start: 6;
+    grid-row-start: 7;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
+  .task-box > .button1 {
+    grid-column-start: 2;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+  }
+  
+  .task-box > .button2 {
+    grid-column-start: 3;
+    grid-column-end: span 1;
+    grid-row-start: 1;
+  }
+}
+
+@media (min-width: 650px) and (max-width: 800px) {
+  .task-box {
+      font-size: 17px;
+  }
 }
 
