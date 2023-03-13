@@ -13,6 +13,18 @@ const TaskList = () => {
         <div className="task-list">
             <Task/>
             <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
+            <Task/>
         </div>
 
 
