@@ -4,6 +4,7 @@ import CenterContainer from './features/structure/CenterContainer';
 import LeftBar from './features/structure/LeftBar';
 import DynamicContainer from './features/structure/DynamicContainer';
 import Footer from './features/structure/Footer';
+import TaskList from './features/task/TaskList';
 
 function App() {
   return (
@@ -11,7 +12,9 @@ function App() {
       <Navbar/>
       <CenterContainer>
         <LeftBar/>
-        <DynamicContainer/>
+        <DynamicContainer>
+          <TaskList/>
+        </DynamicContainer>
       </CenterContainer>
       <Footer/>
     </div>

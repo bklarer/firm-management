@@ -1,4 +1,4 @@
-
+import TaskList from "../task/TaskList"
 
 
 const DynamicContainer = () => {
@@ -10,23 +10,7 @@ const DynamicContainer = () => {
 
 
         <div className="dynamic-container">
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-            <h1>Dynamic Container</h1>
-
-
-
-
-
-
-
+            <TaskList/>
         </div>
 
 

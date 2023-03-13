@@ -1,4 +1,3 @@
-
 .App {
   background-color: #282c34;
   min-height: 100vh;
@@ -7,8 +6,8 @@
   align-items: center;
   justify-content: space-between;
   color: white;
-  text-align: center;
   margin: 0;
+  overflow-x: hidden;
   
 }
 
@@ -16,14 +15,21 @@
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100vw;
-  flex: 8;
+  min-width: 100vw;
+  flex: 1
 }
 
 .dynamic-container {
-  width: 75vw;
-  border: solid 1px white;
-  min-height: 100vh;
+  flex: 1;
+  min-height: 85vh;
+}
+
+.left-bar {
+  justify-content: center;
+  flex: 1 1 1;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
 }
 
 .contact-list {
@@ -32,25 +38,100 @@
   grid-template-rows: 8vh;
   grid-auto-rows: 8vh;
   align-content: start;
-  min-width: 30vw;
   overflow: auto;
   max-height: 100vh;
   position: sticky;
   top: 0;
 }
 
+.task-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+}
+
+.task-box {
+  display: grid;
+  grid-template-columns: auto 2fr 2fr 2fr 2fr auto;
+  grid-template-rows: 1fr 1fr;
+}
+
+.task-box > div {
+  display: flex;
+  border: 1px solid white;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 5px;
+}
+
+
+.checkbox {
+  grid-column-start: 1;
+  grid-row-start: 1;
+  grid-row-end: span 2;
+}
+
+.checkbox > input {
+  height: 50px;
+  width: 50px;
+}
+
+.task-box > .title {
+  grid-column-start: 2;
+  grid-column-end: span 4;
+  grid-row-start: 1;
+}
+
+.task-box > .created {
+  grid-column-start: 2;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+
+}
+
+.task-box > .date-due {
+  grid-column-start: 3;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+}
+
+.task-box > .assigned {
+  grid-column-start: 4;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+}
+
+.task-box > .created-by {
+  grid-column-start: 5;
+  grid-column-end: span 1;
+  grid-row-start: 2;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.buttons > button {
+  padding: 5px;
+  width: 40px;
+  margin: 5px;
+  margin-right: 10px;
+}
+
 .contact {
   border: solid 1px white;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 5px;
 }
 
 .navbar {
   margin: 0;
-  width: 100vw;
-  border: solid 1px red;
+  min-width: 100vw;
+  border: solid 1px white;
   flex: 1;
   display: flex;
   justify-content: center;
@@ -58,23 +139,91 @@
 
 }
 
-.left-bar {
-  justify-content: center;
-  border: solid 1px white;
-  flex: 1 1 auto;
-  position: sticky;
-  top: 0;
-  max-height: 100vh;
-}
+
 
 .footer {
-  width: 100vw;
+  min-width: 100vw;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid 1px white;;
 }
 
 .name {
-  justify-self: start;;
+  padding-left: 10px;
+  padding-right: 5px;
 }
+
+.to-do {
+  padding-right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .task-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    border: 1px solid white;
+    overflow-x: auto;
+  }
+
+  .checkbox > input {
+    height: 25px;
+    width: 25px;
+  }
+
+  .task-box > div {
+    display: flex;
+    border: none;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .button1 {
+    grid-column-start: 2;
+  }
+
+  .button2 {
+    grid-column-start: 3;
+  }
+
+  .checkbox {
+    grid-column-start: 1;
+    grid-row-start: 1;
+    grid-row-end: span 1;
+  }
+
+  .task-box > .title {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 2;
+  }
+  
+  .task-box > .created {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 3;
+  }
+  
+  .task-box > .date-due {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 4;
+  }
+  
+  .task-box > .assigned {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 5;
+  }
+  
+  .task-box > .created-by {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 6;
+  }
+
+}
+
