@@ -190,6 +190,10 @@ li {
   align-items: center;
 }
 
+.link {
+  color: white;
+}
+
 .navbar > h1 {
   margin-left: 15px;
 

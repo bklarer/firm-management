@@ -1,4 +1,5 @@
 import './App.css';
+import {Routes, Route} from "react-router-dom"
 import Navbar from './features/structure/Navbar';
 import CenterContainer from './features/structure/CenterContainer';
 import LeftBar from './features/structure/LeftBar';
@@ -19,20 +20,22 @@ function App() {
     <div className="App">
       <Navbar/>
       <Login/>
-      <SignUp/>
-      <EditProfile/>
-      <NewTask/>
-      <EditTask/>
-      <NewProject/>
-      <EditProject/>
-      <Profile/>
-      <CenterContainer>
-        <LeftBar/>
-        <DynamicContainer>
-          <TaskList/>
-        </DynamicContainer>
-      </CenterContainer>
+      <Routes>
+        <Route path="/">
+          <Route index element={<CenterContainer/>} />
+          <Route path="sign-up" element={<SignUp/>} />
+          <Route path="tasks"> 
+            <Route path="new" element={<NewTask/>}   />
+            <Route path="edit" element={<EditTask/>}        />
+          </Route>
+        </Route>            
+            <Route path="/projects/new" element={<NewProject/>} />
+            <Route path="/projects/edit" element={<EditProject/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/profile/edit" element={<EditProfile/>} />
+      </Routes>
       <Footer/>
+
     </div>
   );
 }
