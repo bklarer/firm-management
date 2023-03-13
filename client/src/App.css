@@ -177,7 +177,7 @@ li {
   padding-right: 10px;
 }
 
-/* @media only screen and (max-width: 600px) {
+@media only screen and (max-width: 600px) {
   .task-box {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -243,5 +243,5 @@ li {
     grid-row-start: 6;
   }
 
-} */
+}
 
