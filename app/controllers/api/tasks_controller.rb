@@ -23,7 +23,7 @@ class Api::TasksController < ApplicationController
 
     def destroy
         task = find_task
-        event.destroy
+        task.destroy
         head :no_content
     end
 
