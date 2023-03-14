@@ -6,11 +6,15 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api do
-    resources :photos
     resources :projects
     resources :assignments
     resources :tasks
-    resources :users
+
+    post "/signup", to: "users#create"
+    get "/me", to: "users#show"
+    post "/login", to: "sessions#create"
+    delete "/logout", to: "sessions#destroy"
+    delete "/me", to: "users#destroy"
   end
 
 
