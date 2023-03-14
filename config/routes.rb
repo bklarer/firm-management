@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  resources :projects
-  resources :assignments
-  resources :tasks
-  resources :users
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
@@ -10,7 +7,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :photos
-
+    resources :projects
+    resources :assignments
+    resources :tasks
+    resources :users
   end
 
 
