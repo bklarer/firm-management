@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<CenterContainer/>} />
-          <Route path="sign-up" element={<SignUp/>} />
+          <Route path="signup" element={<SignUp/>} />
           <Route path="tasks"> 
             <Route path="new" element={<NewTask/>}   />
             <Route path="edit" element={<EditTask/>}        />
