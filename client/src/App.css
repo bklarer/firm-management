@@ -194,6 +194,10 @@ li {
   color: white;
 }
 
+.link.active {
+  color: red;
+}
+
 .navbar > h1 {
   margin-left: 15px;
 
