@@ -28,7 +28,7 @@ const SignUp = () => {
             <input placeholder="Email"/>
             <input placeholder="Password"/>
             <input placeholder="Confirm Password"/>
-            <input name="featured_image" type="file" accept="image/*" multiple={false} />
+            <input onChange={handleImageChange} name="featured_image" type="file" accept="image/*" multiple={false} />
             <input type="submit" />
 
 
