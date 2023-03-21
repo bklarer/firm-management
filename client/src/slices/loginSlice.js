@@ -15,6 +15,7 @@ export const registerUser = createAsyncThunk(
       }).then((response) => {
         if (response.ok) {
           return response.json().then((user) => {
+            console.log(user)
             return user;
           });
         } else {
