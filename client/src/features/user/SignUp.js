@@ -16,7 +16,6 @@ const SignUp = () => {
         // featured_image: ""
     })
 
-        console.log(formData)
 
     const handleImageChange = (e) => {
         setFormData({...formData, [e.target.name]: e.target.files[0]

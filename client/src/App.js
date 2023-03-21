@@ -22,7 +22,7 @@ import EditProject from './features/task/EditProject';
 
 
 function App() {
-  const [userInfo, setUserInfo] = useState()
+  const [userInfo, setUserInfo] = useState({})
 
 
   if(!userInfo) {
