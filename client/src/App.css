@@ -184,10 +184,37 @@ li {
   padding: 10px;
   min-width: 100vw;
   border: solid 1px white;
-  flex: 1;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+.login h3 {
+  text-align: center;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup input {
+  padding: 5px;
+  margin: 5px;
+}
+
+.signup h3 {
+  text-align: center;
+}
+
+.login input {
+  padding: 5px;
+  margin: 5px;
 }
 
 .link {
@@ -207,7 +234,6 @@ li {
 
 .footer {
   min-width: 100vw;
-  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

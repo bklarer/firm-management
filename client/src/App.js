@@ -1,5 +1,7 @@
 import './App.css';
 import {Routes, Route} from "react-router-dom"
+import { useState } from "react"
+import { useSelector, useDispatch } from "react-redux";
 import Navbar from './features/structure/Navbar';
 import CenterContainer from './features/structure/CenterContainer';
 import LeftBar from './features/structure/LeftBar';
@@ -15,15 +17,34 @@ import EditProfile from './features/user/EditProfile';
 import NewProject from './features/task/NewProject';
 import EditProject from './features/task/EditProject';
 
+
+
+
+
 function App() {
-  return (
+  const [userInfo, setUserInfo] = useState()
+
+
+  if(!userInfo) {
+    return (
     <div className="App">
       <Navbar/>
-      <Login/>
+        <Routes>
+          <Route path="/" element={<Login/>}/>
+          <Route path="/signup" element={<SignUp/>} />
+        </Routes>
+      <Footer/>
+    </div>
+    )
+  }
+  
+  return (
+    <div className="App">
+      
+      <Navbar/>
       <Routes>
         <Route path="/">
           <Route index element={<CenterContainer/>} />
-          <Route path="signup" element={<SignUp/>} />
           <Route path="tasks"> 
             <Route path="new" element={<NewTask/>}   />
             <Route path="edit" element={<EditTask/>}  />

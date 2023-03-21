@@ -122,4 +122,4 @@ const initialState = {
     },
   });
 
-  export default loginSlice;
+  export default loginSlice.reducer;

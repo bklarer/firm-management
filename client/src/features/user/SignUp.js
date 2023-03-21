@@ -21,7 +21,8 @@ const SignUp = () => {
 
     return(
 
-        <form>
+        <form className="signup">
+            <h3>Sign Up</h3>
             <input placeholder="First Name"/>
             <input placeholder="Last Name"/>
             <input placeholder="Username"/>
@@ -30,8 +31,6 @@ const SignUp = () => {
             <input placeholder="Confirm Password"/>
             <input onChange={handleImageChange} name="featured_image" type="file" accept="image/*" multiple={false} />
             <input type="submit" />
-
-
         </form>
 
 
