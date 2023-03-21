@@ -22,8 +22,7 @@ import EditProject from './features/task/EditProject';
 
 
 function App() {
-  const [userInfo, setUserInfo] = useState({})
-
+  const { userInfo } = useSelector((state) => state.login);
 
   if(!userInfo) {
     return (

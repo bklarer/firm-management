@@ -7,7 +7,7 @@ import { logout } from "../../slices/loginSlice";
 const Navbar = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const [userInfo, setUserInfo] = useState({})
+    const { userInfo } = useSelector((state) => state.login);
     
     if(!userInfo) {
         return(
