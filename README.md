@@ -2,6 +2,11 @@
 
 Use `sudo service postgresql start` to start postgresql
 
+Link to deployment https://dashboard.render.com/web/srv-cg6lhng2qv28u2pu5cvg
+
+
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
