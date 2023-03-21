@@ -55,7 +55,6 @@ export const registerUser = createAsyncThunk(
       await fetch("/api/me").then((response) => {
         if (response.ok) {
           return response.json().then((user) => {
-            console.log("me", user)
             return user;
           });
         } else return  response.json().then((data) => console.log(data))

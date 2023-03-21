@@ -3,7 +3,7 @@
 
 
 
-const Contact = () => {
+const Contact = ({contact}) => {
 
 
 
@@ -11,8 +11,8 @@ const Contact = () => {
     return (
 
         <div className="contact">
-            <h4 className="name">Benjamin Klarer</h4>
-            <h4 className="to-do">10</h4>
+            <h4 className="name">{`${contact.first_name} ${contact.last_name}`}</h4>
+            <h4 className="to-do">{contact.tasks.length}</h4>
         </div>
         
 

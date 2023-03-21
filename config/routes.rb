@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :projects
     resources :assignments
     resources :tasks
+    resources :users, only: [:index]
 
     post "/signup", to: "users#create"
     get "/me", to: "users#show"

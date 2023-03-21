@@ -29,16 +29,7 @@ const SignUp = () => {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(registerUser(formData));
-        setFormData({
-            first_name: "",
-            last_name: "",
-            username: "",
-            email: "",
-            password: "",
-            password_confirmation: ""
-            // featured_image: ""
-        });
-        navigate("/")
+        navigate("/") //not working
     }
 
     return(
