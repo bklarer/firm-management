@@ -1,11 +1,12 @@
 import {useState} from "react"
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../slices/loginSlice";
+import { useNavigate } from "react-router-dom";
 
 
 const SignUp = () => {
     const dispatch = useDispatch();
-
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         first_name: "",
         last_name: "",
@@ -36,7 +37,9 @@ const SignUp = () => {
             password: "",
             password_confirmation: ""
             // featured_image: ""
-        });}
+        });
+        navigate("/")
+    }
 
     return(
 
