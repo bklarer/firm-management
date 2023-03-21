@@ -1,4 +1,4 @@
-import {NavLink, useNavigate} from "react-router-dom"
+import {NavLink, useNavigate, Link} from "react-router-dom"
 import { useState } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../slices/loginSlice";
@@ -41,7 +41,7 @@ const Navbar = () => {
                 <NavLink className="link" to="/tasks/new"><li>New Task</li></NavLink>
                 <NavLink className="link" to="/profile"><li>Profile</li></NavLink>
                 <NavLink className="link" to="/"><li>Projects</li></NavLink>
-                <NavLink className="link" onClick={handleLogoutClick} to="/"><li>Logout</li></NavLink>
+                <Link className="link" onClick={handleLogoutClick}><li>Logout</li></Link>
             </ul>
         </nav>
 

@@ -1,7 +1,8 @@
 import './App.css';
 import {Routes, Route} from "react-router-dom"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
+import { checkLogin, } from "./slices/loginSlice";
 import Navbar from './features/structure/Navbar';
 import CenterContainer from './features/structure/CenterContainer';
 import LeftBar from './features/structure/LeftBar';
@@ -23,6 +24,12 @@ import EditProject from './features/task/EditProject';
 
 function App() {
   const { userInfo } = useSelector((state) => state.login);
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    const loadData = () => dispatch(checkLogin()) 
+    loadData()
+  },[dispatch])
 
   if(!userInfo) {
     return (
