@@ -42,15 +42,7 @@ function App() {
     loadData()
   },[dispatch])
 
-  useEffect(() => {
-    const loadData = () => dispatch(fetchUsers()) 
-    loadData()
-  },[dispatch])
-
-  useEffect(() => {
-    const loadData = () => dispatch(fetchTasks()) 
-    loadData()
-  },[dispatch])
+  console.log("user info", userInfo)
 
   if(!userInfo) {
     return (

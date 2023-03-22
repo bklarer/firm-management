@@ -48,13 +48,12 @@ const headers = {
   
   export const checkLogin = createAsyncThunk(
     `login/check`,
-    async () => {
+    async ({rejectWithValue}) => {
       const response = await fetch("/api/me");
   
       if (!response.ok) {
-        const data = await response.json();
-        console.log(data);
-        return data;
+        const error = await response.json();
+        return rejectWithValue(error.errors);
       }
   
       const user = await response.json();

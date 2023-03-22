@@ -1,14 +1,25 @@
 import Contact from "./Contact";
-import { useSelector } from "react-redux";
-
-
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react"
+import { fetchUsers } from "../../slices/userSlice";
 
 const ContactList = () => {
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        const loadData = () => dispatch(fetchUsers()) 
+        loadData()
+      },[dispatch])
+    
+    
+    
     const contacts = useSelector((state) => state.users.users);
     const { userInfo } = useSelector((state) => state.login);
     const tasks = useSelector((state) => state.tasks.tasks);
     const currentUser = contacts.length > 0 ? contacts.find((contact) => contact.id === userInfo.id) : {}
     const filteredContacts = contacts.length > 0 ? contacts.filter((contact) => contact.id !== userInfo.id) : []
+
+
 
 
     return(

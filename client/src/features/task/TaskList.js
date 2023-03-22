@@ -2,10 +2,17 @@ import Task from "./Task";
 import { fetchUsers } from "../../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react"
-
+import { fetchTasks } from "../../slices/taskSlice";
 
 
 const TaskList = () => {
+    const dispatch = useDispatch()
+    
+    useEffect(() => {
+        const loadData = () => dispatch(fetchTasks()) 
+        loadData()
+      },[dispatch])
+    
     const tasks = useSelector((state) => state.tasks.tasks);
     
 
