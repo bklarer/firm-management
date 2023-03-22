@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { taskAdded } from "../../slices/taskSlice";
 
 const NewTask = () => {
+    const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     title: "",
     notes: "",
@@ -34,7 +36,11 @@ const NewTask = () => {
         },
         body: JSON.stringify(formattedTask),
       }).then((resp) => resp.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data)
+        dispatch(taskAdded(data))
+        
+    })
   };
 
   const handleFormChange = (e) => {

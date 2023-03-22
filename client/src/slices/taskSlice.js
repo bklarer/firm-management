@@ -18,6 +18,9 @@ const initialState = {
     name: "tasks",
     initialState,
     reducers: {
+        taskAdded(state, action) {
+            state.tasks.push(action.payload)
+        }
     },
     extraReducers: (builder) => {
       builder
@@ -36,8 +39,9 @@ const initialState = {
   });
   
   
-//   export const {
-//   } = tasksSlice.actions;
+  export const {
+    taskAdded
+  } = tasksSlice.actions;
   
   
   export default tasksSlice.reducer;
