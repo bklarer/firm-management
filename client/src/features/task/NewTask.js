@@ -12,7 +12,7 @@ const NewTask = () => {
   const formattedTask = {
     title: formData.title,
     notes: formData.notes,
-    due_data: formData.due_Date + "T" + formData.due_time + ":00",
+    due_date: formData.due_Date + "T" + formData.due_time + ":00",
   };
 
   const [project, setProject] = useState(0);
@@ -26,15 +26,15 @@ const NewTask = () => {
     console.log("project_id", project);
     console.log("checkbox", projectCheckbox);
 
-    // fetch("/api/tasks", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //       Accept: "application/json",
-    //     },
-    //     body: JSON.stringify(formattedTask),
-    //   }).then((resp) => resp.json())
-    //   .then((data) => console.log(data))
+    fetch("/api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(formattedTask),
+      }).then((resp) => resp.json())
+      .then((data) => console.log(data))
   };
 
   const handleFormChange = (e) => {
@@ -56,7 +56,7 @@ const NewTask = () => {
   return (
     <>
       <h1>New Task</h1>
-      <form className="new-task">
+      <form onSubmit={handleSubmit} className="new-task">
         <input
           name="title"
           onChange={handleFormChange}

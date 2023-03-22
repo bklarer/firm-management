@@ -6,7 +6,7 @@ class Api::TasksController < ApplicationController
     end
 
     def create
-        task = Task.create!(task_params)
+        task = Task.create!(task_params.merge(creator_id: @current_user[:id]))
         render json: task, status: :created
     end
 
@@ -35,7 +35,6 @@ class Api::TasksController < ApplicationController
             :title,
             :notes,
             :due_date,
-            :creator_id,
             :project_id,
         )
     end
