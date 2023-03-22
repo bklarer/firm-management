@@ -16,12 +16,12 @@ const ContactList = () => {
                 <h4 className="name">Name</h4>
                 <h4>Tasks</h4>
             </div>
-            {contacts.map((contact) => {
+            {contacts.length > 0 ? contacts.map((contact) => {
                 return (
 
                     <Contact key={contact.id} contact={contact}/>
 
-                )})}
+                )}): null}
             
         </div>
 
