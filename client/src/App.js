@@ -21,12 +21,19 @@ import { fetchUsers } from './slices/userSlice';
 import { fetchTasks } from './slices/taskSlice';
 
 
-
+//Update new forms to update state
+//Create Edit form
+//When clicking on contact, bring up contacts tasks
+//Show All tasks, My tasks, and then the rest of the tasks.
+//Create Modal for view and edit task buttons
+//Bring down users and tasks separately nest tasks to users
 
 function App() {
   const { userInfo } = useSelector((state) => state.login);
   const dispatch = useDispatch()
   
+  console.log("user info",userInfo)
+
   useEffect(() => {
     const loadData = () => dispatch(checkLogin()) 
     loadData()

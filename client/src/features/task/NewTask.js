@@ -44,12 +44,7 @@ const NewTask = () => {
     }));
   };
 
-  console.log("checkbox", projectCheckbox);
-
-  //create state for form
-  //create fetch to submit form
   //update state in task slice
-  //use currentUser on backend to set creator_id
 
   let date = new Date().toISOString().slice(0, 10);
 

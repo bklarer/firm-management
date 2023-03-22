@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user
+        render json: @current_user, serializer: LoggedInUserSerializer
     end
 
     def destroy

@@ -8,6 +8,7 @@ import { useEffect } from "react"
 const TaskList = () => {
     const tasks = useSelector((state) => state.tasks.tasks);
     
+    console.log("task", tasks)
 
     return(
 
