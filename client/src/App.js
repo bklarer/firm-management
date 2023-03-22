@@ -31,6 +31,8 @@ import { fetchTasks } from './slices/taskSlice';
 //Show completed tasks
 //Implement CSS ideas... light/dark mode, switch between card view and list view
 
+//Remember to make conditionals for when arrays are 0
+
 function App() {
   const { userInfo } = useSelector((state) => state.login);
   const dispatch = useDispatch()

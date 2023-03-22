@@ -20,7 +20,7 @@ const Task = ({task}) => {
                 />
             </div>
             <div className="title">Task: {title}</div>
-            <div className="project">Project: </div>
+            <div className="project">Project:  </div>
             <div className="created">
                 <div><u>Created</u></div>
                 <div>10-23-23</div>
