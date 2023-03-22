@@ -6,8 +6,7 @@ import { useSelector } from "react-redux";
 const ContactList = () => {
     const contacts = useSelector((state) => state.users.users);
 
-    console.log("contacts", contacts)
-    //Should filter out current user ID?
+    //Should filter out current user ID contact
 
     return(
 

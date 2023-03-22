@@ -4,7 +4,6 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", () => {
   return fetch("/api/users")
     .then((response) => response.json())
     .then((events) => {
-        console.log(events)
         return (events)
     });
 });

@@ -6,30 +6,17 @@ import { useEffect } from "react"
 
 
 const TaskList = () => {
-    const dispatch = useDispatch()
+    const tasks = useSelector((state) => state.tasks.tasks);
     
-    useEffect(() => {
-        const loadData = () => dispatch(fetchUsers()) 
-        loadData()
-      },[dispatch])
 
     return(
 
         <div className="task-list">
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
-            <Task/>
+            {tasks.map((task) => {
+                return (
+                    <Task key={task.id} task={task} />
+                )
+            })}
         </div>
 
 

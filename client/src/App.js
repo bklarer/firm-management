@@ -17,7 +17,8 @@ import Profile from './features/user/Profile';
 import EditProfile from './features/user/EditProfile';
 import NewProject from './features/task/NewProject';
 import EditProject from './features/task/EditProject';
-
+import { fetchUsers } from './slices/userSlice';
+import { fetchTasks } from './slices/taskSlice';
 
 
 
@@ -28,6 +29,16 @@ function App() {
   
   useEffect(() => {
     const loadData = () => dispatch(checkLogin()) 
+    loadData()
+  },[dispatch])
+
+  useEffect(() => {
+    const loadData = () => dispatch(fetchUsers()) 
+    loadData()
+  },[dispatch])
+
+  useEffect(() => {
+    const loadData = () => dispatch(fetchTasks()) 
     loadData()
   },[dispatch])
 

@@ -4,10 +4,10 @@
 
 
 
-const Task = () => {
+const Task = ({task}) => {
+    const {title} = task
 
-
-
+ //Need to set data to object and see how I want to serialize data from backend
 
 
     return (
@@ -19,8 +19,8 @@ const Task = () => {
                     type="checkbox"
                 />
             </div>
-            <div className="title">Task: Prepare Tax Return</div>
-            <div className="project">Project: Project for Bob</div>
+            <div className="title">Task: {title}</div>
+            <div className="project">Project: </div>
             <div className="created">
                 <div><u>Created</u></div>
                 <div>10-23-23</div>
