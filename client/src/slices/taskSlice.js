@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
+export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async ( _,{rejectWithValue}) => {
     const response = await fetch("/api/tasks");
+    if (response.ok ) {
     const tasks = await response.json();
-    return tasks;
+    return tasks
+    } else {
+        const error = await response.json();
+        return rejectWithValue(error.errors)
+    }
   });
 
  //check if waiting for promise
