@@ -2,64 +2,66 @@ import { createSlice } from "@reduxjs/toolkit"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
 
-export const registerUser = createAsyncThunk(
+const headers = {
+    "content-type": "application/json",
+    Accept: "application/json",
+  };
+  
+  export const registerUser = createAsyncThunk(
     `login/signup`,
-    async (data, { rejectWithValue }) =>
-      await fetch("/api/signup", {
+    async (data, { rejectWithValue }) => {
+      const response = await fetch("/api/signup", {
         method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json",
-        },
+        headers,
         body: JSON.stringify(data),
-      }).then((response) => {
-        if (response.ok) {
-          return response.json().then((user) => {
-            return user;
-          });
-        } else {
-          return response.json().then((error) => {
-            return rejectWithValue(error.errors);
-          });
-        }
-      })
+      });
+  
+      if (!response.ok) {
+        const error = await response.json();
+        return rejectWithValue(error.errors);
+      }
+  
+      const user = await response.json();
+      return user;
+    }
   );
   
   export const userLogin = createAsyncThunk(
     `login/login`,
-    async (data, { rejectWithValue }) =>
-      await fetch("/api/login", {
+    async (data, { rejectWithValue }) => {
+      const response = await fetch("/api/login", {
         method: "POST",
-        headers: {
-          "content-type": "application/json",
-          Accept: "application/json",
-        },
+        headers,
         body: JSON.stringify(data),
-      }).then((response) => {
-        if (response.ok) {
-          return response.json().then((user) => {
-            console.log(user)
-            return user;
-          });
-        } else {
-          return response.json().then((error) => {
-            return rejectWithValue(error.errors);
-          });
-        }
-      })
+      });
+  
+      if (!response.ok) {
+        const error = await response.json();
+        return rejectWithValue(error.errors);
+      }
+  
+      const user = await response.json();
+      console.log(user)
+      return user;
+    }
   );
   
-  export const checkLogin =  createAsyncThunk(
+  export const checkLogin = createAsyncThunk(
     `login/check`,
-    async () =>
-      await fetch("/api/me").then((response) => {
-        if (response.ok) {
-          return response.json().then((user) => {
-            return user;
-          });
-        } else return  response.json().then((data) => console.log(data))
-      })
+    async () => {
+      const response = await fetch("/api/me");
+  
+      if (!response.ok) {
+        const data = await response.json();
+        console.log(data);
+        return data;
+      }
+  
+      const user = await response.json();
+      return user;
+    }
   );
+  
 
 const initialState = {
     loading: false,

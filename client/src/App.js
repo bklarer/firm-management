@@ -27,6 +27,9 @@ import { fetchTasks } from './slices/taskSlice';
 //Show All tasks, My tasks, and then the rest of the tasks.
 //Create Modal for view and edit task buttons
 //Bring down users and tasks separately nest tasks to users
+//Automatically filter tasks when complete
+//Show completed tasks
+//Implement CSS ideas... light/dark mode, switch between card view and list view
 
 function App() {
   const { userInfo } = useSelector((state) => state.login);
