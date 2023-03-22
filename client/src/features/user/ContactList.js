@@ -19,9 +19,9 @@ const ContactList = () => {
             </div>
             {contacts.map((contact) => {
                 return (
-                    <>
-                    <Contact contact={contact}/>
-                    </>
+
+                    <Contact key={contact.id} contact={contact}/>
+
                 )})}
             
         </div>

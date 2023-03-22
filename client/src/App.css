@@ -42,6 +42,8 @@ li {
   top: 0;
   margin: 0;
   height: 100vh;
+  border-right: solid 3px white;
+  min-width: 10vw;
 }
 
 .contact-list {
@@ -175,6 +177,7 @@ li {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+  font-size: 20px;
 }
 
 .navbar {
@@ -211,6 +214,17 @@ li {
 
 .login input {
   padding: 5px;
+  margin: 5px;
+}
+
+.new-task, .edit-task {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.new-task *, .edit-task *{
+  padding: 10px;
   margin: 5px;
 }
 

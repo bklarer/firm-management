@@ -6,9 +6,10 @@ export const fetchUsers = createAsyncThunk("users/fetchUsers", () => {
     .then((events) => {
         console.log(events)
         return (events)
-    
     });
 });
+
+ //check if waiting for promise
 
 const initialState = {
     users: [],
