@@ -37,8 +37,6 @@ function App() {
   const { userInfo } = useSelector((state) => state.login);
   const dispatch = useDispatch()
   
-  console.log("user info",userInfo)
-
   useEffect(() => {
     const loadData = () => dispatch(checkLogin()) 
     loadData()
