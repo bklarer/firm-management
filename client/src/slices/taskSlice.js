@@ -7,7 +7,6 @@ export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async ( _,{reject
     return tasks
     } else {
         const error = await response.json();
-        console.log("error", error)
         return rejectWithValue(error.errors)
     }
   });

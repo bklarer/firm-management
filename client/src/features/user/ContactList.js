@@ -19,8 +19,9 @@ const ContactList = () => {
     const currentUser = contacts.length > 0 ? contacts.find((contact) => contact.id === userInfo.id) : {}
     const filteredContacts = contacts.length > 0 ? contacts.filter((contact) => contact.id !== userInfo.id) : []
 
+    
 
-
+    console.log("contacts", contacts)
 
     return(
 
