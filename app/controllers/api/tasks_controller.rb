@@ -2,7 +2,7 @@ class Api::TasksController < ApplicationController
 
 
     def index
-        render json: Task.all
+        render json: Task.all, status: :ok
     end
 
     def create
@@ -12,13 +12,13 @@ class Api::TasksController < ApplicationController
 
     def show
         task = find_task
-        render json: task
+        render json: task, status: :ok
     end
 
     def update
         task = find_task
         task.update!(task_params)
-        render json: task
+        render json: task, status: :accepted
     end
 
     def destroy

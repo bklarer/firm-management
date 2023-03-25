@@ -3,7 +3,7 @@ class Api::UsersController < ApplicationController
 
     def index
      users = User.all
-     render json: users
+     render json: users, status: :ok
     end
     
 
@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
     end
 
     def show
-        render json: @current_user, serializer: LoggedInUserSerializer
+        render json: @current_user, serializer: LoggedInUserSerializer, status: :ok
     end
 
     def destroy
