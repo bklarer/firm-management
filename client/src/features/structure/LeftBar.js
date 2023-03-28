@@ -6,12 +6,6 @@ import { fetchTasks } from "../../slices/taskSlice";
 
 const LeftBar = () => {
 
-    const dispatch = useDispatch()
-    
-    useEffect(() => {
-        const loadData = () => dispatch(fetchTasks()) 
-        loadData()
-      },[dispatch])
 
 
     return (

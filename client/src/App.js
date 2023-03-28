@@ -22,6 +22,7 @@ import ContactList from './features/user/ContactList';
 import SideTasks from './features/task/SideTasks';
 import ProfileEdit from './features/user/ProfileEdit';
 import FullTaskView from './features/task/FullTaskView';
+import CenterContainer from './features/structure/CenterContainer';
 
 
 //Update new forms to update state
@@ -68,9 +69,10 @@ function App() {
   
   return (
     <div className="App">
-      
       <Navbar/>
-      <div className="center-container">
+      <CenterContainer/>
+      
+      {/* <div className="center-container">
             <Routes>
                 <Route path="/" element={<LeftBar/>}>
                   <Route index element={<ContactList/>}/>
@@ -97,7 +99,7 @@ function App() {
                   </Route>
                 </Route>
             </Routes>
-        </div>
+        </div> */}
       <Footer/>
 
     </div>
