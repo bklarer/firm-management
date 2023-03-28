@@ -6,12 +6,7 @@ import { fetchTasks } from "../../slices/taskSlice";
 
 
 const TaskList = () => {
-    const dispatch = useDispatch()
-    
-    useEffect(() => {
-        const loadData = () => dispatch(fetchTasks()) 
-        loadData()
-      },[dispatch])
+
     
     const tasks = useSelector((state) => state.tasks.tasks);
     

@@ -20,6 +20,7 @@ import { fetchUsers } from './slices/userSlice';
 import { fetchTasks } from './slices/taskSlice';
 import ContactList from './features/user/ContactList';
 import SideTasks from './features/task/SideTasks';
+import ProfileEdit from './features/user/ProfileEdit';
 
 
 //Update new forms to update state
@@ -49,14 +50,13 @@ function App() {
     <div className="App">
       <Navbar/>
         <Routes>
-          <Route path="/" element={<Login/>}/>
+          <Route path="/*" element={<Login/>}/>
           <Route path="/signup" element={<SignUp/>} />
         </Routes>
       <Footer/>
     </div>
     )
   }
-
 
 
 
@@ -69,16 +69,23 @@ function App() {
             <Routes>
                 <Route path="/" element={<LeftBar/>}>
                   <Route index element={<ContactList/>}/>
-                  <Route path="new" element={<SideTasks/>}/>
-                  <Route path="profile" element={<SideTasks/>}/>
+                  <Route path="*" element={<ContactList/>}/>
+                  <Route path="profile">
+                    <Route index element={<SideTasks/>}/>
+                    <Route path="*" element={<SideTasks/>}/>
+                  </Route>
                 </Route>
             </Routes>
             
             <Routes>
                 <Route path="/" element={<DynamicContainer/>}>
                   <Route index element={<TaskList/>}/>
+                  <Route path="*" element={<TaskList/>}/>
                   <Route path="new" element={<NewTask/>}/>
-                  <Route path="profile" element={<Profile/>}/>
+                  <Route path="profile" >
+                    <Route index element={<Profile/>}/>
+                    <Route path="edit" element={<ProfileEdit/>}/>
+                  </Route>
                 </Route>
             </Routes>
         </div>
