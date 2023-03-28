@@ -38,7 +38,7 @@ const Navbar = () => {
             <ul>
                 
                 <NavLink className="link" to="/"><li>Home</li></NavLink>
-                <NavLink className="link" to="/tasks/new"><li>New Task</li></NavLink>
+                <NavLink className="link" to="/new"><li>New Task</li></NavLink>
                 <NavLink className="link" to="/profile"><li>Profile</li></NavLink>
                 <NavLink className="link" to="/"><li>Projects</li></NavLink>
                 <Link className="link" onClick={handleLogoutClick}><li>Logout</li></Link>

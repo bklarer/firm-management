@@ -21,7 +21,6 @@ const ContactList = () => {
 
     
 
-    console.log("contacts", contacts)
 
     return(
 

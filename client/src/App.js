@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { checkLogin, } from "./slices/loginSlice";
 import Navbar from './features/structure/Navbar';
-import CenterContainer from './features/structure/CenterContainer';
 import LeftBar from './features/structure/LeftBar';
 import DynamicContainer from './features/structure/DynamicContainer';
 import Footer from './features/structure/Footer';
@@ -19,6 +18,8 @@ import NewProject from './features/task/NewProject';
 import EditProject from './features/task/EditProject';
 import { fetchUsers } from './slices/userSlice';
 import { fetchTasks } from './slices/taskSlice';
+import ContactList from './features/user/ContactList';
+import SideTasks from './features/task/SideTasks';
 
 
 //Update new forms to update state
@@ -42,7 +43,6 @@ function App() {
     loadData()
   },[dispatch])
 
-  console.log("user info", userInfo)
 
   if(!userInfo) {
     return (
@@ -65,19 +65,23 @@ function App() {
     <div className="App">
       
       <Navbar/>
-      <Routes>
-        <Route path="/">
-          <Route index element={<CenterContainer/>} />
-          <Route path="tasks"> 
-            <Route path="new" element={<NewTask/>}   />
-            <Route path="edit" element={<EditTask/>}  />
-          </Route>
-        </Route>            
-            <Route path="/projects/new" element={<NewProject/>} />
-            <Route path="/projects/edit" element={<EditProject/>} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/profile/edit" element={<EditProfile/>} />
-      </Routes>
+      <div className="center-container">
+            <Routes>
+                <Route path="/" element={<LeftBar/>}>
+                  <Route index element={<ContactList/>}/>
+                  <Route path="new" element={<SideTasks/>}/>
+                  <Route path="profile" element={<SideTasks/>}/>
+                </Route>
+            </Routes>
+            
+            <Routes>
+                <Route path="/" element={<DynamicContainer/>}>
+                  <Route index element={<TaskList/>}/>
+                  <Route path="new" element={<NewTask/>}/>
+                  <Route path="profile" element={<Profile/>}/>
+                </Route>
+            </Routes>
+        </div>
       <Footer/>
 
     </div>

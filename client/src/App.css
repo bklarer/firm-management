@@ -46,7 +46,7 @@ li {
   min-width: 10vw;
 }
 
-.contact-list {
+.contact-list, .side-tasks {
   display:grid;
   grid-template-columns: 1fr;
   grid-template-rows: 8vh;
@@ -171,7 +171,7 @@ li {
   text-align: center;
 }
 
-.contact {
+.contact, .side-tasks div {
   border-bottom: solid 1px white;
   display: flex;
   justify-content: space-between;

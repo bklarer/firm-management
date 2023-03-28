@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom"
 import TaskList from "../task/TaskList"
 
 
@@ -10,7 +11,7 @@ const DynamicContainer = () => {
 
 
         <div className="dynamic-container">
-            <TaskList/>
+            <Outlet/>
         </div>
 
 
