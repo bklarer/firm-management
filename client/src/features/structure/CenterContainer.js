@@ -21,12 +21,13 @@ import ContactList from '../user/ContactList';
 import SideTasks from '../task/SideTasks';
 import ProfileEdit from '../user/ProfileEdit';
 import FullTaskView from '../task/FullTaskView';
+import Loading from './Loading';
 
 
 
 const CenterContainer = () => {
     const dispatch = useDispatch()
-
+    
     useEffect(() => {
         const loadData = () => dispatch(fetchTasks()) 
         loadData()
@@ -37,10 +38,22 @@ const CenterContainer = () => {
         loadData()
       },[dispatch])
 
+
+    const taskLoading = useSelector((state) => state.tasks.loading)
+    const usersLoading = useSelector((state) => state.users.loading)
+    const loginLoading = useSelector((state) => state.login.loading)
+      
+    console.log("task Loading", taskLoading)
+    console.log("users Loading", usersLoading)
+    console.log("Login Loading", loginLoading)
+
+
     return (
 
 
         <div className="center-container">
+            {taskLoading || usersLoading || loginLoading ? <Loading/> : 
+            <>
             <Routes>
                 <Route path="/" element={<LeftBar/>}>
                   <Route index element={<ContactList/>}/>
@@ -67,6 +80,8 @@ const CenterContainer = () => {
                   </Route>
                 </Route>
             </Routes>
+        </>
+        }
         </div>
 
 

@@ -23,6 +23,7 @@ import SideTasks from './features/task/SideTasks';
 import ProfileEdit from './features/user/ProfileEdit';
 import FullTaskView from './features/task/FullTaskView';
 import CenterContainer from './features/structure/CenterContainer';
+import Loading from './features/structure/Loading';
 
 
 //Update new forms to update state
@@ -51,7 +52,6 @@ function App() {
 
   //   )
   // )
-
 
 
   if(!userInfo) {
