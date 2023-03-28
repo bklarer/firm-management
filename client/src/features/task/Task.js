@@ -1,11 +1,11 @@
-
+import {Link} from "react-router-dom"
 
 
 
 
 
 const Task = ({task}) => {
-    const {title} = task
+    const {title, id} = task
 
  //Need to set data to object and see how I want to serialize data from backend
 
@@ -37,8 +37,8 @@ const Task = ({task}) => {
                 <div><u>Created By</u></div>
                 <div>Benjamin Klarer</div>
             </div>
-            <div className="buttons button1"><button>View</button></div>
-            <div className="buttons button2"><button>Edit</button></div>
+            <div className="buttons button1"><button><Link to={`${id}`} >View</Link></button></div>
+            <div className="buttons button2"><button><Link to={`${id}/edit`} >Edit</Link></button></div>
         </div>
     )
 

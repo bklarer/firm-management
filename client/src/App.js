@@ -1,5 +1,5 @@
 import './App.css';
-import {Routes, Route} from "react-router-dom"
+import {Routes, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom"
 import { useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux";
 import { checkLogin, } from "./slices/loginSlice";
@@ -21,6 +21,7 @@ import { fetchTasks } from './slices/taskSlice';
 import ContactList from './features/user/ContactList';
 import SideTasks from './features/task/SideTasks';
 import ProfileEdit from './features/user/ProfileEdit';
+import FullTaskView from './features/task/FullTaskView';
 
 
 //Update new forms to update state
@@ -44,6 +45,13 @@ function App() {
     loadData()
   },[dispatch])
 
+  // const router = createBrowserRouter(
+  //   createRoutesFromElements(
+
+  //   )
+  // )
+
+
 
   if(!userInfo) {
     return (
@@ -56,10 +64,7 @@ function App() {
       <Footer/>
     </div>
     )
-  }
-
-
-
+  } 
   
   return (
     <div className="App">
@@ -82,6 +87,10 @@ function App() {
                   <Route index element={<TaskList/>}/>
                   <Route path="*" element={<TaskList/>}/>
                   <Route path="new" element={<NewTask/>}/>
+                  <Route path=":taskId">
+                    <Route index element={<FullTaskView/>}/>
+                    <Route path="edit" element={<EditTask/>}/>
+                  </Route>
                   <Route path="profile" >
                     <Route index element={<Profile/>}/>
                     <Route path="edit" element={<ProfileEdit/>}/>

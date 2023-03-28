@@ -1,13 +1,18 @@
-const EditTask = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { selectTaskById } from "../../slices/taskSlice";
+import { useParams, useNavigate } from "react-router-dom";
 
+const EditTask = () => {
+    const { taskId } = useParams();
+    
+    const task = useSelector((state) => selectTaskById(state, parseInt(taskId)))
 
 
     return (
 
-    //create state for form
-    //pull state to input into form
-    //create fetch to submit form
-    //update state in task slice
+
+
+
 
     <form className="edit-task">
         <input placeholder="Title"/>
