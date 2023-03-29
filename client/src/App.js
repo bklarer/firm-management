@@ -61,12 +61,12 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="*" element={<Login />} />
+              {/* <Route path="*" element={<Login />} /> */}
 
             </Routes>
           ) : (
             <div className="center-container">
-              <Routes>
+              {/* <Routes>
                 <Route path="/" element={<LeftBar />}>
                   <Route index element={<ContactList />} />
                   <Route path="*" element={<ContactList />} />
@@ -91,7 +91,7 @@ function App() {
                     <Route path="edit" element={<ProfileEdit />} />
                   </Route>
                 </Route>
-              </Routes>
+              </Routes> */}
             </div>
           )}
           <Footer />
