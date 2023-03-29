@@ -19,7 +19,6 @@ import EditProject from "./features/task/EditProject";
 import { fetchUsers } from "./slices/userSlice";
 import { fetchTasks } from "./slices/taskSlice";
 import ContactList from "./features/user/ContactList";
-import SideTasks from "./features/task/SideTasks";
 import ProfileEdit from "./features/user/ProfileEdit";
 import FullTaskView from "./features/task/FullTaskView";
 import Loading from "./features/structure/Loading";
@@ -69,10 +68,6 @@ function App() {
                 <Route path="/" element={<LeftBar />}>
                   <Route index element={<ContactList />} />
                   <Route path="*" element={<ContactList />} />
-                  <Route path="profile">
-                    <Route index element={<SideTasks />} />
-                    <Route path="*" element={<SideTasks />} />
-                  </Route>
                 </Route>
               </Routes>
 
