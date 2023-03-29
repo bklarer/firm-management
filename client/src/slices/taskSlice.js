@@ -6,6 +6,7 @@ export const fetchTasks = createAsyncThunk(
     const response = await fetch("/api/tasks");
     if (response.ok) {
       const tasks = await response.json();
+      console.log("tasks", tasks)
       return tasks;
     } else {
       const error = await response.json();

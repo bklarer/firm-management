@@ -23,6 +23,7 @@ import ProfileEdit from "./features/user/ProfileEdit";
 import FullTaskView from "./features/task/FullTaskView";
 import Loading from "./features/structure/Loading";
 import UserInfo from "./features/user/UserInfo";
+import { fetchProjects } from "./slices/projectSlice";
 
 //Update new forms to update state
 //Create Edit form
@@ -47,6 +48,7 @@ function App() {
     if (userInfo) {
       dispatch(fetchTasks());
       dispatch(fetchUsers());
+      dispatch(fetchProjects())
     }
   }, [dispatch, userInfo]);
 

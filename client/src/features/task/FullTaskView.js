@@ -7,8 +7,6 @@ const FullTaskView = () => {
     
     const task = useSelector((state) => selectTaskById(state, parseInt(taskId)))
 
-    console.log("task", task)
-
     return (
 
         <div>
