@@ -64,7 +64,8 @@ function App() {
           <Navbar />
           {!userInfo ? (
             <Routes>
-              <Route path="/*" element={<Login />} />
+              <Route path="/" element={<Login />} />
+              <Route path="*" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
             </Routes>
           ) : (
