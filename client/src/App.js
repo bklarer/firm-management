@@ -44,12 +44,7 @@ function App() {
   const LoginLoading = useSelector((state) => state.users.loading);
 
   useEffect(() => {
-    const loadData = () => dispatch(checkLogin());
-    loadData();
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (!userInfo) {
+    if (userInfo) {
       dispatch(fetchTasks());
       dispatch(fetchUsers());
     }
@@ -64,8 +59,7 @@ function App() {
           <Navbar />
           {!userInfo ? (
             <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="*" element={<Login />} />
+              <Route path="/*" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
             </Routes>
           ) : (
