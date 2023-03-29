@@ -70,15 +70,9 @@ li {
   grid-template-columns: auto 2fr 2fr 2fr 2fr auto;
   grid-template-rows: 1fr 1fr;
   border-bottom: 1px solid white;
-  font-size: 25px
+  font-size: 25px;
 }
 
-/* .task-box > div {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 5px;
-} */
 
 
 .checkbox {
@@ -171,7 +165,7 @@ li {
   text-align: center;
 }
 
-.contact, .side-tasks div {
+.contact, .side-tasks div{
   border-bottom: solid 1px white;
   display: flex;
   justify-content: space-between;
@@ -179,6 +173,8 @@ li {
   padding: 10px;
   font-size: 20px;
 }
+
+
 
 .navbar {
   margin: 0;
@@ -230,6 +226,7 @@ li {
 
 .link {
   color: white;
+  text-decoration: none;
 }
 
 .link.active {

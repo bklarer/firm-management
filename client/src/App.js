@@ -23,6 +23,7 @@ import SideTasks from "./features/task/SideTasks";
 import ProfileEdit from "./features/user/ProfileEdit";
 import FullTaskView from "./features/task/FullTaskView";
 import Loading from "./features/structure/Loading";
+import UserInfo from "./features/user/UserInfo";
 
 //Update new forms to update state
 //Create Edit form
@@ -84,6 +85,7 @@ function App() {
                     <Route index element={<FullTaskView />} />
                     <Route path="edit" element={<EditTask />} />
                   </Route>
+                  <Route path="user/:userId" element={<UserInfo/>}/>
                   <Route path="profile">
                     <Route index element={<Profile />} />
                     <Route path="edit" element={<ProfileEdit />} />

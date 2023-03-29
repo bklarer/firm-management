@@ -2,6 +2,7 @@ import Contact from "./Contact";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react"
 import { fetchUsers } from "../../slices/userSlice";
+import { NavLink } from "react-router-dom";
 
 const ContactList = () => {
         
@@ -22,11 +23,14 @@ const ContactList = () => {
                 <h4 className="name">Name</h4>
                 <h4>Tasks</h4>
             </div>
-        <div className="contact">
-            <h4 className="name">Firm's Tasks</h4>
-            <h4 className="to-do">{tasks.length}</h4>
-        </div>
-            <Contact contact={currentUser}/>
+            <NavLink className="link" to="/">
+                <div className="contact">
+                    <h4 className="name">Firm's Tasks</h4>
+                    <h4 className="to-do">{tasks.length}</h4>
+                </div>
+            </NavLink>
+                <Contact contact={currentUser}/>
+
             {filteredContacts.length > 0 ? filteredContacts.map((contact) => {
                 return (
 
