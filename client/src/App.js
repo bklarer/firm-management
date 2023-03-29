@@ -1,10 +1,5 @@
 import "./App.css";
-import {
-  Routes,
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { checkLogin } from "./slices/loginSlice";
@@ -84,7 +79,7 @@ function App() {
                   </Route>
                 </Route>
               </Routes>
-  
+
               <Routes>
                 <Route path="/" element={<DynamicContainer />}>
                   <Route index element={<TaskList />} />

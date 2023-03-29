@@ -14,11 +14,11 @@ const TaskList = () => {
     return(
 
         <div className="task-list">
-            { tasks.length > 0 ? tasks.map((task) => {
+            {/* { tasks.length > 0 ? tasks.map((task) => {
                 return (
                     <Task key={task.id} task={task} />
                 )
-            }) : null}
+            }) : null} */}
         </div>
 
 

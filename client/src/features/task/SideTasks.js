@@ -12,11 +12,11 @@ const SideTasks = () => {
 
         <div className="side-tasks">
 
-            { tasks.length > 0 ? tasks.map((task) => {
+            {/* { tasks.length > 0 ? tasks.map((task) => {
                 return (
                     <div key={task.id}>{task.title}</div>
                 )
-            }) : null}
+            }) : null} */}
         </div>
 
     )
