@@ -1,30 +1,33 @@
-import './App.css';
-import {Routes, Route, createBrowserRouter, createRoutesFromElements} from "react-router-dom"
-import { useState, useEffect } from "react"
+import "./App.css";
+import {
+  Routes,
+  Route,
+  createBrowserRouter,
+  createRoutesFromElements,
+} from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { checkLogin, } from "./slices/loginSlice";
-import Navbar from './features/structure/Navbar';
-import LeftBar from './features/structure/LeftBar';
-import DynamicContainer from './features/structure/DynamicContainer';
-import Footer from './features/structure/Footer';
-import TaskList from './features/task/TaskList';
-import Login from './features/user/Login';
-import SignUp from './features/user/SignUp';
-import NewTask from './features/task/NewTask';
-import EditTask from './features/task/EditTask';
-import Profile from './features/user/Profile';
-import EditProfile from './features/user/EditProfile';
-import NewProject from './features/task/NewProject';
-import EditProject from './features/task/EditProject';
-import { fetchUsers } from './slices/userSlice';
-import { fetchTasks } from './slices/taskSlice';
-import ContactList from './features/user/ContactList';
-import SideTasks from './features/task/SideTasks';
-import ProfileEdit from './features/user/ProfileEdit';
-import FullTaskView from './features/task/FullTaskView';
-import CenterContainer from './features/structure/CenterContainer';
-import Loading from './features/structure/Loading';
-
+import { checkLogin } from "./slices/loginSlice";
+import Navbar from "./features/structure/Navbar";
+import LeftBar from "./features/structure/LeftBar";
+import DynamicContainer from "./features/structure/DynamicContainer";
+import Footer from "./features/structure/Footer";
+import TaskList from "./features/task/TaskList";
+import Login from "./features/user/Login";
+import SignUp from "./features/user/SignUp";
+import NewTask from "./features/task/NewTask";
+import EditTask from "./features/task/EditTask";
+import Profile from "./features/user/Profile";
+import EditProfile from "./features/user/EditProfile";
+import NewProject from "./features/task/NewProject";
+import EditProject from "./features/task/EditProject";
+import { fetchUsers } from "./slices/userSlice";
+import { fetchTasks } from "./slices/taskSlice";
+import ContactList from "./features/user/ContactList";
+import SideTasks from "./features/task/SideTasks";
+import ProfileEdit from "./features/user/ProfileEdit";
+import FullTaskView from "./features/task/FullTaskView";
+import Loading from "./features/structure/Loading";
 
 //Update new forms to update state
 //Create Edit form
@@ -40,68 +43,68 @@ import Loading from './features/structure/Loading';
 
 function App() {
   const { userInfo } = useSelector((state) => state.login);
-  const dispatch = useDispatch()
-  
+  const dispatch = useDispatch();
+  const taskLoading = useSelector((state) => state.login.loading);
+  const userLoading = useSelector((state) => state.tasks.loading);
+  const LoginLoading = useSelector((state) => state.users.loading);
+
   useEffect(() => {
-    const loadData = () => dispatch(checkLogin()) 
-    loadData()
-  },[dispatch])
+    const loadData = () => dispatch(checkLogin());
+    loadData();
+  }, [dispatch]);
 
-  // const router = createBrowserRouter(
-  //   createRoutesFromElements(
+  useEffect(() => {
+    if (!userInfo) {
+      dispatch(fetchTasks());
+      dispatch(fetchUsers());
+    }
+  }, [dispatch, userInfo]);
 
-  //   )
-  // )
-
-
-  if(!userInfo) {
-    return (
-    <div className="App">
-      <Navbar/>
-        <Routes>
-          <Route path="/*" element={<Login/>}/>
-          <Route path="/signup" element={<SignUp/>} />
-        </Routes>
-      <Footer/>
-    </div>
-    )
-  } 
-  
   return (
     <div className="App">
-      <Navbar/>
-      <CenterContainer/>
-      
-      {/* <div className="center-container">
+      {taskLoading || userLoading || LoginLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <Navbar />
+          {!userInfo ? (
             <Routes>
-                <Route path="/" element={<LeftBar/>}>
-                  <Route index element={<ContactList/>}/>
-                  <Route path="*" element={<ContactList/>}/>
+              <Route path="/*" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          ) : (
+            <div className="center-container">
+              <Routes>
+                <Route path="/" element={<LeftBar />}>
+                  <Route index element={<ContactList />} />
+                  <Route path="*" element={<ContactList />} />
                   <Route path="profile">
-                    <Route index element={<SideTasks/>}/>
-                    <Route path="*" element={<SideTasks/>}/>
+                    <Route index element={<SideTasks />} />
+                    <Route path="*" element={<SideTasks />} />
                   </Route>
                 </Route>
-            </Routes>
-            
-            <Routes>
-                <Route path="/" element={<DynamicContainer/>}>
-                  <Route index element={<TaskList/>}/>
-                  <Route path="*" element={<TaskList/>}/>
-                  <Route path="new" element={<NewTask/>}/>
+              </Routes>
+  
+              <Routes>
+                <Route path="/" element={<DynamicContainer />}>
+                  <Route index element={<TaskList />} />
+                  <Route path="*" element={<TaskList />} />
+                  <Route path="new" element={<NewTask />} />
                   <Route path=":taskId">
-                    <Route index element={<FullTaskView/>}/>
-                    <Route path="edit" element={<EditTask/>}/>
+                    <Route index element={<FullTaskView />} />
+                    <Route path="edit" element={<EditTask />} />
                   </Route>
-                  <Route path="profile" >
-                    <Route index element={<Profile/>}/>
-                    <Route path="edit" element={<ProfileEdit/>}/>
+                  <Route path="profile">
+                    <Route index element={<Profile />} />
+                    <Route path="edit" element={<ProfileEdit />} />
                   </Route>
                 </Route>
-            </Routes>
-        </div> */}
-      <Footer/>
-
+              </Routes>
+            </div>
+          )}
+          <Footer />
+        </>
+      )}
     </div>
   );
 }
