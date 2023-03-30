@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { taskAdded } from "../../slices/taskSlice";
 
 const NewTask = () => {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     title: "",
     notes: "",
@@ -14,7 +14,7 @@ const NewTask = () => {
   const formattedTask = {
     title: formData.title,
     notes: formData.notes,
-    due_date: formData.due_Date + "T" + formData.due_time + ":00",
+    due_date: formData.due_date + "T" + formData.due_time + ":00",
   };
 
   const [project, setProject] = useState(0);
@@ -26,23 +26,21 @@ const NewTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form Data", formData);
     console.log("project_id", project);
     console.log("checkbox", projectCheckbox);
 
     fetch("/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify(formattedTask),
-      }).then((resp) => resp.json())
-      .then((data) => {
-        console.log(data)
-        dispatch(taskAdded(data))
-        
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(formattedTask),
     })
+      .then((resp) => resp.json())
+      .then((data) => {
+        dispatch(taskAdded(data));
+      });
   };
 
   const handleFormChange = (e) => {

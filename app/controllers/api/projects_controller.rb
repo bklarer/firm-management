@@ -5,7 +5,7 @@ class Api::ProjectsController < ApplicationController
     end
 
     def create
-        project = Project.create!(project_params)
+        project = Project.create!(project_params.merge(creator_id: @current_user[:id]))
         render json: project, status: :created
     end
 
@@ -33,7 +33,6 @@ class Api::ProjectsController < ApplicationController
         params.permit(
             :title,
             :due_date,
-            :creator_id,
         )
     end
 
