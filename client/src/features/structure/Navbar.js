@@ -41,6 +41,7 @@ const Navbar = () => {
                 <NavLink className="link" to="/new"><li>New Task</li></NavLink>
                 <NavLink className="link" to="/profile"><li>Profile</li></NavLink>
                 <NavLink className="link" to="/projects"><li>Projects</li></NavLink>
+                <NavLink className="link" to="/projects/new"><li>New Project</li></NavLink>
                 <Link className="link" onClick={handleLogoutClick}><li>Logout</li></Link>
             </ul>
         </nav>

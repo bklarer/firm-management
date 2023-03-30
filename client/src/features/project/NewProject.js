@@ -4,18 +4,21 @@
 const NewProject = () => {
 
 
+
     return (
 
-        <div>
-            New Project
-        </div>
+        <form>
+            <input placeholder="Title"/>
+            <input type="date" placeholder="Created At"/>
+            <input placeholder="Creator"/>
+            <input type="date" placeholder="Due Date"/>
+        </form>
+
 
 
     )
 
 
-
 }
 
-
-export default NewProject
+export default NewProject;
