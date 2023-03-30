@@ -24,6 +24,7 @@ import FullTaskView from "./features/task/FullTaskView";
 import Loading from "./features/structure/Loading";
 import UserInfo from "./features/user/UserInfo";
 import { fetchProjects } from "./slices/projectSlice";
+import ProjectList from "./features/project/ProjectList";
 
 //Update new forms to update state
 //Create Edit form
@@ -42,7 +43,8 @@ function App() {
   const dispatch = useDispatch();
   const taskLoading = useSelector((state) => state.login.loading);
   const userLoading = useSelector((state) => state.tasks.loading);
-  const LoginLoading = useSelector((state) => state.users.loading);
+  const loginLoading = useSelector((state) => state.users.loading);
+  const projectLoading = useSelector((state) => state.projects.loading);
 
   useEffect(() => {
     if (userInfo) {
@@ -54,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      {taskLoading || userLoading || LoginLoading ? (
+      {taskLoading || userLoading || loginLoading ||  projectLoading? (
         <Loading />
       ) : (
         <>
@@ -69,6 +71,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<LeftBar />}>
                   <Route index element={<ContactList />} />
+                  <Route path="projects" element={<ProjectList/>}/>
                   <Route path="*" element={<ContactList />} />
                 </Route>
               </Routes>
