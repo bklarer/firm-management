@@ -89,6 +89,7 @@ function App() {
                   <Route path="projects">
                     <Route index element={<ProjectView/>}/>
                     <Route path="new" element={<NewProject/>}/>
+                    <Route path=":projectId" element={<ProjectView/>}/>
                   </Route>
                   <Route path="user/:userId" element={<UserInfo/>}/>
                   <Route path="profile">

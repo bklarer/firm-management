@@ -1,4 +1,5 @@
 import { useSelector} from "react-redux";
+import { NavLink } from "react-router-dom";
 
 const ProjectList = () => {
     const projects = useSelector((state) => state.projects.projects);
@@ -17,10 +18,12 @@ const ProjectList = () => {
         <div className="project-list">
             {projects.length > 0 ? projects.map((project) => {
                 return (
-                    <div key={project.id}> 
+                    <NavLink className="link" key={project.id} to={`/projects/${project.id}`}>
+                    <div> 
                         <span>{project.title}</span>
                         <span>{showDueDate(project.due_date)}</span>
                     </div>
+                    </NavLink>
                 )
             }) : null}
         </div>
