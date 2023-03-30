@@ -85,6 +85,10 @@ function App() {
                     <Route index element={<FullTaskView />} />
                     <Route path="edit" element={<EditTask />} />
                   </Route>
+                  <Route path="projects">
+                    <Route index />
+                    <Route path="new" element={<NewProject/>}/>
+                  </Route>
                   <Route path="user/:userId" element={<UserInfo/>}/>
                   <Route path="profile">
                     <Route index element={<Profile />} />
