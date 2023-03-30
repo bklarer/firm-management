@@ -27,7 +27,7 @@ const initialState = {
     initialState,
     reducers: {
       projectAdded(state, action) {
-        state.tasks.push(action.payload);
+        state.projects.push(action.payload);
       },
     },
     extraReducers: (builder) => {
@@ -36,7 +36,7 @@ const initialState = {
           state.loading = true;
         })
         .addCase(fetchProjects.fulfilled, (state, action) => {
-          state.tasks = action.payload;
+          state.projects = action.payload;
           state.loading = false;
         })
         .addCase(fetchProjects.rejected, (state, action) => {

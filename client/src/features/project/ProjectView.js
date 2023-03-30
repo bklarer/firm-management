@@ -1,15 +1,15 @@
-
+import { useSelector } from "react-redux";
 
 
 
 const ProjectView = () => {
-
+    const projects = useSelector((state) => state.projects.projects);
 
 
     return (
 
         <div>
-            Project goes here with list of todos below
+
         </div>
 
 
