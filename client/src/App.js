@@ -26,6 +26,7 @@ import UserInfo from "./features/user/UserInfo";
 import { fetchProjects } from "./slices/projectSlice";
 import ProjectList from "./features/project/ProjectList";
 import ProjectView from "./features/project/ProjectView";
+import MainProjectPage from "./features/project/MainProjectPage";
 
 //Update new forms to update state
 //Create Edit form
@@ -87,7 +88,7 @@ function App() {
                     <Route path="edit" element={<EditTask />} />
                   </Route>
                   <Route path="projects">
-                    <Route index element={<ProjectView/>}/>
+                    <Route index element={<MainProjectPage/>}/>
                     <Route path="new" element={<NewProject/>}/>
                     <Route path=":projectId" element={<ProjectView/>}/>
                   </Route>
