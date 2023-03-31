@@ -30,6 +30,16 @@ const tasksSlice = createSlice({
     taskAdded(state, action) {
       state.tasks.push(action.payload);
     },
+    taskUpdated(state, action) {
+      const existingTask = state.tasks.find(
+        (task) => task.id === action.payload.id
+      )
+      if (existingTask) {
+        existingTask.title = action.payload.title;
+        existingTask.notes = action.payload.notes;
+        existingTask.due_date = action.payload.due_date;
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -53,6 +63,6 @@ export const selectTaskById = (state, taskId) =>
 export const selectTasksByProject = (state, projectId) =>
   state.tasks.tasks.filter((task) => task.projectId === projectId);
 
-export const { taskAdded } = tasksSlice.actions;
+export const { taskAdded, taskUpdated } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

@@ -91,6 +91,7 @@ function App() {
                     <Route index element={<MainProjectPage/>}/>
                     <Route path="new" element={<NewProject/>}/>
                     <Route path=":projectId" element={<ProjectView/>}/>
+                    <Route path=":projectId/edit" element={<EditProject/>}/>
                   </Route>
                   <Route path="user/:userId" element={<UserInfo/>}/>
                   <Route path="profile">
