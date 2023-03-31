@@ -70,14 +70,23 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    logout: (state) => {
+    logout(state) {
       state.loading = false;
       state.userInfo = null;
       state.error = null;
     },
-    clearUserError: (state) => {
+    clearUserError(state){
       state.error = null;
     },
+    loginUpdated(state, action) {
+      const loggedInUser = state.userInfo
+      if (loggedInUser) {
+        loggedInUser.first_name = action.payload.first_name
+        loggedInUser.last_name = action.payload.last_name
+        loggedInUser.username = action.payload.username
+        loggedInUser.email = action.payload.email
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -122,6 +131,6 @@ const loginSlice = createSlice({
   },
 });
 
-export const { logout } = loginSlice.actions;
+export const { logout, loginUpdated } = loginSlice.actions;
 
 export default loginSlice.reducer;

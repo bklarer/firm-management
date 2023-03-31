@@ -6,7 +6,7 @@ export const fetchUsers = createAsyncThunk(
     const response = await fetch("/api/users");
     if (response.ok) {
       const users = await response.json();
-      console.log("users", users)
+      console.log("users", users);
       return users;
     } else {
       const error = await response.json();
@@ -26,7 +26,19 @@ const initialState = {
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    userUpdated(state, action) {
+      const loggedInUser = state.users.find(
+        (user) => user.id === action.payload.id
+      );
+      if (loggedInUser) {
+        loggedInUser.first_name = action.payload.first_name;
+        loggedInUser.last_name = action.payload.last_name;
+        loggedInUser.username = action.payload.username;
+        loggedInUser.email = action.payload.email;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
@@ -45,5 +57,7 @@ const usersSlice = createSlice({
 
 export const selectUserById = (state, userId) =>
   state.users.users.find((user) => user.id === userId);
+
+export const { userUpdated } = usersSlice.actions;
 
 export default usersSlice.reducer;
