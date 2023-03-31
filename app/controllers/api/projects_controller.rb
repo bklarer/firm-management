@@ -36,7 +36,7 @@ class Api::ProjectsController < ApplicationController
         )
     end
 
-    def project_task
+    def find_project
         Project.find(params[:id])
     end
 

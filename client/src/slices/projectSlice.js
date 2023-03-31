@@ -29,6 +29,14 @@ const initialState = {
       projectAdded(state, action) {
         state.projects.push(action.payload);
       },
+      projectUpdated(state, action) {
+        const existingProject = state.projects.find(
+            (project) => project.id === action.payload.id)
+            if (existingProject) {
+                existingProject.title = action.payload.title;
+                existingProject.due_date = action.payload.due_date;
+            }
+      },
     },
     extraReducers: (builder) => {
       builder
@@ -49,6 +57,6 @@ const initialState = {
   export const selectProjectById = (state, projectId) =>
     state.projects.projects.find((project) => project.id === projectId);
   
-  export const { projectAdded } = projectsSlice.actions;
+  export const { projectAdded, projectUpdated } = projectsSlice.actions;
   
   export default projectsSlice.reducer;
