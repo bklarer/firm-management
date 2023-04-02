@@ -15,7 +15,6 @@ const Profile = () => {
             <p>{`Name: ${userInfo.first_name} ${userInfo.last_name}`}</p>
             <p>{`email: ${userInfo.email}`}</p>
             <div className="buttons">
-                <button>Delete</button>
                 <button><Link to="edit">Edit</Link></button>
             </div>
         </div>

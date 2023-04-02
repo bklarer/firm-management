@@ -37,6 +37,12 @@ const projectsSlice = createSlice({
         existingProject.due_date = action.payload.due_date;
       }
     },
+    projectRemoved(state, action) {
+      const index = state.projects.findIndex(
+        (project) => project.id === action.payload
+      );
+      state.projects.splice(index, 1);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -57,6 +63,6 @@ const projectsSlice = createSlice({
 export const selectProjectById = (state, projectId) =>
   state.projects.projects.find((project) => project.id === projectId);
 
-export const { projectAdded, projectUpdated } = projectsSlice.actions;
+export const { projectAdded, projectUpdated, projectRemoved } = projectsSlice.actions;
 
 export default projectsSlice.reducer;

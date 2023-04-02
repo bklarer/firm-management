@@ -38,6 +38,12 @@ const usersSlice = createSlice({
         loggedInUser.email = action.payload.email;
       }
     },
+    userRemoved(state, action) {
+      const index = state.users.findIndex(
+        (user) => user.id === action.payload
+      );
+      state.users.splice(index, 1)
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -58,6 +64,6 @@ const usersSlice = createSlice({
 export const selectUserById = (state, userId) =>
   state.users.users.find((user) => user.id === userId);
 
-export const { userUpdated } = usersSlice.actions;
+export const { userUpdated, userRemoved } = usersSlice.actions;
 
 export default usersSlice.reducer;

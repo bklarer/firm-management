@@ -5,8 +5,9 @@ import { NavLink } from "react-router-dom";
 
 const Contact = ({contact}) => {
     const { userInfo } = useSelector((state) => state.login);
-
-    const name = userInfo.id === contact.id ? "My Tasks" : `${contact.first_name} ${contact.last_name}`
+    console.log("contact", contact)
+    const name = userInfo || userInfo.id === contact.id ? "My Tasks" : `${contact.first_name} ${contact.last_name}`
+    
     return (
         <NavLink className="link" to={`/user/${contact.id}`}>
             <div className="contact">

@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { selectTaskById, taskUpdated } from "../../slices/taskSlice";
-import { useParams } from "react-router-dom";
+import { selectTaskById, taskRemoved, taskUpdated } from "../../slices/taskSlice";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const EditTask = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { taskId } = useParams();
   const [updatedTask, setUpdatedTask] = useState({
@@ -58,6 +59,18 @@ const EditTask = () => {
       });
   };
 
+  const handleDeleteClick = () => {
+    fetch(`/api/tasks/${taskId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
+        navigate("/")
+        dispatch(taskRemoved(parseInt(taskId)))
+    });
+  };
+
   let date = new Date().toISOString().slice(0, 10);
 
   return (
@@ -100,6 +113,7 @@ const EditTask = () => {
         </div>
         <input type="submit" />
       </form>
+      <button onClick={handleDeleteClick}>Delete</button>
     </>
   );
 };

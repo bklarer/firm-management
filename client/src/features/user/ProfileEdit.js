@@ -1,9 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { loginUpdated } from "../../slices/loginSlice";
-import { userUpdated } from "../../slices/userSlice";
+import { loginUpdated, logout } from "../../slices/loginSlice";
+import { userRemoved, userUpdated } from "../../slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.login);
   const [updatedUser, setUpdatedUser] = useState({
@@ -48,11 +50,19 @@ const ProfileEdit = () => {
       .then((resp) => resp.json())
       .then((changedUser) => {
         dispatch(userUpdated(changedUser));
-        dispatch(loginUpdated(changedUser))
-
+        dispatch(loginUpdated(changedUser));
       });
   };
 
+  const handleDeleteClick = () => {
+    fetch(`/api/me`, {
+      method: "DELETE",
+    }).then(() => {
+      navigate("/");
+      dispatch(logout());
+      dispatch(userRemoved(userInfo.id));
+    });
+  };
 
   return (
     <div className="profile">
@@ -86,8 +96,9 @@ const ProfileEdit = () => {
           type="text"
           placeholder="Email"
         />
-        <input type="submit"/>
+        <input type="submit" />
       </form>
+      <button onClick={handleDeleteClick}>Delete</button>
     </div>
   );
 };

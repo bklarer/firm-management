@@ -29,7 +29,6 @@ const SignUp = () => {
     function handleSubmit(e) {
         e.preventDefault();
         dispatch(registerUser(formData));
-        navigate("/") //not working
     }
 
     return(

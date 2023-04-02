@@ -13,7 +13,6 @@ import SignUp from "./features/user/SignUp";
 import NewTask from "./features/task/NewTask";
 import EditTask from "./features/task/EditTask";
 import Profile from "./features/user/Profile";
-import EditProfile from "./features/user/EditProfile";
 import NewProject from "./features/project/NewProject";
 import EditProject from "./features/project/EditProject";
 import { fetchUsers } from "./slices/userSlice";

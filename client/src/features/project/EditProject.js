@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { projectUpdated, selectProjectById } from "../../slices/projectSlice";
+import { projectRemoved, projectUpdated, selectProjectById } from "../../slices/projectSlice";
 
 const EditProject = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const { projectId } = useParams();
     const [updatedProject, setUpdatedProject] = useState({
@@ -58,6 +59,18 @@ const EditProject = () => {
           });
       };
 
+      const handleDeleteClick = () => {
+        fetch(`/api/projects/${projectId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then(() => {
+            navigate("/")
+            dispatch(projectRemoved(parseInt(projectId)))
+        });
+      };
+
       let date = new Date().toISOString().slice(0, 10);
 
     return(
@@ -95,6 +108,7 @@ const EditProject = () => {
           </div>
           <input type="submit" />
         </form>
+        <button onClick={handleDeleteClick}>Delete</button>
       </>
 
     )
