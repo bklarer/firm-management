@@ -27,7 +27,6 @@ const Task = ({ task }) => {
             .then((resp) => resp.json())
             .then((changedTask) => {
               dispatch(taskUpdated(changedTask));
-              console.log("changed task", changedTask)
             });
     }
 

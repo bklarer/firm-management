@@ -39,8 +39,6 @@ const UserInfo = () => {
     return newTasks
 }
 
- console.log("tasks in userInfo", filteredTasks())
-
   return (
     <>
       <ul>

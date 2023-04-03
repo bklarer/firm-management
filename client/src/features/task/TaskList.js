@@ -36,7 +36,7 @@ const TaskList = () => {
   //filter completed, false
   //filter completed, true
   //filter date < today's date
-  console.log("tasks in tasklist", filteredTasks())
+
   
   return (
     <>
