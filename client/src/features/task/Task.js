@@ -14,7 +14,7 @@ const Task = ({ task }) => {
     }, [completed])
     
    const handleCheckBox = (e) => {
-    const newValue = e.target.checked    
+    const newValue = e.target.checked ? true : false
     setCheckBox(newValue)
         fetch(`/api/tasks/${id}`, {
             method: "PATCH",
@@ -27,6 +27,7 @@ const Task = ({ task }) => {
             .then((resp) => resp.json())
             .then((changedTask) => {
               dispatch(taskUpdated(changedTask));
+              console.log("changed task", changedTask)
             });
     }
 

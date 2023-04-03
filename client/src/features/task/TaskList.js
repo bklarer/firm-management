@@ -8,6 +8,8 @@ const TaskList = () => {
   const tasks = useSelector((state) => state.tasks.tasks);
   let date = new Date().toISOString()
   
+
+
   const filteredTasks = () => {
     let newTasks = []
     if(tasks.length > 0 ) {
@@ -34,7 +36,8 @@ const TaskList = () => {
   //filter completed, false
   //filter completed, true
   //filter date < today's date
-
+  console.log("tasks in tasklist", filteredTasks())
+  
   return (
     <>
       <div className="task-filter">

@@ -8,7 +8,15 @@ const UserInfo = () => {
   const [dropdown, setDropdown] = useState("all")
     const { userId } = useParams();
   const user = useSelector((state) => selectUserById(state, parseInt(userId)));
-  const tasks = user.tasks
+  const assignments = useSelector((state) =>  state.assignments.assignments).filter((assignment) => assignment.user_id === user.id)
+  const taskIds = []
+  
+  assignments.forEach((assignment) => {
+    taskIds.push(assignment.task_id);
+  });
+
+  const tasks = useSelector((state) => state.tasks.tasks).filter((task) => taskIds.includes(task.id));
+
   let date = new Date().toISOString()
 
   const filteredTasks = () => {
@@ -30,6 +38,8 @@ const UserInfo = () => {
     }
     return newTasks
 }
+
+ console.log("tasks in userInfo", filteredTasks())
 
   return (
     <>

@@ -26,6 +26,7 @@ import { fetchProjects } from "./slices/projectSlice";
 import ProjectList from "./features/project/ProjectList";
 import ProjectView from "./features/project/ProjectView";
 import MainProjectPage from "./features/project/MainProjectPage";
+import { fetchAssignments } from "./slices/assignmentSlice";
 
 //Update new forms to update state
 //Create Edit form
@@ -46,18 +47,20 @@ function App() {
   const userLoading = useSelector((state) => state.tasks.loading);
   const loginLoading = useSelector((state) => state.users.loading);
   const projectLoading = useSelector((state) => state.projects.loading);
+  const assignmentLoading = useSelector((state) => state.assignments.loading)
 
   useEffect(() => {
     if (userInfo) {
       dispatch(fetchTasks());
       dispatch(fetchUsers());
       dispatch(fetchProjects())
+      dispatch(fetchAssignments())
     }
   }, [dispatch, userInfo]);
 
   return (
     <div className="App">
-      {taskLoading || userLoading || loginLoading ||  projectLoading? (
+      {taskLoading || userLoading || loginLoading ||  projectLoading || assignmentLoading? (
         <Loading />
       ) : (
         <>

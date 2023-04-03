@@ -51,7 +51,6 @@ export const checkLogin = createAsyncThunk(
 
     if (response.ok) {
       const user = await response.json();
-      console.log("Logged in user", user)
       return user;
     } else {
       const error = await response.json();

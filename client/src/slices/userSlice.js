@@ -6,7 +6,6 @@ export const fetchUsers = createAsyncThunk(
     const response = await fetch("/api/users");
     if (response.ok) {
       const users = await response.json();
-      console.log("users", users);
       return users;
     } else {
       const error = await response.json();

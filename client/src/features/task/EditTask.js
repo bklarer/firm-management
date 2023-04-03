@@ -43,7 +43,6 @@ const EditTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit", formattedTask);
 
     fetch(`/api/tasks/${taskId}`, {
       method: "PATCH",

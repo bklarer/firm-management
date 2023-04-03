@@ -38,6 +38,7 @@ const tasksSlice = createSlice({
         existingTask.title = action.payload.title;
         existingTask.notes = action.payload.notes;
         existingTask.due_date = action.payload.due_date;
+        existingTask.completed = action.payload.completed;
       }
     },
     taskRemoved(state, action) {
