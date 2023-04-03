@@ -1,14 +1,39 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { taskUpdated } from "../../slices/taskSlice";
 
 const Task = ({ task }) => {
-  const { title, id } = task;
-
+    const dispatch = useDispatch()
+    const { title, id, creator_id, due_date, project_id, completed } = task;
+    const [checkbox, setCheckBox] = useState(false)
   //Need to set data to object and see how I want to serialize data from backend
+
+    useEffect(()=>{
+        setCheckBox(completed ? true : false)
+    }, [completed])
+    
+   const handleCheckBox = (e) => {
+    const newValue = e.target.checked    
+    setCheckBox(newValue)
+        fetch(`/api/tasks/${id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify({completed: newValue}),
+          })
+            .then((resp) => resp.json())
+            .then((changedTask) => {
+              dispatch(taskUpdated(changedTask));
+            });
+    }
 
   return (
     <div className="task-box">
       <div className="checkbox">
-        <input className="task-completed" type="checkbox" />
+        <input className="task-completed" type="checkbox" value={checkbox} checked={checkbox} onChange={handleCheckBox}/>
       </div>
       <div className="title">Task: {title}</div>
       <div className="project">Project: </div>

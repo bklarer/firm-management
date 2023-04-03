@@ -36,6 +36,7 @@ class Api::TasksController < ApplicationController
             :notes,
             :due_date,
             :project_id,
+            :completed,
         )
     end
 
