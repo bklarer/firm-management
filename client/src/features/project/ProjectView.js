@@ -17,6 +17,8 @@ const ProjectView = () => {
     a.completed === b.completed ? 0 : a.completed ? 1 : -1
   );
 
+  console.log("project tasks", tasks)
+
   return (
     <>
       <ul>

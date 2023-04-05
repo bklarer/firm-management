@@ -4,6 +4,7 @@ import { taskAdded } from "../../slices/taskSlice";
 
 const NewTask = () => {
   const dispatch = useDispatch();
+  const projects = useSelector((state) => state.projects.projects);
   const [formData, setFormData] = useState({
     title: "",
     notes: "",
@@ -11,13 +12,13 @@ const NewTask = () => {
     due_time: "",
   });
 
+  const [projectId, setProjectId] = useState(undefined);
+
   const formattedTask = {
     title: formData.title,
     notes: formData.notes,
     due_date: formData.due_date + "T" + formData.due_time + ":00",
   };
-
-  const [project, setProject] = useState(0);
 
   const [projectCheckbox, setProjectCheckbox] = useState(false);
   const [assignedCheckbox, setAssignedCheckbox] = useState(false);
@@ -26,8 +27,10 @@ const NewTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("project_id", project);
-    console.log("checkbox", projectCheckbox);
+    const newTask =
+      projectCheckbox && projectId
+        ? { ...formattedTask, project_id: projectId }
+        : { ...formattedTask };
 
     fetch("/api/tasks", {
       method: "POST",
@@ -35,7 +38,7 @@ const NewTask = () => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(formattedTask),
+      body: JSON.stringify(newTask),
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -102,8 +105,22 @@ const NewTask = () => {
               type="checkbox"
             />
           </label>
-          <select disabled={projectCheckbox ? false : true}>
-            <option>Projects</option>
+          <select
+            name="project_id"
+            disabled={projectCheckbox ? false : true}
+            onChange={(e) => setProjectId(e.target.value)}
+            value={projectId || ""}
+          >
+            <option default disabled value="">
+              Pick One
+            </option>
+            {projects.map((project) => {
+              return (
+                <option key={project.id} value={project.id}>
+                  {project.title}
+                </option>
+              );
+            })}
           </select>
         </div>
         <div>

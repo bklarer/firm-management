@@ -68,7 +68,7 @@ export const selectTaskById = (state, taskId) =>
   state.tasks.tasks.find((task) => task.id === taskId);
 
 export const selectTasksByProject = (state, projectId) =>
-  state.tasks.tasks.filter((task) => task.projectId === projectId);
+  state.tasks.tasks.filter((task) => task.project_id === projectId);
 
 export const { taskAdded, taskUpdated, taskRemoved } = tasksSlice.actions;
 
