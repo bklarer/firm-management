@@ -6,29 +6,32 @@ import { useState } from "react";
 const TaskList = () => {
   const [dropdown, setDropdown] = useState("all");
   const tasks = useSelector((state) => state.tasks.tasks);
-  let date = new Date().toISOString()
-  
-
+  let date = new Date().toISOString();
 
   const filteredTasks = () => {
-    let newTasks = []
-    if(tasks.length > 0 ) {
-        switch(dropdown) {
-            case "not_completed":
-                newTasks = tasks.filter((task) => task.completed === false)
-            break;
-            case "past_due":
-                newTasks = tasks.filter((task) => task.completed === false && task.due_date < date)
-            break;
-            case "completed":
-                newTasks = tasks.filter((task) => task.completed === true)
-            break;
-            default: 
-            newTasks = tasks
-        }
+    let newTasks = [];
+    if (tasks.length > 0) {
+      switch (dropdown) {
+        case "not_completed":
+          newTasks = [...tasks].filter((task) => task.completed === false);
+          break;
+        case "past_due":
+          newTasks = [...tasks].filter(
+            (task) => task.completed === false && task.due_date < date
+          );
+          break;
+        case "completed":
+          newTasks = [...tasks].filter((task) => task.completed === true);
+          break;
+        default:
+          newTasks = [...tasks];
+      }
+      newTasks.sort((a, b) =>
+        a.completed === b.completed ? 0 : a.completed ? 1 : -1
+      );
     }
-    return newTasks
-}
+    return newTasks;
+  };
   //create state for task filter
   //state will be based off of dropdown
   //Use switch for different filtering options
@@ -37,7 +40,6 @@ const TaskList = () => {
   //filter completed, true
   //filter date < today's date
 
-  
   return (
     <>
       <div className="task-filter">

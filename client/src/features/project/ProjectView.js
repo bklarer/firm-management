@@ -13,6 +13,10 @@ const ProjectView = () => {
     selectTasksByProject(state, parseInt(projectId))
   );
 
+  tasks.sort((a, b) =>
+    a.completed === b.completed ? 0 : a.completed ? 1 : -1
+  );
+
   return (
     <>
       <ul>
