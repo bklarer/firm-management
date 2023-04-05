@@ -101,7 +101,7 @@ const NewTask = () => {
             <input
               name="project_checkbox"
               onChange={(e) => setProjectCheckbox(e.target.checked)}
-              value={projectCheckbox}
+              checked={projectCheckbox}
               type="checkbox"
             />
           </label>
@@ -129,7 +129,7 @@ const NewTask = () => {
             <input
               name="assigned_checkbox"
               onChange={(e) => setAssignedCheckbox(e.target.checked)}
-              value={assignedCheckbox}
+              checked={assignedCheckbox}
               type="checkbox"
             />
           </label>

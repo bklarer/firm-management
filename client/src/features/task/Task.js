@@ -63,12 +63,12 @@ const Task = ({ task }) => {
       </div>
       <div className="buttons button1">
         <button>
-          <Link to={`${id}`}>View</Link>
+          <Link to={`/${id}`}>View</Link>
         </button>
       </div>
       <div className="buttons button2">
         <button>
-          <Link to={`${id}/edit`}>Edit</Link>
+          <Link to={`/${id}/edit`}>Edit</Link>
         </button>
       </div>
     </div>
