@@ -35,9 +35,9 @@ const NewTask = () => {
 
     const userIds = assignedUsers.map((user) => user.id);
 
-    const finalTask = userIds.length > 0? {...newTask, user_ids: userIds } : newTask;
+    const finalTask =
+      userIds.length > 0 ? { ...newTask, user_ids: userIds } : newTask;
 
-    
     fetch("/api/tasks", {
       method: "POST",
       headers: {
@@ -49,13 +49,14 @@ const NewTask = () => {
       .then((resp) => resp.json())
       .then((data) => {
         dispatch(taskAdded(data.task));
-        
-        if(data.assignments.length) {data.assignments.forEach((assignment) => {
-          dispatch(assignmentAdded(assignment))
-        })}
+
+        if (data.assignments.length) {
+          data.assignments.forEach((assignment) => {
+            dispatch(assignmentAdded(assignment));
+          });
+        }
       });
   };
-
 
   const handleFormChange = (e) => {
     setFormData((formData) => ({
@@ -88,7 +89,7 @@ const NewTask = () => {
     setAssignedCheckbox(e.target.checked);
   };
 
-  console.log("assigned users", assignedUsers)
+  console.log("assigned users", assignedUsers);
 
   //left off of dropbox, trying to figure adding a user, removing from dropbox and adding below with an x
   //will need to handle reseting the dropbox and assigned array when clicking the checkbox for assigned
@@ -181,19 +182,22 @@ const NewTask = () => {
             </option>
             {users.map((user) => {
               return (
-                <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
-              )
+                <option
+                  key={user.id}
+                  value={user.id}
+                >{`${user.first_name} ${user.last_name}`}</option>
+              );
             })}
           </select>
-          <input type="submit" />
-        </div>
-      </form>
-      {assignedUsers.map((user) => (
+          {assignedUsers.map((user) => (
             <div key={user.id}>
               <span>{`${user.first_name} ${user.last_name}`}</span>
               <button onClick={() => handleUnassign(user.id)}>x</button>
             </div>
           ))}
+          <input type="submit" />
+        </div>
+      </form>
     </>
   );
 };

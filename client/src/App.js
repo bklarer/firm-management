@@ -58,6 +58,10 @@ function App() {
     }
   }, [dispatch, userInfo]);
 
+  //BUG: When signing in, the page errors out
+  //BUG: When a project and multiple users are assigned to a task, there was an error
+  //BUG: Need to handle all errors
+
   return (
     <div className="App">
       {taskLoading || userLoading || loginLoading ||  projectLoading || assignmentLoading? (

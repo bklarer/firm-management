@@ -27,7 +27,9 @@ const assignmentsSlice = createSlice({
   initialState,
   reducers: {
     assignmentAdded(state, action) {
-      state.assignments.push(action.payload);
+      if (!state.assignments.find((assignment) => assignment.id === action.payload.id)) {
+        state.assignments.push(action.payload);
+      }
     },
     assignmentRemoved(state, action) {
       const index = state.assignments.findIndex(
@@ -51,6 +53,12 @@ const assignmentsSlice = createSlice({
       });
   },
 });
+
+export const selectAssignmensByTaskId = (state, taskId) => {
+  return state.assignments.assignments.filter(
+    (assignment) => assignment.task_id === taskId
+  );
+}
 
 export const { assignmentAdded, assignmentRemoved } = assignmentsSlice.actions;
 

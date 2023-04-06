@@ -25,8 +25,25 @@ class Api::TasksController < ApplicationController
 
     def update
         task = find_task
+        user_ids = params[:user_ids]
+        assignments = []
+        
+        # user_ids.each do |user_id|
+        #   assignment = Assignment.create!(user_id: user_id, task_id: task.id)
+        #   assignments << assignment
+        # end
+        # need to change above to check if an assignment already exists
+
+        user_ids.each do |user_id|
+            assignment = Assignment.find_by(user_id: user_id, task_id: task.id)
+            if assignment.nil?
+                assignment = Assignment.create!(user_id: user_id, task_id: task.id)
+            end
+            assignments << assignment
+        end
+
         task.update!(task_params)
-        render json: task, status: :accepted
+        render json: { task: task, assignments: assignments }, status: :accepted
     end
 
     def destroy
