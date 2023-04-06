@@ -5,6 +5,8 @@ import { taskAdded } from "../../slices/taskSlice";
 const NewTask = () => {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state.projects.projects);
+  const users = useSelector((state) => state.users.users);
+  const [assignedUsers, setAssignedUsers] = useState([]);
   const [formData, setFormData] = useState({
     title: "",
     notes: "",
@@ -23,8 +25,6 @@ const NewTask = () => {
   const [projectCheckbox, setProjectCheckbox] = useState(false);
   const [assignedCheckbox, setAssignedCheckbox] = useState(false);
 
-  //setup assigning user
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const newTask =
@@ -32,13 +32,18 @@ const NewTask = () => {
         ? { ...formattedTask, project_id: projectId }
         : { ...formattedTask };
 
+    const userIds = assignedUsers.map((user) => user.id);
+
+    const finalTask = userIds.length > 0? {...newTask, user_ids: userIds } : newTask;
+
+    
     fetch("/api/tasks", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(finalTask),
     })
       .then((resp) => resp.json())
       .then((data) => {
@@ -53,7 +58,34 @@ const NewTask = () => {
     }));
   };
 
-  //update state in task slice
+  const handleAssignedUsers = (e) => {
+    const user = users.find((user) => user.id === parseInt(e.target.value));
+    if (assignedUsers.find((assignedUser) => assignedUser.id === user.id)) {
+      setAssignedUsers(
+        assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
+      );
+    } else {
+      setAssignedUsers([...assignedUsers, user]);
+    }
+  };
+
+  const handleUnassign = (userId) => {
+    setAssignedUsers((assignedUsers) =>
+      assignedUsers.filter((user) => user.id !== userId)
+    );
+  };
+
+  const handleAssignCheckbox = (e) => {
+    if (!e.target.checked) {
+      setAssignedUsers([]);
+    }
+    setAssignedCheckbox(e.target.checked);
+  };
+
+  console.log("assigned users", assignedUsers)
+
+  //left off of dropbox, trying to figure adding a user, removing from dropbox and adding below with an x
+  //will need to handle reseting the dropbox and assigned array when clicking the checkbox for assigned
 
   let date = new Date().toISOString().slice(0, 10);
 
@@ -128,17 +160,34 @@ const NewTask = () => {
             Assign?
             <input
               name="assigned_checkbox"
-              onChange={(e) => setAssignedCheckbox(e.target.checked)}
+              onChange={handleAssignCheckbox}
               checked={assignedCheckbox}
               type="checkbox"
             />
           </label>
-          <select disabled={assignedCheckbox ? false : true}>
-            <option>Assigned</option>
+          <select
+            disabled={assignedCheckbox ? false : true}
+            onChange={handleAssignedUsers}
+            value=""
+          >
+            <option default disabled value="">
+              Pick users
+            </option>
+            {users.map((user) => {
+              return (
+                <option key={user.id} value={user.id}>{`${user.first_name} ${user.last_name}`}</option>
+              )
+            })}
           </select>
           <input type="submit" />
         </div>
       </form>
+      {assignedUsers.map((user) => (
+            <div key={user.id}>
+              <span>{`${user.first_name} ${user.last_name}`}</span>
+              <button onClick={() => handleUnassign(user.id)}>x</button>
+            </div>
+          ))}
     </>
   );
 };
