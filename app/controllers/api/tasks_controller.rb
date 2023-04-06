@@ -7,9 +7,16 @@ class Api::TasksController < ApplicationController
 
     def create
         task = Task.create!(task_params.merge(creator_id: @current_user[:id]))
-        task.user_ids = params[:user_ids]
-        render json: task, status: :created
-      end
+        user_ids = params[:user_ids]
+        assignments = []
+        
+        user_ids.each do |user_id|
+          assignment = Assignment.create!(user_id: user_id, task_id: task.id)
+          assignments << assignment
+        end
+        
+        render json: { task: task, assignments: assignments }, status: :created
+    end
 
     def show
         task = find_task

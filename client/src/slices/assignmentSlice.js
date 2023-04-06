@@ -29,12 +29,12 @@ const assignmentsSlice = createSlice({
     assignmentAdded(state, action) {
       state.assignments.push(action.payload);
     },
-    taskRemoved(state, action) {
-      const index = state.tasks.findIndex(
-        (task) => task.id === action.payload
-      );
-      state.tasks.splice(index, 1);
-    }
+    assignmentRemoved(state, action) {
+      const index = state.assignments.findIndex(
+        (assignment) => assignment.id === action.payload
+      )
+      state.assignments.splice(index, 1);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -51,7 +51,6 @@ const assignmentsSlice = createSlice({
       });
   },
 });
-
 
 export const { assignmentAdded, assignmentRemoved } = assignmentsSlice.actions;
 

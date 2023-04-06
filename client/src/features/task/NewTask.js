@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { taskAdded } from "../../slices/taskSlice";
+import { assignmentAdded } from "../../slices/assignmentSlice";
 
 const NewTask = () => {
   const dispatch = useDispatch();
@@ -47,9 +48,14 @@ const NewTask = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        dispatch(taskAdded(data));
+        dispatch(taskAdded(data.task));
+        
+        if(data.assignments.length) {data.assignments.forEach((assignment) => {
+          dispatch(assignmentAdded(assignment))
+        })}
       });
   };
+
 
   const handleFormChange = (e) => {
     setFormData((formData) => ({
