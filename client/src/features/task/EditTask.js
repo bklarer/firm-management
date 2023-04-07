@@ -33,7 +33,7 @@ const EditTask = () => {
     due_time: "",
   });
 
-  const usersDropdown = [...users]
+  const [usersDropdown, setUsersDropdown] = useState([]);
 
   const formattedTask = {
     title: updatedTask.title,
@@ -63,9 +63,21 @@ const EditTask = () => {
           setAssignedUsers(initialUsers);
         }
       }
-      setInitialized(true);
-    }
-  }, [initialized, task, users, userAssignments]);
+        setInitialized(true);
+      }
+      
+    }, [initialized, task, users, userAssignments, assignedUsers]);
+
+
+    
+    useEffect(() => {
+        const unassignedUsers =  users && assignedUsers? users.filter((user) => {
+      return !assignedUsers.find((assignedUser) => assignedUser.id === user.id);
+    }) : []
+      setUsersDropdown(unassignedUsers)
+    
+    }, [assignedUsers, users])
+
 
   const handleFormChange = (e) => {
     setUpdatedTask((updatedTask) => ({
@@ -108,63 +120,68 @@ const EditTask = () => {
     });
   };
 
-  const unassignFetch = (assignment) => {
-    fetch(`/api/assignments/${assignment.id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-  };
-
-  const assignFetch = (user) => {
-    fetch(`/api/assignments`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({ user_id: user.id, task_id: taskId }),
-    });
-  };
-
   const handleAssignedUsers = (e) => {
     const user = users.find((user) => user.id === parseInt(e.target.value));
     const assignment = userAssignments.find(
       (assignment) => assignment.user_id === user.id
     );
     if (assignedUsers.find((assignedUser) => assignedUser.id === user.id)) {
-      setAssignedUsers(
-        assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
-      );
-      
-      unassignFetch(assignment).then(() => {
+      fetch(`/api/assignments/${assignment.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(() => {
         setAssignedUsers(
           assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
         );
+        // usersDropdown.push(user)
+        setUsersDropdown([...usersDropdown, user]);
         dispatch(assignmentRemoved(assignment));
       });
     } else {
-      assignFetch(user)
+      fetch(`/api/assignments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ user_id: user.id, task_id: taskId }),
+      })
         .then((resp) => resp.json())
         .then((assignment) => {
           setAssignedUsers([...assignedUsers, user]);
-          usersDropdown.filter((updatedUser) => updatedUser.id !== user.id )
+          // usersDropdown.filter((updatedUser) => updatedUser.id !== user.id )
+          setUsersDropdown(
+            usersDropdown.filter((updatedUser) => updatedUser.id !== user.id)
+          );
           dispatch(assignmentAdded(assignment));
         });
     }
   };
 
+  console.log("assignedUsers", assignedUsers);
+  console.log("usersDropdown", usersDropdown);
+
   const handleUnassign = (userId) => {
     const assignment = userAssignments.find(
       (assignment) => assignment.user_id === userId
     );
-    
-    unassignFetch(assignment).then(() => {
+
+    fetch(`/api/assignments/${assignment.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(() => {
       setAssignedUsers((assignedUsers) =>
         assignedUsers.filter((user) => user.id !== userId)
       );
-      usersDropdown.push(users.find((user) => user.id === userId))
+      // usersDropdown.push(users.find((user) => user.id === userId))
+      setUsersDropdown([
+        ...usersDropdown,
+        users.find((user) => user.id === userId),
+      ]);
       dispatch(assignmentRemoved(assignment));
     });
   };
