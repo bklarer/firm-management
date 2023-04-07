@@ -63,21 +63,21 @@ const EditTask = () => {
           setAssignedUsers(initialUsers);
         }
       }
-        setInitialized(true);
-      }
-      
-    }, [initialized, task, users, userAssignments, assignedUsers]);
+      setInitialized(true);
+    }
+  }, [initialized, task, users, userAssignments, assignedUsers]);
 
-
-    
-    useEffect(() => {
-        const unassignedUsers =  users && assignedUsers? users.filter((user) => {
-      return !assignedUsers.find((assignedUser) => assignedUser.id === user.id);
-    }) : []
-      setUsersDropdown(unassignedUsers)
-    
-    }, [assignedUsers, users])
-
+  useEffect(() => {
+    const unassignedUsers =
+      users && assignedUsers
+        ? users.filter((user) => {
+            return !assignedUsers.find(
+              (assignedUser) => assignedUser.id === user.id
+            );
+          })
+        : [];
+    setUsersDropdown(unassignedUsers);
+  }, [assignedUsers, users]);
 
   const handleFormChange = (e) => {
     setUpdatedTask((updatedTask) => ({
@@ -254,31 +254,33 @@ const EditTask = () => {
             })}
           </select>
         </div>
-        <div>
-          <select onChange={handleAssignedUsers} value="">
-            <option default disabled value="">
-              Pick users
-            </option>
-            {usersDropdown.map((user) => {
-              return (
-                <option
-                  key={user.id}
-                  value={user.id}
-                >{`${user.first_name} ${user.last_name}`}</option>
-              );
-            })}
-          </select>
-        </div>
-        {assignedUsers.map((user) => (
-          <div key={user.id}>
-            <span>{`${user.first_name} ${user.last_name}`}</span>
-            <button onClick={() => handleUnassign(user.id)}>x</button>
-          </div>
-        ))}
+
         <input type="submit" />
       </form>
 
       <button onClick={handleDeleteClick}>Delete</button>
+
+      <div>
+        <select onChange={handleAssignedUsers} value="">
+          <option default disabled value="">
+            Assign Users
+          </option>
+          {usersDropdown.map((user) => {
+            return (
+              <option
+                key={user.id}
+                value={user.id}
+              >{`${user.first_name} ${user.last_name}`}</option>
+            );
+          })}
+        </select>
+      </div>
+      {assignedUsers.map((user) => (
+        <div key={user.id}>
+          <span>{`${user.first_name} ${user.last_name}`}</span>
+          <button onClick={() => handleUnassign(user.id)}>x</button>
+        </div>
+      ))}
     </>
   );
 };
