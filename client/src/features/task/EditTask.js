@@ -7,7 +7,10 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useLayoutEffect } from "react";
 import { selectAssignmensByTaskId } from "../../slices/assignmentSlice";
-import { assignmentAdded } from "../../slices/assignmentSlice";
+import {
+  assignmentAdded,
+  assignmentRemoved,
+} from "../../slices/assignmentSlice";
 
 const EditTask = () => {
   const navigate = useNavigate();
@@ -15,7 +18,6 @@ const EditTask = () => {
   const { taskId } = useParams();
   const projects = useSelector((state) => state.projects.projects);
   const [projectCheckbox, setProjectCheckbox] = useState(false);
-  const [assignedCheckbox, setAssignedCheckbox] = useState(false);
   const users = useSelector((state) => state.users.users);
   const [projectId, setProjectId] = useState("");
   const task = useSelector((state) => selectTaskById(state, parseInt(taskId)));
@@ -30,6 +32,8 @@ const EditTask = () => {
     due_date: "",
     due_time: "",
   });
+
+  const usersDropdown = [...users]
 
   const formattedTask = {
     title: updatedTask.title,
@@ -77,30 +81,18 @@ const EditTask = () => {
       projectCheckbox && projectId
         ? { ...formattedTask, project_id: projectId }
         : { ...formattedTask, project_id: null };
- 
-        const userIds = assignedUsers.map((user) => user.id);
 
-        const finalTask =
-          userIds.length > 0 ? { ...updatedTask, user_ids: userIds } : updatedTask;
-
-    console.log("new task", finalTask);
     fetch(`/api/tasks/${taskId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      body: JSON.stringify(finalTask),
+      body: JSON.stringify(updatedTask),
     })
       .then((resp) => resp.json())
       .then((changedTask) => {
-        dispatch(taskUpdated(changedTask.task));
-
-        if (changedTask.assignments.length) {
-          changedTask.assignments.forEach((assignment) => {
-            dispatch(assignmentAdded(assignment));
-          });
-        }
+        dispatch(taskUpdated(changedTask));
       });
   };
 
@@ -116,28 +108,65 @@ const EditTask = () => {
     });
   };
 
+  const unassignFetch = (assignment) => {
+    fetch(`/api/assignments/${assignment.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+  const assignFetch = (user) => {
+    fetch(`/api/assignments`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ user_id: user.id, task_id: taskId }),
+    });
+  };
+
   const handleAssignedUsers = (e) => {
     const user = users.find((user) => user.id === parseInt(e.target.value));
+    const assignment = userAssignments.find(
+      (assignment) => assignment.user_id === user.id
+    );
     if (assignedUsers.find((assignedUser) => assignedUser.id === user.id)) {
       setAssignedUsers(
         assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
       );
+      
+      unassignFetch(assignment).then(() => {
+        setAssignedUsers(
+          assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
+        );
+        dispatch(assignmentRemoved(assignment));
+      });
     } else {
-      setAssignedUsers([...assignedUsers, user]);
+      assignFetch(user)
+        .then((resp) => resp.json())
+        .then((assignment) => {
+          setAssignedUsers([...assignedUsers, user]);
+          usersDropdown.filter((updatedUser) => updatedUser.id !== user.id )
+          dispatch(assignmentAdded(assignment));
+        });
     }
   };
 
   const handleUnassign = (userId) => {
-    setAssignedUsers((assignedUsers) =>
-      assignedUsers.filter((user) => user.id !== userId)
+    const assignment = userAssignments.find(
+      (assignment) => assignment.user_id === userId
     );
-  };
-
-  const handleAssignCheckbox = (e) => {
-    if (!e.target.checked) {
-      setAssignedUsers([]);
-    }
-    setAssignedCheckbox(e.target.checked);
+    
+    unassignFetch(assignment).then(() => {
+      setAssignedUsers((assignedUsers) =>
+        assignedUsers.filter((user) => user.id !== userId)
+      );
+      usersDropdown.push(users.find((user) => user.id === userId))
+      dispatch(assignmentRemoved(assignment));
+    });
   };
 
   let date = new Date().toISOString().slice(0, 10);
@@ -209,24 +238,11 @@ const EditTask = () => {
           </select>
         </div>
         <div>
-          <label>
-            Assign?
-            <input
-              name="assigned_checkbox"
-              onChange={handleAssignCheckbox}
-              checked={assignedCheckbox}
-              type="checkbox"
-            />
-          </label>
-          <select
-            disabled={assignedCheckbox ? false : true}
-            onChange={handleAssignedUsers}
-            value=""
-          >
+          <select onChange={handleAssignedUsers} value="">
             <option default disabled value="">
               Pick users
             </option>
-            {users.map((user) => {
+            {usersDropdown.map((user) => {
               return (
                 <option
                   key={user.id}

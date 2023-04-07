@@ -58,7 +58,6 @@ function App() {
     }
   }, [dispatch, userInfo]);
 
-  //BUG: When a user is unassigned, the assignments need to be removed on the frontend and backend
   //BUG: Need to handle all errors
   //TODO Show user name at top
 
