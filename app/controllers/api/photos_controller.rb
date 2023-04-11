@@ -14,4 +14,9 @@ class Api::PhotosController < ApplicationController
 
 end
 
-# Will need to update params to current user at some point
+
+#TODO MOVE TO USER, MIGRATE AND SETUP NEW COLUMN "image"
+#TODO DELETE PHOTO TABLE
+#TODO ADD PUBLIC ID TO USER MODEL public_id: result['public_id']
+#TODO IF PUBLIC ID EXISTS, DELETE IMAGE FROM CLOUDINARY AND UPLOAD NEW ONE
+#TODO IF A USER IS DELETED, DELETE THEIR IMAGE FROM CLOUDINARY

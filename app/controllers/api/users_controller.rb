@@ -5,7 +5,6 @@ class Api::UsersController < ApplicationController
      users = User.all
      render json: users, status: :ok
     end
-    
 
     def create
         user = User.create!(user_params)
@@ -21,6 +20,22 @@ class Api::UsersController < ApplicationController
         user = @current_user
         user.update!(user_params)
         render json: user
+    end
+
+    def photo
+        user = @current_user
+        if user.image
+            result = Cloudinary::Uploader.upload(params[:image], eager: [{ width: 500, height: 500, crop: :thumb, gravity: :face, radius: 20}], eager_async: true)
+            Cloudinary::Uploader.destroy(user.public_id)
+            user.update!(image: result['url'], public_id: result['public_id'])
+            render json: user
+        else
+            puts "params = #{params[:image]}"
+            result = Cloudinary::Uploader.upload(params[:image], eager: [{ width: 500, height: 500, crop: :thumb, gravity: :face, radius: 20}], eager_async: true)
+            puts "result = #{result}"
+            user.update!(image: result['url'], public_id: result['public_id'])
+            render json: user
+        end
     end
 
     def destroy

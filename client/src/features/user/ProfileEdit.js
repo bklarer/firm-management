@@ -8,6 +8,7 @@ const ProfileEdit = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.login);
+  const [image, setImage] = useState({});
   const [updatedUser, setUpdatedUser] = useState({
     first_name: "",
     last_name: "",
@@ -27,6 +28,25 @@ const ProfileEdit = () => {
         : undefined,
     [userInfo]
   );
+
+  console.log("image", image);
+
+  const handleImageChange = (e) => {
+    e.persist();
+    setImage(e.target.files[0]);
+  };
+
+  const handleImageSubmit = (e) => {
+    e.preventDefault();
+    console.log("image submit", image);
+    const formData = new FormData();
+    formData.append("image", image);
+    console.log("formData", formData);
+    fetch(`/api/upload/${userInfo.id}`, {
+      method: "PATCH",
+      body: formData,
+    });
+  };
 
   const handleFormChange = (e) => {
     setUpdatedUser((updatedUser) => ({
@@ -67,6 +87,12 @@ const ProfileEdit = () => {
   return (
     <div className="profile">
       <p>Picture</p>
+      <img src={userInfo.image} alt="profile" />
+      <form onSubmit={handleImageSubmit}>
+        <label>Image upload</label>
+        <input type="file" name="image" onChange={handleImageChange} />
+        <input type="submit" />
+      </form>
       <form onSubmit={handleSubmit}>
         <input
           name="first_name"
