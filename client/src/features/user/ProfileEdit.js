@@ -87,7 +87,7 @@ const ProfileEdit = () => {
   return (
     <div className="profile">
       <p>Picture</p>
-      <img src={userInfo.image} alt="profile" />
+      <img src={userInfo.image} alt="profile" style={{"width": "200px"}}/>
       <form onSubmit={handleImageSubmit}>
         <label>Image upload</label>
         <input type="file" name="image" onChange={handleImageChange} />

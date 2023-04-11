@@ -25,14 +25,12 @@ class Api::UsersController < ApplicationController
     def photo
         user = @current_user
         if user.image
-            result = Cloudinary::Uploader.upload(params[:image], eager: [{ width: 500, height: 500, crop: :thumb, gravity: :face, radius: 20}], eager_async: true)
+            result = Cloudinary::Uploader.upload(params[:image], aspect_ratio: "1.0", crop: :thumb, gravity: :face)
             Cloudinary::Uploader.destroy(user.public_id)
             user.update!(image: result['url'], public_id: result['public_id'])
             render json: user
         else
-            puts "params = #{params[:image]}"
-            result = Cloudinary::Uploader.upload(params[:image], eager: [{ width: 500, height: 500, crop: :thumb, gravity: :face, radius: 20}], eager_async: true)
-            puts "result = #{result}"
+            result = Cloudinary::Uploader.upload(params[:image], aspect_ratio: "1.0", crop: :thumb, gravity: :face)
             user.update!(image: result['url'], public_id: result['public_id'])
             render json: user
         end
