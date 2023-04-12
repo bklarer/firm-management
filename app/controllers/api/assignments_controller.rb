@@ -7,8 +7,14 @@ class Api::AssignmentsController < ApplicationController
     end
 
     def create
-        assignment = Assignment.create!(assignment_params)
-        render json: assignment, status: :created
+        @assignment = Assignment.create!(assignment_params)
+            if @assignment.save
+                AssignmentMailer.with(assignment: @assignment).new_assignment_email.deliver_now
+                render json: @assignment, status: :created
+            else
+                render json: { errors: @assignment.errors.full_messages },
+                status: :unprocessable_entity
+            end
     end
 
     def show

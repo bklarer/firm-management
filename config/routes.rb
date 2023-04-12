@@ -11,7 +11,8 @@ Rails.application.routes.draw do
     resources :tasks
     resources :users, only: [:index]
 
-    patch"/upload/:id", to: "users#photo"
+    patch"/upload", to: "users#photo"
+    patch"/update", to: "users#update"
     post "/signup", to: "users#create"
     get "/me", to: "users#show"
     post "/login", to: "sessions#create"

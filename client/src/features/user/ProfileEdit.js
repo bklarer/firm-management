@@ -42,7 +42,7 @@ const ProfileEdit = () => {
     const formData = new FormData();
     formData.append("image", image);
     console.log("formData", formData);
-    fetch(`/api/upload/${userInfo.id}`, {
+    fetch(`/api/upload`, {
       method: "PATCH",
       body: formData,
     });
