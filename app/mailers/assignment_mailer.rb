@@ -3,7 +3,7 @@ class AssignmentMailer < ApplicationMailer
         @assignment = params[:assignment]
         @task = @assignment.task
         @user = @assignment.user
-        mail(to: 'uncle.brk@gmail.com', subject: 'New Assignment')
+        mail(to: @user.email, subject: 'New Assignment')
     end
 
 
