@@ -1,50 +1,50 @@
 import Contact from "./Contact";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react"
+import { useEffect } from "react";
 import { fetchUsers } from "../../slices/userSlice";
 import { NavLink } from "react-router-dom";
 
 const ContactList = () => {
-        
-    const contacts = useSelector((state) => state.users.users);
-    const { userInfo } = useSelector((state) => state.login);
-    const tasks = useSelector((state) => state.tasks.tasks);
-    const currentUser = contacts.length > 0 ? contacts.find((contact) => contact.id === userInfo.id) : {}
-    const filteredContacts = contacts.length > 0 ? contacts.filter((contact) => contact.id !== userInfo.id) : []
+  const contacts = useSelector((state) => state.users.users);
+  const { userInfo } = useSelector((state) => state.login);
+  const tasks = useSelector((state) => state.tasks.tasks);
+  const currentUser =
+    contacts.length > 0
+      ? contacts.find((contact) => contact.id === userInfo.id)
+      : {};
+  const filteredContacts =
+    contacts.length > 0
+      ? contacts.filter((contact) => contact.id !== userInfo.id)
+      : [];
+  const firmImage =
+    "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681615804/firm-management-firm_1_ydfurw.jpg";
 
-    
-
-
-    return(
-
-
-        <div className="contact-list">
-            <div className="contact">
-                <h4 className="name">Name</h4>
-                <h4>Tasks</h4>
+  return (
+    <div className="contact-list">
+        <h2>Contacts</h2>
+      <NavLink className="link" to={`/`}>
+        <div className="contact-card">
+          <div className="middle-container">
+            <div className="image-container">
+              <img src={firmImage} alt="profile" />
             </div>
-            <NavLink className="link" to="/">
-                <div className="contact">
-                    <h4 className="name">Firm's Tasks</h4>
-                    <h4 className="to-do">{tasks.length}</h4>
-                </div>
-            </NavLink>
-                <Contact contact={currentUser}/>
-
-            {filteredContacts.length > 0 ? filteredContacts.map((contact) => {
-                return (
-
-                    <Contact key={contact.id} contact={contact}/>
-
-                )}): null}
-            
+            <div className="task-number">
+              <h3>Tasks</h3>
+              <h3>{tasks ? tasks.length : "none"}</h3>
+            </div>
+          </div>
+          <h3>Firm Tasks</h3>
         </div>
+      </NavLink>
+      <Contact contact={currentUser} />
 
-
-    )
-
-
-
-}
+      {filteredContacts.length > 0
+        ? filteredContacts.map((contact) => {
+            return <Contact key={contact.id} contact={contact} />;
+          })
+        : null}
+    </div>
+  );
+};
 
 export default ContactList;

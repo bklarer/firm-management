@@ -1,10 +1,16 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+
 const Contact = ({ contact }) => {
   const { userInfo } = useSelector((state) => state.login);
   const assignments = useSelector((state) => state.assignments.assignments);
   const tasks = useSelector((state) => state.tasks.tasks);
+  const addDefaultSrc = (e) => {
+    e.target.src = "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg"
+  }
+
+  const imagePlaceholder = "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg"
 
   if (!contact)
     return (
@@ -25,6 +31,8 @@ const Contact = ({ contact }) => {
     (assignment) => assignment.user_id === contact.id
   );
 
+    console.log("user", contact)
+
   userAssignments.forEach((assignment) => {
     taskIds.push(assignment.task_id);
   });
@@ -33,10 +41,19 @@ const Contact = ({ contact }) => {
 
   return (
     <NavLink className="link" to={`/user/${contact.id}`}>
-      <div className="contact">
-        <h4 className="name">{name}</h4>
-        <h4 className="to-do">{userTasks ? userTasks.length : null}</h4>
+      <div className="contact-card">
+        <div className="middle-container">
+          <div className="image-container">
+            <img onError={addDefaultSrc} src={contact.image ? contact.image : imagePlaceholder} alt="profile"/>
+          </div>
+          <div className="task-number">
+            <h3>Tasks</h3>
+            <h3>{userTasks ? userTasks.length : null}</h3>
+          </div>
+        </div>
+        <h3>{name}</h3>
       </div>
+      
     </NavLink>
   );
 };

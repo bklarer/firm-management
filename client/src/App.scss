@@ -1,5 +1,5 @@
 $base-color: #d9d9d9;
-$accent1: #0066fe;
+$accent1: #4D94FF;
 $font-color: #000000;
 $border-weight: 10px;
 
@@ -50,7 +50,6 @@ li {
   min-width: 15vw;
 }
 
-.contact-list,
 .side-tasks,
 .project-list {
   display: grid;
@@ -272,7 +271,7 @@ li {
 
 }
 
-.contact,
+
 .side-tasks div,
 .project-list div {
   border-bottom: solid 1px white;
@@ -281,6 +280,56 @@ li {
   align-items: center;
   padding: 10px;
   font-size: 20px;
+}
+
+.contact-list {
+  h2 {
+    text-align: center;
+  }
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: space-between;
+  margin: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 10px;
+
+  h3 {
+    margin: 0;
+  }
+
+  .middle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px 10px 10px;
+    gap: 40px;
+
+  .image-container {
+    width: 100px;
+    height: 100px;
+    border: solid 1px white;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    } 
+  }
+
+    .task-number{
+
+    }
+
+  }
+
+
+
 }
 
 .navbar {
