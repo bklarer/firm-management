@@ -1,11 +1,16 @@
+$base-color: #d9d9d9;
+$accent1: #0066fe;
+$font-color: #000000;
+$border-weight: 10px;
+
 .App {
-  background-color: #282c34;
+  background-color: $base-color;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  color: white;
+  color: $font-color;
   margin: 0;
 }
 
@@ -41,8 +46,8 @@ li {
   top: 0;
   margin: 0;
   height: 100vh;
-  border-right: solid 3px white;
-  min-width: 10vw;
+  border-right: solid $border-weight white;
+  min-width: 15vw;
 }
 
 .contact-list,
@@ -244,12 +249,27 @@ li {
   }
 }
 
-.button1 > button {
-  background-color: greenyellow;
+.button1 {
+  button {
+    background-color: $accent1;
+
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
 }
 
-.button2 > button {
-  background-color: yellow;
+.button2 {
+  button {
+    background-color: yellow;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
 }
 
 .contact,
@@ -265,7 +285,7 @@ li {
 
 .navbar {
   margin: 0;
-  border-bottom: solid 1px white;
+  border-bottom: solid $border-weight white;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -312,12 +332,12 @@ li {
 }
 
 .link {
-  color: white;
+  color: #000000;
   text-decoration: none;
 }
 
 .link.active {
-  color: red;
+  color: $accent1;
 }
 
 .navbar > h1 {
@@ -333,7 +353,5 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top: solid 1px white;
+  border-top: solid $border-weight white;
 }
-
-
