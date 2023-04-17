@@ -40,6 +40,21 @@ li {
   min-height: 85vh;
 }
 
+.profile {
+  margin: 5px;
+
+  img {
+    border-radius: 25px;
+  }
+
+  .link {
+    background-color: $accent1;
+    color: #ffffff;
+    padding: 0 20px;
+    border-radius: 25px;
+  }
+}
+
 .side-tasks,
 .project-list {
   display: grid;
@@ -54,7 +69,8 @@ li {
   height: 100vh;
 }
 
-.userInfo, .full-task-list {
+.userInfo,
+.full-task-list {
   margin: 5px;
 }
 
@@ -206,7 +222,6 @@ li {
   right: 0;
   padding-right: 10px;
   margin-right: -10px;
-
 
   &::-webkit-scrollbar {
     width: 10px;
