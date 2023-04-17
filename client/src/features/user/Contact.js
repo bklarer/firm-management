@@ -31,8 +31,6 @@ const Contact = ({ contact }) => {
     (assignment) => assignment.user_id === contact.id
   );
 
-    console.log("user", contact)
-
   userAssignments.forEach((assignment) => {
     taskIds.push(assignment.task_id);
   });

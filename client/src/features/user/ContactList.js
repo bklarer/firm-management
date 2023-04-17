@@ -38,6 +38,7 @@ const ContactList = () => {
       </NavLink>
       <Contact contact={currentUser} />
 
+
       {filteredContacts.length > 0
         ? filteredContacts.map((contact) => {
             return <Contact key={contact.id} contact={contact} />;

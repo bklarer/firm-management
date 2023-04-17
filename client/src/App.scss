@@ -1,5 +1,5 @@
 $base-color: #d9d9d9;
-$accent1: #4D94FF;
+$accent1: #4d94ff;
 $font-color: #000000;
 $border-weight: 10px;
 
@@ -40,15 +40,7 @@ li {
   min-height: 85vh;
 }
 
-.left-bar {
-  justify-content: center;
-  position: sticky;
-  top: 0;
-  margin: 0;
-  height: 100vh;
-  border-right: solid $border-weight white;
-  min-width: 15vw;
-}
+
 
 .side-tasks,
 .project-list {
@@ -64,173 +56,85 @@ li {
   height: 100vh;
 }
 
+.task-label {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  background-color: $accent1;
+  color: $base-color;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid $base-color;
+  border-radius: 10px;
+  margin: 5px 5px 15px;
+  padding: 0 10px;
+
+  .task-title {
+    grid-column-start: span 4;
+  }
+
+  .task-assignee {
+    grid-column-start: span 2;
+    margin-left: -15px;
+  }
+
+  .task-date {
+    grid-column-start: span 2;
+    margin-left: -10px;
+  }
+
+  .task-project {
+    grid-column-start: span 3;
+    margin-left: -10px;
+  }
+}
+
 .task-list {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
-}
-
-.checkbox {
-  grid-column-start: 1;
-  grid-row-start: 1;
-  grid-row-end: span 2;
+  gap: 15px;
 }
 
 .checkbox > input {
   height: 30px;
   width: 30px;
 }
-.task-box {
+
+.task-card {
   display: grid;
-  grid-template-columns: auto 2fr 2fr 2fr 2fr auto;
-  grid-template-rows: 1fr 1fr;
-  border-bottom: 1px solid white;
-  font-size: 25px;
+  grid-template-columns: repeat(12, 1fr);
+  background-color: #ffffff;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 10px;
 
-  .title {
-    grid-column-start: 2;
-    grid-column-end: span 2;
-    grid-row-start: 1;
-  }
 
-  .created {
-    grid-column-start: 2;
-    grid-column-end: span 1;
-    grid-row-start: 2;
+  .task-title-container {
     display: flex;
-    flex-direction: column;
-  }
+    align-items: center;
+    grid-column-start: span 4;
 
-  .date-due {
-    grid-column-start: 3;
-    grid-column-end: span 1;
-    grid-row-start: 2;
-    display: flex;
-    flex-direction: column;
+    input {
+      margin-right: 10px;
+    }
   }
 
   .assigned {
-    grid-column-start: 4;
-    grid-column-end: span 1;
-    grid-row-start: 2;
-    display: flex;
-    flex-direction: column;
+    grid-column-start: span 2;
   }
 
-  .created-by {
-    grid-column-start: 5;
-    grid-column-end: span 1;
-    grid-row-start: 2;
-    display: flex;
-    flex-direction: column;
+  .date-due {
+    grid-column-start: span 2;
   }
 
-  .button1 {
-    grid-column-start: 6;
-    grid-column-end: span 1;
-    grid-row-start: 1;
+  .task-card-project {
+    grid-column-start: span 3;
   }
 
-  .button2 {
-    grid-column-start: 6;
-    grid-column-end: span 1;
-    grid-row-start: 2;
+  .buttons {
+    justify-self: self-end;
   }
 
-  @media only screen and (max-width: 650px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: repeat(7, 1fr);
-    border: 1px solid white;
-    overflow-x: auto;
-
-    .checkbox {
-      grid-column-start: 1;
-      grid-row-start: 1;
-      grid-row-end: span 1;
-
-      input {
-        height: 25px;
-        width: 25px;
-      }
-    }
-
-    div {
-      display: flex;
-      border: none;
-      justify-content: flex-start;
-      align-items: center;
-      padding: 2px;
-    }
-
-    .button1 {
-      grid-column-start: 2;
-    }
-
-    .button2 {
-      grid-column-start: 3;
-    }
-
-    .title {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 2;
-    }
-
-    .project {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 3;
-    }
-
-    .created {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 4;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .date-due {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 5;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .assigned {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 6;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .created-by {
-      grid-column-start: 1;
-      grid-column-end: span 3;
-      grid-row-start: 7;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .button1 {
-      grid-column-start: 2;
-      grid-column-end: span 1;
-      grid-row-start: 1;
-    }
-
-    .button2 {
-      grid-column-start: 3;
-      grid-column-end: span 1;
-      grid-row-start: 1;
-    }
-  }
-
-  @media (min-width: 650px) and (max-width: 800px) {
-    font-size: 17px;
-  }
 }
 
 .buttons {
@@ -243,7 +147,7 @@ li {
     margin-top: 5px;
     margin-bottom: 5px;
     margin-right: 10px;
-    border-radius: 25px;
+    border-radius: 30px;
     text-align: center;
   }
 }
@@ -268,9 +172,7 @@ li {
     text-decoration: none;
     color: black;
   }
-
 }
-
 
 .side-tasks div,
 .project-list div {
@@ -282,11 +184,56 @@ li {
   font-size: 20px;
 }
 
+.left-bar {
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  margin: 0;
+  height: 100vh;
+  min-width: 19vw;
+  border-right: solid 10px white;
+  position: relative;
+}
+
 .contact-list {
+  overflow: auto;
+  position: sticky;
+  top: 0;
+  margin: 0;
+  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-right: 10px;
+  margin-right: -10px;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  &::-webkit-scrollbar-thumb {
+    background: $accent1; 
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: $accent1; 
+  }
+
+
+
   h2 {
     text-align: center;
   }
 }
+
 
 .contact-card {
   display: flex;
@@ -297,7 +244,7 @@ li {
   background-color: #ffffff;
   border-radius: 10px;
   text-align: center;
-  padding: 10px;
+  padding: 20px 10px;
 
   h3 {
     margin: 0;
@@ -310,26 +257,23 @@ li {
     padding: 0 10px 10px 10px;
     gap: 40px;
 
-  .image-container {
-    width: 100px;
-    height: 100px;
-    border: solid 1px white;
 
-    img {
+    .image-container {
       width: 100%;
-      height: 100%;
       border-radius: 10px;
-    } 
-  }
-
-    .task-number{
-
+      display: block;    
+      flex-grow: 0;
+      
+      img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        aspect-ratio: 1/1;
+        inset: 0;    
+        
+      }
     }
-
   }
-
-
-
 }
 
 .navbar {

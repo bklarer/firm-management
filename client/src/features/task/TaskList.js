@@ -52,6 +52,12 @@ const TaskList = () => {
           <option value="completed">Completed</option>
         </select>
       </div>
+      <div className="task-label">
+        <h3 className="task-title">Task</h3>
+        <h3 className="task-assignee">Assignee</h3>
+        <h3 className="task-date">Due Date</h3>
+        <h3 className="task-project">Project</h3>
+      </div>
       <div className="task-list">
         {tasks.length > 0
           ? filteredTasks().map((task) => {

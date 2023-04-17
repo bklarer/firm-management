@@ -1,3 +1,8 @@
+$base-color: #d9d9d9;
+$accent1: #4d94ff;
+$font-color: #000000;
+$border-weight: 10px;
+
 body {
   margin: 0;
   max-width: 100vw;
@@ -6,6 +11,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #ffffff;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  &::-webkit-scrollbar-thumb {
+    background: $font-color; 
+    border-radius: 10px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: $accent1; 
+  }
 }
 
 code {
