@@ -46,9 +46,7 @@ const Task = ({ task }) => {
       <div className="date-due"><p>12/31/2023</p></div>
       <div className="task-card-project"><p>Project</p></div>
       <div className="buttons button1">
-        <button>
-          <Link to={`/${id}`}>View</Link>
-        </button>
+          <Link className="link" to={`/${id}`}>View</Link>
       </div>
     </div>
   );
