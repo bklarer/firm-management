@@ -50,10 +50,8 @@ const UserInfo = () => {
   };
 
   return (
-    <>
-      <ul>
-        <li>{user ? user.first_name : null}</li>
-      </ul>
+    <div className="userInfo">
+        <h2>{user ? `${user.first_name} ${user.last_name}'s Tasks` : null}</h2>
       <div className="task-filter">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">
@@ -64,6 +62,12 @@ const UserInfo = () => {
           <option value="completed">Completed</option>
         </select>
       </div>
+      <div className="task-label">
+        <h3 className="task-title">Task</h3>
+        <h3 className="task-assignee">Assignee</h3>
+        <h3 className="task-date">Due Date</h3>
+        <h3 className="task-project">Project</h3>
+      </div>
       <div className="task-list">
         {user && tasks.length > 0
           ? filteredTasks().map((task) => {
@@ -71,7 +75,7 @@ const UserInfo = () => {
             })
           : null}
       </div>
-    </>
+    </div>
   );
 };
 

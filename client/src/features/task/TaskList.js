@@ -41,7 +41,8 @@ const TaskList = () => {
   //filter date < today's date
 
   return (
-    <>
+    <div className="full-task-list">
+      <h2>Firm's Tasks</h2>
       <div className="task-filter">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">
@@ -65,7 +66,7 @@ const TaskList = () => {
             })
           : null}
       </div>
-    </>
+    </div>
   );
 };
 
