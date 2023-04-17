@@ -360,6 +360,14 @@ li {
   display: flex;
   flex-direction: column;
 
+  .submit {
+    width: 100px;
+    border-radius: 30px;
+    background-color: $accent1;
+    color: #ffffff;
+    font-weight: 900;
+  }
+
   * {
     padding: 10px;
     margin: 5px;

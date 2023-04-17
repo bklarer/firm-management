@@ -195,8 +195,8 @@ const NewTask = () => {
               <button onClick={() => handleUnassign(user.id)}>x</button>
             </div>
           ))}
-          <input type="submit" />
         </div>
+        <input className="submit" type="submit" />
       </form>
     </>
   );
