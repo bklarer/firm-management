@@ -38,7 +38,7 @@ const Contact = ({ contact }) => {
   const userTasks = tasks.filter((task) => taskIds.includes(task.id));
 
   return (
-    <NavLink className="link" to={`/user/${contact.id}`}>
+    <NavLink className="contact-card-link link" to={`/user/${contact.id}`}>
       <div className="contact-card">
         <div className="middle-container">
           <div className="image-container">

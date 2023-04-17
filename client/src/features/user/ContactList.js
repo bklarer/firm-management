@@ -22,7 +22,7 @@ const ContactList = () => {
   return (
     <div className="contact-list">
         <h2>Contacts</h2>
-      <NavLink className="link" to={`/`}>
+      <NavLink className="contact-card-link link" to={`/`}>
         <div className="contact-card">
           <div className="middle-container">
             <div className="image-container">

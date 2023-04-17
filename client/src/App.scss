@@ -40,8 +40,6 @@ li {
   min-height: 85vh;
 }
 
-
-
 .side-tasks,
 .project-list {
   display: grid;
@@ -60,7 +58,7 @@ li {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   background-color: $accent1;
-  color: $base-color;
+  color: #ffffff;
   font-size: 20px;
   font-weight: bold;
   border: 1px solid $base-color;
@@ -108,7 +106,6 @@ li {
   margin-right: 5px;
   border-radius: 10px;
 
-
   .task-title-container {
     display: flex;
     align-items: center;
@@ -134,7 +131,6 @@ li {
   .buttons {
     justify-self: self-end;
   }
-
 }
 
 .buttons {
@@ -149,6 +145,7 @@ li {
     margin-right: 10px;
     border-radius: 30px;
     text-align: center;
+    border: none;
   }
 }
 
@@ -214,34 +211,54 @@ li {
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
+    box-shadow: inset 0 0 5px grey;
     border-radius: 10px;
   }
-   
+
   &::-webkit-scrollbar-thumb {
-    background: $accent1; 
+    background: $accent1;
     border-radius: 10px;
   }
-  
+
   &::-webkit-scrollbar-thumb:hover {
-    background: $accent1; 
+    background: $accent1;
   }
-
-
 
   h2 {
     text-align: center;
   }
 }
 
+.link {
+  text-decoration: none;
+}
+
+.contact-card-link {
+  background-color: #ffffff;
+
+  &.active {
+    .contact-card {
+      background-color: $accent1;
+      color: #ffffff;
+    }
+  }
+
+  &:hover {
+    .contact-card {
+      background-color: $accent1;
+      color: #ffffff;
+    }
+  }
+}
 
 .contact-card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: space-between;
-  margin: 20px;
   background-color: #ffffff;
+  color: $font-color;
+  margin: 20px;
   border-radius: 10px;
   text-align: center;
   padding: 20px 10px;
@@ -257,20 +274,18 @@ li {
     padding: 0 10px 10px 10px;
     gap: 40px;
 
-
     .image-container {
       width: 100%;
       border-radius: 10px;
-      display: block;    
+      display: block;
       flex-grow: 0;
-      
+
       img {
         width: 100%;
         height: auto;
         border-radius: 10px;
         aspect-ratio: 1/1;
-        inset: 0;    
-        
+        inset: 0;
       }
     }
   }
@@ -283,6 +298,28 @@ li {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+
+  .link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+    background-color: #ffffff;
+    margin: 5px;
+    border-radius: 25px;
+    padding: 5px;
+
+    &.active {
+      background-color: $accent1;
+      color: #ffffff;
+    }
+
+    &:hover {
+      background-color: $accent1;
+      color: #ffffff;
+    }
+  }
 }
 
 .login {
@@ -322,15 +359,6 @@ li {
     padding: 10px;
     margin: 5px;
   }
-}
-
-.link {
-  color: #000000;
-  text-decoration: none;
-}
-
-.link.active {
-  color: $accent1;
 }
 
 .navbar > h1 {
