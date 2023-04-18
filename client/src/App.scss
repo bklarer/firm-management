@@ -136,8 +136,38 @@ li {
   height: 100vh;
 }
 
+.project-task-list {
+    margin: 5px;
+
+  .project-details {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    .link {
+      background-color: $accent1;
+      border-radius: 25px;
+      color: #ffffff;
+      padding: 5px 10px;
+      height: fit-content;
+      margin-left: 10px;
+    }
+  }
+
+  .task-label {
+    margin-bottom: 15px;
+  }
+
+  .task-list {
+    margin: 10px 5px;
+  }
+
+}
+
 .userInfo,
 .full-task-list,
+.task-list,
 .edit-form h1,
 .new-task-form h1 {
   margin: 5px;
