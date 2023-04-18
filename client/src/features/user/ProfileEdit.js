@@ -85,45 +85,60 @@ const ProfileEdit = () => {
   };
 
   return (
-    <div className="profile">
-      <img src={userInfo.image} alt="profile" style={{"width": "200px"}}/>
+    <div className="profile-edit">
+      <img src={userInfo.image} alt="profile" style={{ width: "200px" }} />
       <form className="image-form" onSubmit={handleImageSubmit}>
-        <label>Image upload</label>
+        <h3>Image upload</h3>
         <input type="file" name="image" onChange={handleImageChange} />
-        <input type="submit" />
+        <input className="submit" type="submit" value="Upload Image" />
       </form>
       <form className="profile-edit-form" onSubmit={handleSubmit}>
-        <input
-          name="first_name"
-          onChange={handleFormChange}
-          value={updatedUser.first_name}
-          type="text"
-          placeholder="First Name"
-        />
-        <input
-          name="last_name"
-          onChange={handleFormChange}
-          value={updatedUser.last_name}
-          type="text"
-          placeholder="Last Name"
-        />
-        <input
-          name="username"
-          onChange={handleFormChange}
-          value={updatedUser.username}
-          type="text"
-          placeholder="Username"
-        />
-        <input
-          name="email"
-          onChange={handleFormChange}
-          value={updatedUser.email}
-          type="text"
-          placeholder="Email"
-        />
+        <h3>Change Profile Info</h3>
+        <div>
+          <label>First Name</label>
+          <input
+            name="first_name"
+            onChange={handleFormChange}
+            value={updatedUser.first_name}
+            type="text"
+            placeholder="First Name"
+          />
+        </div>
+        <div>
+          <label>Last Name</label>
+          <input
+            name="last_name"
+            onChange={handleFormChange}
+            value={updatedUser.last_name}
+            type="text"
+            placeholder="Last Name"
+          />
+        </div>
+        <div>
+          <label>Username</label>
+          <input
+            name="username"
+            onChange={handleFormChange}
+            value={updatedUser.username}
+            type="text"
+            placeholder="Username"
+          />
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            name="email"
+            onChange={handleFormChange}
+            value={updatedUser.email}
+            type="text"
+            placeholder="Email"
+          />
+        </div>
         <input className="submit" type="submit" />
       </form>
-      <button onClick={handleDeleteClick}>Delete</button>
+      <button className="delete" onClick={handleDeleteClick}>
+        Delete
+      </button>
     </div>
   );
 };

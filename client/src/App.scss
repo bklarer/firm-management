@@ -59,22 +59,68 @@ li {
     padding: 0 20px;
     border-radius: 25px;
   }
+}
+
+.profile-edit {
+  display: flex;
+  flex-direction: column;
+
+  .image-form {
+    display: flex;
+    flex-direction: column;    
+    
+    .submit {
+      width: 150px;
+    }
+  }
 
   .profile-edit-form {
     display: flex;
     flex-direction: column;
+    
+    div {
+      display: flex;
 
-    * {
-      padding: 10px;
-      margin: 5px;
+      label {
+        width: 100px;
+      }
+
+      input {
+        width: 200px;
+      }
     }
 
-    .submit {
-      width: 100px;
-      border-radius: 30px;
-      background-color: $accent1;
-      color: #ffffff;
-      font-weight: 900;
+
+  }
+
+  * {
+    // padding: 10px;
+    margin: 5px;
+  }
+
+  .submit {
+    width: 100px;
+    border-radius: 30px;
+    background-color: $accent1;
+    color: #ffffff;
+    font-weight: 900;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  .delete {
+    width: 100px;
+    border-radius: 30px;
+    background-color: red;
+    color: #ffffff;
+    font-weight: 900;
+    margin: 5px 10px;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
