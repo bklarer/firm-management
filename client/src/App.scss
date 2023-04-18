@@ -194,7 +194,8 @@ li {
 .full-task-list,
 .task-list,
 .edit-form h1,
-.new-task-form h1 {
+.new-task-form h1,
+.new-project-form h1 {
   margin: 5px;
 }
 
@@ -545,7 +546,8 @@ li {
 }
 
 .new-task,
-.edit-task {
+.edit-task,
+.new-project {
   display: flex;
   flex-direction: column;
 

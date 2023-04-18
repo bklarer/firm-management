@@ -46,44 +46,47 @@ const NewProject = () => {
   let date = new Date().toISOString().slice(0, 10);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        required
-        name="title"
-        onChange={handleFormChange}
-        value={formData.title}
-        type="text"
-        placeholder="Title"
-      />
-      <textarea
-        name="notes"
-        onChange={handleFormChange}
-        value={formData.notes}
-        placeholder="Notes"
-      />
-      <label>
-        Due Date:{" "}
+    <div className="new-project-form">
+      <h1>New Project</h1>
+      <form onSubmit={handleSubmit} className="new-project">
         <input
           required
-          name="due_date"
+          name="title"
           onChange={handleFormChange}
-          value={formData.due_date}
-          type="date"
-          min={date}
+          value={formData.title}
+          type="text"
+          placeholder="Title"
         />
-      </label>
-      <label>
-        Due Time:{" "}
-        <input
-          required
-          name="due_time"
+        <textarea
+          name="notes"
           onChange={handleFormChange}
-          value={formData.due_time}
-          type="time"
+          value={formData.notes}
+          placeholder="Notes"
         />
-      </label>
-      <input type="submit" />
-    </form>
+        <label>
+          Due Date:{" "}
+          <input
+            required
+            name="due_date"
+            onChange={handleFormChange}
+            value={formData.due_date}
+            type="date"
+            min={date}
+          />
+        </label>
+        <label>
+          Due Time:{" "}
+          <input
+            required
+            name="due_time"
+            onChange={handleFormChange}
+            value={formData.due_time}
+            type="time"
+          />
+        </label>
+        <input className="submit" type="submit" />
+      </form>
+    </div>
   );
 };
 
