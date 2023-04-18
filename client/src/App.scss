@@ -137,7 +137,7 @@ li {
 }
 
 .project-task-list {
-    margin: 5px;
+  margin: 5px;
 
   .project-details {
     display: flex;
@@ -162,7 +162,6 @@ li {
   .task-list {
     margin: 10px 5px;
   }
-
 }
 
 .userInfo,
@@ -393,6 +392,18 @@ li {
   text-align: center;
   padding: 20px 10px;
   max-width: 200px;
+  animation: fadeInAnimation ease 2s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
   h3 {
     margin: 0;
@@ -454,7 +465,23 @@ li {
   }
 }
 
-.login, .signup {
+.main-project-page {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+
+  @keyframes fadeInAnimation {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.login,
+.signup {
   display: flex;
   flex-direction: column;
 
@@ -470,7 +497,6 @@ li {
     font-size: 20px;
     font-weight: 700;
   }
-
 }
 
 .signup {

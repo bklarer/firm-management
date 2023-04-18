@@ -13,7 +13,7 @@ const MainProjectPage = () => {
     }, [projects, navigate]);
 
     return (
-        <div>
+        <div className="main-project-page">
             Create a new project to show projects
         </div>
 
