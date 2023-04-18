@@ -17,11 +17,6 @@ const SignUp = () => {
         // featured_image: ""
     })
 
-
-    const handleImageChange = (e) => {
-        setFormData({...formData, [e.target.name]: e.target.files[0]
-    })}
-
     const handleInputChange = (e) => {
         setFormData((formData) => ({...formData, [e.target.name]: e.target.value}))
     }
@@ -43,7 +38,7 @@ const SignUp = () => {
             <input onChange={handleInputChange} name="password" value={formData.password} type="password" placeholder="Password"/>
             <input onChange={handleInputChange} name="password_confirmation" value={formData.password_confirmation} type="password" placeholder="Confirm Password"/>
             {/* <input onChange={handleImageChange} value={formData.featured_image}  name="featured_image" type="file" accept="image/*" multiple={false} /> */}
-            <input type="submit" />
+            <input className="submit" type="submit" />
         </form>
 
 
