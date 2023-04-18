@@ -189,7 +189,7 @@ const EditTask = () => {
   let date = new Date().toISOString().slice(0, 10);
 
   return (
-    <>
+    <div className="edit-form">
       <h1>Edit Task</h1>
       <form className="edit-task" onSubmit={handleSubmit}>
         <input
@@ -255,10 +255,10 @@ const EditTask = () => {
           </select>
         </div>
 
-        <input type="submit" />
+        <input className="submit" type="submit" />
       </form>
 
-      <button onClick={handleDeleteClick}>Delete</button>
+      
 
       <div>
         <select onChange={handleAssignedUsers} value="">
@@ -278,10 +278,11 @@ const EditTask = () => {
       {assignedUsers.map((user) => (
         <div key={user.id}>
           <span>{`${user.first_name} ${user.last_name}`}</span>
-          <button onClick={() => handleUnassign(user.id)}>x</button>
+          <button className="xdelete" onClick={() => handleUnassign(user.id)}>x</button>
         </div>
       ))}
-    </>
+      <button className="delete" onClick={handleDeleteClick}>Delete</button>
+    </div>
   );
 };
 

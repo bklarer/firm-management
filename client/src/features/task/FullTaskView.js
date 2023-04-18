@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaskById } from "../../slices/taskSlice";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const FullTaskView = () => {
     const { taskId } = useParams();
@@ -28,6 +28,7 @@ const FullTaskView = () => {
                 <div><u>Created By</u></div>
                 <div>Benjamin Klarer</div>
             </div>
+            <Link className="link" to={`/${taskId}/edit`}>Edit</Link>
         </div>
 
     )

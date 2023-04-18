@@ -97,7 +97,7 @@ const NewTask = () => {
   let date = new Date().toISOString().slice(0, 10);
 
   return (
-    <>
+    <div className="new-task-form">
       <h1>New Task</h1>
       <form onSubmit={handleSubmit} className="new-task">
         <input
@@ -198,7 +198,7 @@ const NewTask = () => {
         </div>
         <input className="submit" type="submit" />
       </form>
-    </>
+    </div>
   );
 };
 
