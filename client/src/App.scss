@@ -141,17 +141,43 @@ li {
 
   .project-details {
     display: flex;
-    text-align: center;
     justify-content: center;
-    align-items: center;
 
-    .link {
-      background-color: $accent1;
-      border-radius: 25px;
-      color: #ffffff;
-      padding: 5px 10px;
-      height: fit-content;
-      margin-left: 10px;
+    .project-details-container {
+      display: flex;
+      flex-direction: column;
+
+      h2 {
+        text-align: center;
+      }
+
+      div {
+        p {
+          margin: 5px;
+        }
+      }
+
+      u {
+        text-align: center;
+      }
+
+      p {
+        margin: 10px 0;
+        text-align: center;
+      }
+
+      .link {
+        background-color: $accent1;
+        border-radius: 25px;
+        color: #ffffff;
+        padding: 5px 10px;
+        height: fit-content;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-self: center;
+      }
     }
   }
 

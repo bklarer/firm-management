@@ -13,8 +13,11 @@ const ProjectView = () => {
   const tasks = useSelector((state) =>
     selectTasksByProject(state, parseInt(projectId))
   );
+  const users = useSelector((state) => state.users.users);
   const [dropdown, setDropdown] = useState("all");
   let date = new Date().toISOString();
+
+  const creator = users.find((user) => user.id === project.creator_id);
 
   const filteredTasks = () => {
     let newTasks = [];
@@ -47,10 +50,24 @@ const ProjectView = () => {
     <div className="project-task-list">
       {project ? (
         <div className="project-details">
-          <h2>{project.title} </h2>
+          <div className="project-details-container">
+            <h2>{project.title}</h2>
+            <div>
+              <p className="creator"><u>Creator</u></p>
+              <p>{`${creator.first_name} ${creator.last_name} `}</p>
+            </div>
+
+            <div>
+              <p className="due-date"><u>Due Date</u></p>
+              <p>{`${project.due_date}`}</p>
+            </div>          
+          <u>Notes</u>
+          <p>{project.notes ? project.notes : "Add Notes"}</p>
           <Link className="link" to={`edit`}>
             Edit
           </Link>
+          </div>
+
         </div>
       ) : null}
       <div className="task-filter">
