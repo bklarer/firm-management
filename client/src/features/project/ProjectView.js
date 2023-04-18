@@ -24,7 +24,7 @@ const ProjectView = () => {
       <ul>
         {project ? (
           <ul>
-            <li>project.title </li>
+            <li>{project.title} </li>
             <div>
               <button className="buttons button2">
                 <Link to={`edit`}>Edit</Link>

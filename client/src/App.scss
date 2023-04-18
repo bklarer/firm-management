@@ -67,8 +67,8 @@ li {
 
   .image-form {
     display: flex;
-    flex-direction: column;    
-    
+    flex-direction: column;
+
     .submit {
       width: 150px;
     }
@@ -77,7 +77,7 @@ li {
   .profile-edit-form {
     display: flex;
     flex-direction: column;
-    
+
     div {
       display: flex;
 
@@ -89,8 +89,6 @@ li {
         width: 200px;
       }
     }
-
-
   }
 
   * {
@@ -108,7 +106,6 @@ li {
     &:hover {
       cursor: pointer;
     }
-
   }
 
   .delete {
@@ -230,6 +227,46 @@ li {
       color: #ffffff;
       border-radius: 25px;
       padding: 5px;
+    }
+  }
+}
+.task-full-view-container {
+  display: flex;
+  justify-content: center;
+
+  .task-full-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    margin: 5px;
+    border-radius: 25px;
+    width: fit-content;
+    font-size: 24px;
+
+    div {
+      display: flex;
+      flex-wrap: wrap;
+
+      u {
+        width: 125px;
+      }
+    }
+
+    * {
+      margin: 5px;
+    }
+
+    .link {
+      display: flex;
+      background-color: $accent1;
+      width: 50px;
+      padding: 5px;
+      border-radius: 25px;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      align-self: center;
     }
   }
 }
