@@ -33,6 +33,7 @@ const EditProject = () => {
       project
         ? setUpdatedProject({
             title: project.title,
+            notes: project.notes? project.notes : "",
             due_date: project.due_date.slice(0, 10),
             due_time: project.due_date.slice(11, 16),
           })
@@ -82,7 +83,7 @@ const EditProject = () => {
   return (
     <>
       <h1>Edit Project</h1>
-      <form className="edit-task" onSubmit={handleSubmit}>
+      <form className="edit-project" onSubmit={handleSubmit}>
         <input
           required
           name="title"
@@ -90,6 +91,12 @@ const EditProject = () => {
           value={updatedProject.title}
           type="text"
           placeholder="Title"
+        />
+        <textarea
+          name="notes"
+          onChange={handleFormChange}
+          value={updatedProject.notes}
+          placeholder="Notes"
         />
         <div>
           <label>

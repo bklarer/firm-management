@@ -33,7 +33,7 @@ const ContactList = () => {
               <h3>{tasks ? tasks.length : "none"}</h3>
             </div>
           </div>
-          <h3>Firm Tasks</h3>
+          <h3>Firm's Tasks</h3>
         </div>
       </NavLink>
       <Contact contact={currentUser} />
