@@ -22,8 +22,8 @@ const Login = () => {
 
         <form onSubmit={handleSubmit} className="login">
             <h3>Login</h3>
-            <input onChange={handleInputChange} name="username" value={formData.username} type="text" placeholder="username"/>
-            <input onChange={handleInputChange} name="password" value={formData.password} type="password" placeholder="password"/>
+            <input required onChange={handleInputChange} name="username" value={formData.username} type="text" placeholder="username"/>
+            <input required onChange={handleInputChange} name="password" value={formData.password} type="password" placeholder="password"/>
             <input value="Login" className="submit" type="submit"></input>
         </form>
 

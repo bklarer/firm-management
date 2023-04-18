@@ -49,6 +49,7 @@ const NewProject = () => {
 
         <form onSubmit={handleSubmit}>
             <input 
+            required
                 name="title"
                 onChange={handleFormChange}
                 value={formData.title}
@@ -58,6 +59,7 @@ const NewProject = () => {
                 <label>
             Due Date:{" "}
             <input
+            required
               name="due_date"
               onChange={handleFormChange}
               value={formData.due_date}
@@ -68,6 +70,7 @@ const NewProject = () => {
           <label>
             Due Time:{" "}
             <input
+            required
               name="due_time"
               onChange={handleFormChange}
               value={formData.due_time}

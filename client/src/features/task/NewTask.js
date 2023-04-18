@@ -101,6 +101,7 @@ const NewTask = () => {
       <h1>New Task</h1>
       <form onSubmit={handleSubmit} className="new-task">
         <input
+          required
           name="title"
           onChange={handleFormChange}
           value={formData.title}
@@ -117,6 +118,7 @@ const NewTask = () => {
           <label>
             Due Date:{" "}
             <input
+              required
               name="due_date"
               onChange={handleFormChange}
               value={formData.due_date}
@@ -127,6 +129,7 @@ const NewTask = () => {
           <label>
             Due Time:{" "}
             <input
+              required
               name="due_time"
               onChange={handleFormChange}
               value={formData.due_time}

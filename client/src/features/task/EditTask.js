@@ -160,8 +160,6 @@ const EditTask = () => {
     }
   };
 
-  console.log("assignedUsers", assignedUsers);
-  console.log("usersDropdown", usersDropdown);
 
   const handleUnassign = (userId) => {
     const assignment = userAssignments.find(
@@ -177,7 +175,7 @@ const EditTask = () => {
       setAssignedUsers((assignedUsers) =>
         assignedUsers.filter((user) => user.id !== userId)
       );
-      // usersDropdown.push(users.find((user) => user.id === userId))
+
       setUsersDropdown([
         ...usersDropdown,
         users.find((user) => user.id === userId),
@@ -193,6 +191,7 @@ const EditTask = () => {
       <h1>Edit Task</h1>
       <form className="edit-task" onSubmit={handleSubmit}>
         <input
+          required
           name="title"
           onChange={handleFormChange}
           value={updatedTask.title}
@@ -209,6 +208,7 @@ const EditTask = () => {
           <label>
             Due Date:{" "}
             <input
+            required
               name="due_date"
               onChange={handleFormChange}
               value={updatedTask.due_date}
@@ -219,6 +219,7 @@ const EditTask = () => {
           <label>
             Due Time:{" "}
             <input
+            required
               name="due_time"
               onChange={handleFormChange}
               value={updatedTask.due_time}
