@@ -51,23 +51,27 @@ const ProjectView = () => {
       {project ? (
         <div className="project-details">
           <div className="project-details-container">
-            <h2>{project.title}</h2>
-            <div>
-              <p className="creator"><u>Creator</u></p>
-              <p>{`${creator.first_name} ${creator.last_name} `}</p>
+            <h2 className="title">{project.title}</h2>
+            <div className="created">
+              <u>Created:</u> <p>{project.created_at}</p>
             </div>
 
-            <div>
-              <p className="due-date"><u>Due Date</u></p>
-              <p>{`${project.due_date}`}</p>
-            </div>          
-          <u>Notes</u>
-          <p>{project.notes ? project.notes : "Add Notes"}</p>
-          <Link className="link" to={`edit`}>
-            Edit
-          </Link>
-          </div>
+            <div className="due-date">
+              <u>Due Date:</u> <p>{project.due_date}</p>
+            </div>
 
+            <div className="created-by">
+              <u>Created By:</u>
+              <p>{`${creator.first_name} ${creator.last_name} `}</p>
+            </div>
+            <div>
+              <u>Notes:</u>
+              <p>{project.notes ? project.notes : "Add Notes"}</p>
+            </div>
+            <Link className="link" to={`edit`}>
+              Edit
+            </Link>
+          </div>
         </div>
       ) : null}
       <div className="task-filter">
