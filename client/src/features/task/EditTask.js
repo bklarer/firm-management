@@ -261,7 +261,7 @@ const EditTask = () => {
 
       
 
-      <div>
+      <div className="assign-users">
         <select onChange={handleAssignedUsers} value="">
           <option default disabled value="">
             Assign Users
@@ -277,12 +277,12 @@ const EditTask = () => {
         </select>
       </div>
       {assignedUsers.map((user) => (
-        <div key={user.id}>
+        <div className="assigned" key={user.id}>
           <span>{`${user.first_name} ${user.last_name}`}</span>
           <button className="xdelete" onClick={() => handleUnassign(user.id)}>x</button>
         </div>
       ))}
-      <button className="delete" onClick={handleDeleteClick}>Delete</button>
+      <button className="delete" onClick={handleDeleteClick}>Delete Task</button>
     </div>
   );
 };

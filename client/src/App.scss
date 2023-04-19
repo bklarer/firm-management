@@ -157,6 +157,7 @@ li {
   margin: 5px;
 }
 
+
 .task-label {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -519,15 +520,61 @@ li {
     color: #ffffff;
     font-weight: 900;
     border: none;
+
+    &:hover {
+      cursor: pointer;
+    }
+
   }
 
   * {
     padding: 10px;
     margin: 5px;
-  }
+  }  
+  
+
 }
 
-.navbar > h1 {
+
+  .assign-users {
+    margin: 5px;
+  }
+
+  .assigned {
+    margin: 5px;
+
+    button {
+      background-color: red;
+      color: #ffffff;
+      margin-left: 5px;
+      border: none;
+      border-radius: 25px;
+      
+      &:hover {
+        background-color: #000000;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .delete {
+    background-color: red;
+    color: #ffffff;
+    margin-left: 5px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 25px;
+    
+    &:hover {
+      background-color: #000000;
+      cursor: pointer;
+    }
+
+  }
+
+
+
+  .navbar > h1 {
   margin-left: 15px;
 }
 .name {
