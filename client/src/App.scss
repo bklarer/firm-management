@@ -157,7 +157,6 @@ li {
   margin: 5px;
 }
 
-
 .task-label {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -245,14 +244,16 @@ li {
     }
   }
 }
-.task-full-view-container, .project-details {
+.task-full-view-container,
+.project-details {
   display: flex;
   justify-content: center;
   .title {
     align-self: center;
   }
 
-  .task-full-view, .project-details-container {
+  .task-full-view,
+  .project-details-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -509,7 +510,8 @@ li {
 
 .new-task,
 .edit-task,
-.new-project {
+.new-project,
+.edit-project {
   display: flex;
   flex-direction: column;
 
@@ -524,57 +526,50 @@ li {
     &:hover {
       cursor: pointer;
     }
-
   }
 
   * {
     padding: 10px;
     margin: 5px;
-  }  
-  
-
+  }
 }
 
+.assign-users {
+  margin: 5px;
+}
 
-  .assign-users {
-    margin: 5px;
-  }
+.assigned {
+  margin: 5px;
 
-  .assigned {
-    margin: 5px;
-
-    button {
-      background-color: red;
-      color: #ffffff;
-      margin-left: 5px;
-      border: none;
-      border-radius: 25px;
-      
-      &:hover {
-        background-color: #000000;
-        cursor: pointer;
-      }
-    }
-  }
-
-  .delete {
+  button {
     background-color: red;
     color: #ffffff;
     margin-left: 5px;
-    margin-top: 20px;
     border: none;
     border-radius: 25px;
-    
+
     &:hover {
       background-color: #000000;
       cursor: pointer;
     }
-
   }
+}
 
+.delete {
+  background-color: red;
+  color: #ffffff;
+  margin-left: 5px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 25px;
 
+  &:hover {
+    background-color: #000000;
+    cursor: pointer;
+  }
+}
 
-  .navbar > h1 {
+.navbar > h1 {
   margin-left: 15px;
 }
 .name {

@@ -81,7 +81,7 @@ const EditProject = () => {
   let date = new Date().toISOString().slice(0, 10);
 
   return (
-    <>
+    <div className="edit-form">
       <h1>Edit Project</h1>
       <form className="edit-project" onSubmit={handleSubmit}>
         <input
@@ -121,10 +121,10 @@ const EditProject = () => {
             />
           </label>
         </div>
-        <input type="submit" />
+        <input className="submit" type="submit" />
       </form>
-      <button onClick={handleDeleteClick}>Delete</button>
-    </>
+      <button className="delete" onClick={handleDeleteClick}>Delete</button>
+    </div>
   );
 };
 
