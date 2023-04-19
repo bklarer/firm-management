@@ -123,7 +123,7 @@ const EditProject = () => {
         </div>
         <input className="submit" type="submit" />
       </form>
-      <button className="delete" onClick={handleDeleteClick}>Delete</button>
+      <button className="delete" onClick={handleDeleteClick}>Delete Project</button>
     </div>
   );
 };

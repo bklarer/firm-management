@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaskById } from "../../slices/taskSlice";
 import { useParams, useNavigate, Link } from "react-router-dom";
+import {dateHelper, timeHelper} from "../../helpers/dateTime";
 
 const FullTaskView = () => {
   const { taskId } = useParams();
@@ -24,10 +25,10 @@ const FullTaskView = () => {
           <p>{project ? project.title : "Not assigned to a project"} </p>
         </div>
         <div className="created">
-          <u>Created: </u> <p>{task ? task.created_at : null}</p>
+          <u>Created: </u> <p>{task ? dateHelper(task.created_at) : null}</p>
         </div>
         <div className="date-due">
-          <u>Due:</u> <p>{task ? task.due_date : null}</p>
+          <u>Due:</u> <p>{task ? dateHelper(task.due_date) + " " + timeHelper(task.due_date) : null}</p>
         </div>
         <div className="assigned">
           <u>Assigned:</u> <p>Benjamin Klarer</p>

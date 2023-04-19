@@ -16,6 +16,11 @@ const ContactList = () => {
     contacts.length > 0
       ? contacts.filter((contact) => contact.id !== userInfo.id)
       : [];
+
+  const sortedContacts = filteredContacts ? filteredContacts.sort((a, b) => {
+    return a.first_name.localeCompare(b.name)}) : null;
+
+
   const firmImage =
     "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681615804/firm-management-firm_1_ydfurw.jpg";
 
@@ -39,8 +44,8 @@ const ContactList = () => {
       <Contact contact={currentUser} />
 
 
-      {filteredContacts.length > 0
-        ? filteredContacts.map((contact) => {
+      {sortedContacts.length > 0
+        ? sortedContacts.map((contact) => {
             return <Contact key={contact.id} contact={contact} />;
           })
         : null}
