@@ -36,22 +36,16 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-        <h1>Firm Management</h1>
+      <h1>Firm Management</h1>
       <ul>
         <NavLink className="link" to="/">
-          <li>Home</li>
-        </NavLink>
-        <NavLink className="link" to="/new">
-          <li>New Task</li>
-        </NavLink>
-        <NavLink className="link" to="/profile">
-          <li>Profile</li>
+          <li>Tasks</li>
         </NavLink>
         <NavLink className="link" to="/projects">
           <li>Projects</li>
         </NavLink>
-        <NavLink className="link" to="/projects/new">
-          <li>New Project</li>
+        <NavLink className="link" to="/profile">
+          <li>Profile</li>
         </NavLink>
         <Link className="link" onClick={handleLogoutClick}>
           <li>Logout</li>

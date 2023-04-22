@@ -5,6 +5,7 @@ import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
 import { useState, useEffect } from "react";
 import {dateHelper, timeHelper} from "../../helpers/dateTime";
+import { NavLink } from "react-router-dom";
 
 const ProjectView = () => {
   const { projectId } = useParams();
@@ -110,6 +111,11 @@ const ProjectView = () => {
           </div>
         </div>
       ) : null}
+            <ul className="single-button">
+        <NavLink className="project-link" to="/projects/new">
+          <li>New Project</li>
+        </NavLink>
+      </ul>
       <div className="task-filter">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">

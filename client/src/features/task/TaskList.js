@@ -2,6 +2,7 @@ import Task from "./Task";
 import { fetchUsers } from "../../slices/userSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const TaskList = () => {
   const [dropdown, setDropdown] = useState("all");
@@ -43,6 +44,11 @@ const TaskList = () => {
   return (
     <div className="full-task-list">
       <h2>Firm's Tasks</h2>
+      <ul className="single-button">
+        <NavLink className="task-link" to="/new">
+          <li>New Task</li>
+        </NavLink>
+      </ul>
       <div className="task-filter">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">

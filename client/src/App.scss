@@ -61,6 +61,28 @@ li {
   }
 }
 
+.single-button {
+  margin: 0;
+  padding: 0;
+
+  .task-link, .project-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: $accent1;
+    margin: 5px;
+    border-radius: 25px;
+    padding: 5px;
+
+    &:hover {
+      background-color: #ffffff;
+      color: $font-color;
+    }
+  }
+}
+
 .profile-edit {
   display: flex;
   flex-direction: column;
