@@ -1,18 +1,12 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
+import {dateHelper} from "../../helpers/dateTime";
 
 const ProjectList = () => {
   const projects = useSelector((state) => state.projects.projects);
   const [dropdown, setDropdown] = useState("all");
-  const showDueDate = (date) => {
-    const formattedDate = date.slice(0, 10);
-    const month = formattedDate.slice(5, 7);
-    const day = formattedDate.slice(8, 10);
-    const year = formattedDate.slice(0, 4);
-    const eventDate = `${month}-${day}-${year}`;
-    return eventDate;
-  };
+
 
   let date = new Date().toISOString()
 
@@ -58,7 +52,7 @@ const ProjectList = () => {
                 >
                   <div>
                     <span>{project.title}</span>
-                    <span>{showDueDate(project.due_date)}</span>
+                    <span>{dateHelper(project.due_date)}</span>
                   </div>
                 </NavLink>
               );

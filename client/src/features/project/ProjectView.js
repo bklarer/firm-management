@@ -4,6 +4,7 @@ import { selectProjectById } from "../../slices/projectSlice";
 import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
 import { useState } from "react";
+import {dateHelper, timeHelper} from "../../helpers/dateTime";
 
 const ProjectView = () => {
   const { projectId } = useParams();
@@ -53,11 +54,11 @@ const ProjectView = () => {
           <div className="project-details-container">
             <h2 className="title">{project.title}</h2>
             <div className="created">
-              <u>Created:</u> <p>{project.created_at}</p>
+              <u>Created:</u> <p>{project ? dateHelper(project.created_at) : null}</p>
             </div>
 
             <div className="due-date">
-              <u>Due Date:</u> <p>{project.due_date}</p>
+              <u>Due Date:</u> <p>{project ? dateHelper(project.due_date) + " @ " + timeHelper(project.due_date): null }</p>
             </div>
 
             <div className="created-by">

@@ -28,7 +28,7 @@ const FullTaskView = () => {
           <u>Created: </u> <p>{task ? dateHelper(task.created_at) : null}</p>
         </div>
         <div className="date-due">
-          <u>Due:</u> <p>{task ? dateHelper(task.due_date) + " " + timeHelper(task.due_date) : null}</p>
+          <u>Due:</u> <p>{task ? dateHelper(task.due_date) + " @ "  + timeHelper(task.due_date) : null}</p>
         </div>
         <div className="assigned">
           <u>Assigned:</u> <p>Benjamin Klarer</p>

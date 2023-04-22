@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { taskUpdated } from "../../slices/taskSlice";
+import {dateHelper, timeHelper} from "../../helpers/dateTime";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -43,7 +44,7 @@ const Task = ({ task }) => {
         <div className="title">{title}</div>
       </div>
       <div className="assigned"><p>Assigned</p></div>
-      <div className="date-due"><p>12/31/2023</p></div>
+      <div className="date-due"><p>{task ? dateHelper(due_date) : null}</p></div>
       <div className="task-card-project"><p>Project</p></div>
       <div className="buttons button1">
           <Link className="link" to={`/${id}`}>View</Link>
