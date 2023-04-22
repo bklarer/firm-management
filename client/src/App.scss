@@ -152,7 +152,6 @@ li {
 .full-task-list,
 .task-list,
 .edit-form h1,
-.new-task-form h1,
 .new-project-form h1 {
   margin: 5px;
 }
@@ -506,6 +505,12 @@ li {
 .login input {
   padding: 5px;
   margin: 5px;
+}
+
+.new-task-form {
+  .title-box {
+    margin: 5px;
+  }
 }
 
 .new-task,

@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { taskAdded } from "../../slices/taskSlice";
 import { assignmentAdded } from "../../slices/assignmentSlice";
+import { useNavigate } from "react-router-dom";
 
 const NewTask = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const projects = useSelector((state) => state.projects.projects);
   const users = useSelector((state) => state.users.users);
   const [assignedUsers, setAssignedUsers] = useState([]);
@@ -25,6 +27,10 @@ const NewTask = () => {
 
   const [projectCheckbox, setProjectCheckbox] = useState(false);
   const [assignedCheckbox, setAssignedCheckbox] = useState(false);
+
+  const goBack = () => {
+    navigate(-1)
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -98,7 +104,10 @@ const NewTask = () => {
 
   return (
     <div className="new-task-form">
-      <h1>New Task</h1>
+      <div className="title-box">
+        <h1>New Task</h1>
+        <button onClick={goBack}>Go back</button>
+      </div>
       <form onSubmit={handleSubmit} className="new-task">
         <input
           required

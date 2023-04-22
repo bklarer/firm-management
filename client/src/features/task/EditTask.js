@@ -67,6 +67,10 @@ const EditTask = () => {
     }
   }, [initialized, task, users, userAssignments, assignedUsers]);
 
+  const goBack = () => {
+    navigate(-1)
+  }
+
   useEffect(() => {
     const unassignedUsers =
       users && assignedUsers
@@ -189,6 +193,7 @@ const EditTask = () => {
   return (
     <div className="edit-form">
       <h1>Edit Task</h1>
+      <button style={{"margin": "5px"}} onClick={goBack}>Go back</button>
       <form className="edit-task" onSubmit={handleSubmit}>
         <input
           required
