@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { selectProjectById } from "../../slices/projectSlice";
+import { selectProjectById, projectUpdated } from "../../slices/projectSlice";
 import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {dateHelper, timeHelper} from "../../helpers/dateTime";
 
 const ProjectView = () => {
   const { projectId } = useParams();
+  const dispatch = useDispatch();
   const project = useSelector((state) =>
     selectProjectById(state, parseInt(projectId))
   );
@@ -16,7 +17,31 @@ const ProjectView = () => {
   );
   const users = useSelector((state) => state.users.users);
   const [dropdown, setDropdown] = useState("all");
+  const [checkbox, setCheckBox] = useState(false);
   let date = new Date().toISOString();
+
+  console.log("project", project);
+
+  useEffect(() => {
+    setCheckBox(project && project.completed ? true : false)
+  }, [project]);
+
+  const handleCheckBox = (e) => {
+    const newValue = e.target.checked ? true : false;
+    setCheckBox(newValue);
+    fetch(`/api/projects/${project.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ completed: newValue }),
+    })
+      .then((resp) => resp.json())
+      .then((changedProject) => {
+        dispatch(projectUpdated(changedProject));
+      });
+  };
 
   const creator = users.find((user) => user.id === project.creator_id);
 
@@ -68,6 +93,16 @@ const ProjectView = () => {
             <div>
               <u>Notes:</u>
               <p>{project.notes ? project.notes : "Add Notes"}</p>
+            </div>
+            <div>
+              <u>Completed:</u>
+              <input
+            className="task-completed"
+            type="checkbox"
+            value={checkbox}
+            checked={checkbox}
+            onChange={handleCheckBox}
+          />
             </div>
             <Link className="link" to={`edit`}>
               Edit

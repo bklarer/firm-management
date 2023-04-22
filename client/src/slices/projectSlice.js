@@ -34,6 +34,8 @@ const projectsSlice = createSlice({
       if (existingProject) {
         existingProject.title = action.payload.title;
         existingProject.due_date = action.payload.due_date;
+        existingProject.notes = action.payload.notes;
+        existingProject.completed = action.payload.completed;
       }
     },
     projectRemoved(state, action) {
