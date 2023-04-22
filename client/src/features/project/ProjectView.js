@@ -44,7 +44,7 @@ const ProjectView = () => {
       });
   };
 
-  const creator = users.find((user) => user.id === project.creator_id);
+  const creator = users && project ? users.find((user) => user.id === project.creator_id): null
 
   const filteredTasks = () => {
     let newTasks = [];
@@ -80,16 +80,16 @@ const ProjectView = () => {
           <div className="project-details-container">
             <h2 className="title">{project.title}</h2>
             <div className="created">
-              <u>Created:</u> <p>{project ? dateHelper(project.created_at) : null}</p>
+              <u>Created:</u> <p>{dateHelper(project.created_at)}</p>
             </div>
 
             <div className="due-date">
-              <u>Due Date:</u> <p>{project ? dateHelper(project.due_date) + " @ " + timeHelper(project.due_date): null }</p>
+              <u>Due Date:</u> <p>{dateHelper(project.due_date) + " @ " + timeHelper(project.due_date)}</p>
             </div>
 
             <div className="created-by">
               <u>Created By:</u>
-              <p>{`${creator.first_name} ${creator.last_name} `}</p>
+              <p>{creator ? `${creator.first_name} ${creator.last_name} `: "Not Found"}</p>
             </div>
             <div>
               <u>Notes:</u>
@@ -110,7 +110,7 @@ const ProjectView = () => {
             </Link>
           </div>
         </div>
-      ) : null}
+      ) : <h2>No Project Found</h2>}
             <ul className="single-button">
         <NavLink className="project-link" to="/projects/new">
           <li>New Project</li>
