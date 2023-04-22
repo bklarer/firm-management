@@ -6,7 +6,7 @@ import {
   projectUpdated,
   selectProjectById,
 } from "../../slices/projectSlice";
-
+import { selectTasksByProject, taskUpdated } from "../../slices/taskSlice";
 const EditProject = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -18,9 +18,15 @@ const EditProject = () => {
     due_time: "",
   });
 
+
+  const tasks = useSelector((state) =>
+    selectTasksByProject(state, parseInt(projectId))
+  );
   const project = useSelector((state) =>
     selectProjectById(state, parseInt(projectId))
   );
+
+  console.log("tasks5", tasks);
 
   const formattedProject = {
     title: updatedProject.title,
@@ -33,7 +39,7 @@ const EditProject = () => {
       project
         ? setUpdatedProject({
             title: project.title,
-            notes: project.notes? project.notes : "",
+            notes: project.notes ? project.notes : "",
             due_date: project.due_date.slice(0, 10),
             due_time: project.due_date.slice(11, 16),
           })
@@ -62,6 +68,7 @@ const EditProject = () => {
     })
       .then((resp) => resp.json())
       .then((changedProject) => {
+        navigate(-1);
         dispatch(projectUpdated(changedProject));
       });
   };
@@ -73,8 +80,13 @@ const EditProject = () => {
         "Content-Type": "application/json",
       },
     }).then(() => {
-      navigate("/");
-      dispatch(projectRemoved(parseInt(projectId)));
+   
+
+      tasks.forEach((task) => {
+        dispatch(taskUpdated({ ...task, project_id: null }));
+      });
+      dispatch(projectRemoved(parseInt(projectId)));   
+      navigate("/projects");
     });
   };
 
@@ -123,7 +135,9 @@ const EditProject = () => {
         </div>
         <input className="submit" type="submit" />
       </form>
-      <button className="delete" onClick={handleDeleteClick}>Delete Project</button>
+      <button className="delete" onClick={handleDeleteClick}>
+        Delete Project
+      </button>
     </div>
   );
 };

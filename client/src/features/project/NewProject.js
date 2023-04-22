@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { projectAdded } from "../../slices/projectSlice";
+import { useNavigate } from "react-router-dom";
 
 const NewProject = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     due_date: "",
@@ -14,6 +16,7 @@ const NewProject = () => {
   const formattedProject = {
     title: formData.title,
     due_date: formData.due_date + "T" + formData.due_time + ":00",
+    notes: formData.notes,
   };
 
   const handleSubmit = (e) => {
@@ -30,6 +33,7 @@ const NewProject = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        navigate(-1);
         dispatch(projectAdded(data));
       });
   };

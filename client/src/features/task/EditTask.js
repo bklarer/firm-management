@@ -40,7 +40,6 @@ const EditTask = () => {
     notes: updatedTask.notes,
     due_date: updatedTask.due_date + "T" + updatedTask.due_time + ":00",
   };
-  console.log("userAssignments", userAssignments);
 
   useLayoutEffect(() => {
     if (!initialized) {
@@ -108,6 +107,7 @@ const EditTask = () => {
     })
       .then((resp) => resp.json())
       .then((changedTask) => {
+        navigate(-1);
         dispatch(taskUpdated(changedTask));
       });
   };

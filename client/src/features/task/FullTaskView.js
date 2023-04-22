@@ -16,6 +16,8 @@ const FullTaskView = () => {
     ? users.find((user) => user.id === task.creator_id)
     : null;
 
+    console.log("task", task)
+
   return (
     <div className="task-full-view-container">
       <div className="task-full-view">

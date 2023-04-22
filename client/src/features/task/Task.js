@@ -31,6 +31,7 @@ const Task = ({ task }) => {
       });
   };
 
+
   return (
     <div className="task-card">
       <div className="task-title-container">

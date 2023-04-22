@@ -54,6 +54,7 @@ const NewTask = () => {
     })
       .then((resp) => resp.json())
       .then((data) => {
+        navigate("/");
         dispatch(taskAdded(data.task));
 
         if (data.assignments.length) {
