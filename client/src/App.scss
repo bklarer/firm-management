@@ -231,11 +231,16 @@ li {
 
   .task-title-container {
     display: flex;
-    align-items: center;
     grid-column-start: span 4;
 
     input {
+      margin-top: 16px;
       margin-right: 10px;
+      height: 24px;
+    }
+
+    .title {
+      margin-top: 16px;
     }
   }
 
@@ -262,18 +267,21 @@ li {
     grid-column-start: span 3;
   }
 
-  .buttons {
-    justify-self: self-end;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5px;
-
     .link {
+      display: flex;
+      justify-self: self-end;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
       background-color: $accent1;
       color: #ffffff;
       border-radius: 25px;
       padding: 5px;
+      height: 30px;
+      margin-top: 8px;
+
+    p {
+      margin: 0;
     }
   }
 }
@@ -578,7 +586,6 @@ li {
 }
 
 .assigned {
-  margin: 5px;
 
   button {
     background-color: red;

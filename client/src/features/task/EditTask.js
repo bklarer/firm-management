@@ -6,7 +6,7 @@ import {
 } from "../../slices/taskSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState, useLayoutEffect } from "react";
-import { selectAssignmensByTaskId } from "../../slices/assignmentSlice";
+import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
 import {
   assignmentAdded,
   assignmentRemoved,
@@ -24,7 +24,7 @@ const EditTask = () => {
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [initialized, setInitialized] = useState(false);
   const userAssignments = useSelector((state) =>
-    selectAssignmensByTaskId(state, parseInt(taskId))
+    selectAssignmentsByTaskId(state, parseInt(taskId))
   );
   const [updatedTask, setUpdatedTask] = useState({
     title: "",

@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { taskUpdated } from "../../slices/taskSlice";
 import {dateHelper, timeHelper} from "../../helpers/dateTime";
+import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
   const { title, id, creator_id, due_date, project_id, completed } = task;
   const [checkbox, setCheckBox] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const userAssignments = useSelector((state) => selectAssignmentsByTaskId(state, id));
+  const users = useSelector((state) => state.users.users);
+  const assignedUsers = users.filter((user) => userAssignments.find((assignment) => assignment.user_id === user.id));
 
   useEffect(() => {
     setCheckBox(completed ? true : false);
@@ -49,20 +53,20 @@ const Task = ({ task }) => {
         <div className="title">{title}</div>
       </div>
       <div className="assigned">
-        <p className="assigned-title" onClick={toggleDropdown}>Assigned ▼</p>
+        <p className="assigned-title" onClick={toggleDropdown}>{assignedUsers.length} Assigned ▼</p>
         {dropdownOpen && (
           <div className="assigned-list">
-            <p>Person 1</p>
-            <p>Person 2</p>
-            <p>Person 3</p>
+            {assignedUsers.length > 0 ? assignedUsers.map((user) => {
+              return (
+                <p key={user.id}>{user.first_name + " " + user.last_name}</p>
+              );
+            }): "No one assigned"}
           </div>
         )}
       </div>
       <div className="date-due"><p>{task ? dateHelper(due_date) : null}</p></div>
       <div className="task-card-project"><p>Project</p></div>
-      <div className="buttons button1">
-          <Link className="link" to={`/${id}`}>View</Link>
-      </div>
+          <Link className="link" to={`/${id}`}><p>View</p></Link>
     </div>
   );
 };

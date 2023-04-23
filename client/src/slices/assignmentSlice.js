@@ -54,7 +54,7 @@ const assignmentsSlice = createSlice({
   },
 });
 
-export const selectAssignmensByTaskId = (state, taskId) => {
+export const selectAssignmentsByTaskId = (state, taskId) => {
   return state.assignments.assignments.filter(
     (assignment) => assignment.task_id === taskId
   );
