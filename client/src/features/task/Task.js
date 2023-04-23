@@ -8,7 +8,7 @@ const Task = ({ task }) => {
   const dispatch = useDispatch();
   const { title, id, creator_id, due_date, project_id, completed } = task;
   const [checkbox, setCheckBox] = useState(false);
-  //Need to set data to object and see how I want to serialize data from backend
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   useEffect(() => {
     setCheckBox(completed ? true : false);
@@ -31,6 +31,10 @@ const Task = ({ task }) => {
       });
   };
 
+  const toggleDropdown = () => {
+    setDropdownOpen(!dropdownOpen);
+  };
+
 
   return (
     <div className="task-card">
@@ -44,7 +48,16 @@ const Task = ({ task }) => {
           />
         <div className="title">{title}</div>
       </div>
-      <div className="assigned"><p>Assigned</p></div>
+      <div className="assigned">
+        <p className="assigned-title" onClick={toggleDropdown}>Assigned ▼</p>
+        {dropdownOpen && (
+          <div className="assigned-list">
+            <p>Person 1</p>
+            <p>Person 2</p>
+            <p>Person 3</p>
+          </div>
+        )}
+      </div>
       <div className="date-due"><p>{task ? dateHelper(due_date) : null}</p></div>
       <div className="task-card-project"><p>Project</p></div>
       <div className="buttons button1">

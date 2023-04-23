@@ -65,7 +65,8 @@ li {
   margin: 0;
   padding: 0;
 
-  .task-link, .project-link {
+  .task-link,
+  .project-link {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -240,6 +241,17 @@ li {
 
   .assigned {
     grid-column-start: span 2;
+    position: relative;
+    cursor: pointer;
+    .assigned-title {
+      &:hover {
+        color: $accent1;
+      }
+    }
+    .assigned-list {
+      color: $font-color;
+      cursor: default;
+    }
   }
 
   .date-due {
