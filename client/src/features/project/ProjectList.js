@@ -42,15 +42,16 @@ const ProjectList = () => {
         </select>
       </div>
       <div className="project-list">
+        <h2>Projects</h2>
         {projects.length > 0
           ? filteredProjects().map((project) => {
               return (
                 <NavLink
-                  className="link"
+                  className="link project-card"
                   key={project.id}
                   to={`/projects/${project.id}`}
                 >
-                  <div>
+                  <div className="data-container">
                     <span>{project.title}</span>
                     <span>{dateHelper(project.due_date)}</span>
                   </div>
