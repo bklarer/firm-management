@@ -1,13 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { selectTaskById } from "../../slices/taskSlice";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import {dateHelper, timeHelper} from "../../helpers/dateTime";
+import { dateHelper, timeHelper } from "../../helpers/dateTime";
+import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
 
 const FullTaskView = () => {
   const { taskId } = useParams();
   const projects = useSelector((state) => state.projects.projects);
   const users = useSelector((state) => state.users.users);
   const task = useSelector((state) => selectTaskById(state, parseInt(taskId)));
+  const userAssignments = useSelector((state) =>
+    selectAssignmentsByTaskId(state, parseInt(taskId))
+  );
+  const assignedUsers = users.filter((user) =>
+    userAssignments.find((assignment) => assignment.user_id === user.id)
+  );
+
   const project =
     task && task.project_id
       ? projects.find((project) => project.id === task.project_id)
@@ -15,8 +23,6 @@ const FullTaskView = () => {
   const creator = task
     ? users.find((user) => user.id === task.creator_id)
     : null;
-
-    console.log("task", task)
 
   return (
     <div className="task-full-view-container">
@@ -30,10 +36,26 @@ const FullTaskView = () => {
           <u>Created: </u> <p>{task ? dateHelper(task.created_at) : null}</p>
         </div>
         <div className="date-due">
-          <u>Due:</u> <p>{task ? dateHelper(task.due_date) + " @ "  + timeHelper(task.due_date) : null}</p>
+          <u>Due:</u>{" "}
+          <p>
+            {task
+              ? dateHelper(task.due_date) + " @ " + timeHelper(task.due_date)
+              : null}
+          </p>
         </div>
         <div className="assigned">
-          <u>Assigned:</u> <p>Benjamin Klarer</p>
+          <u>Assigned:</u>{" "}
+          <div className="task-view-assigned">
+            {assignedUsers.length > 0
+              ? assignedUsers.map((user) => {
+                  return (
+                    <p key={user.id}>
+                      {user.first_name + " " + user.last_name}
+                    </p>
+                  );
+                })
+              : "No one assigned"}
+          </div>
         </div>
         <div className="created-by">
           <u>Created By:</u>{" "}
