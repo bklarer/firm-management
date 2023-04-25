@@ -9,5 +9,5 @@ class User < ApplicationRecord
     has_many :created_projects, class_name: "Project", foreign_key: "creator_id"
 
     validates :username, presence: true, uniqueness: true
-    validates :first_name, :last_name, presence: true
+    validates :first_name, :last_name, :email, presence: true
 end

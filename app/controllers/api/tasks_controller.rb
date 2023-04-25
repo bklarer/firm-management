@@ -10,9 +10,11 @@ class Api::TasksController < ApplicationController
         user_ids = params[:user_ids]
         assignments = []
         
-        user_ids.each do |user_id|
-          assignment = Assignment.create!(user_id: user_id, task_id: task.id)
-          assignments << assignment
+        if user_ids.present?
+            user_ids.each do |user_id|
+            assignment = Assignment.create!(user_id: user_id, task_id: task.id)
+            assignments << assignment
+            end
         end
         
         render json: { task: task, assignments: assignments }, status: :created

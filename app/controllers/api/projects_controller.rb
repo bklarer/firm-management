@@ -33,6 +33,9 @@ class Api::ProjectsController < ApplicationController
         params.permit(
             :title,
             :due_date,
+            :notes,
+            :completed,
+            :id
         )
     end
 
