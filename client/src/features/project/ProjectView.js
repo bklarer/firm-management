@@ -4,7 +4,7 @@ import { selectProjectById, projectUpdated } from "../../slices/projectSlice";
 import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
 import { useState, useEffect } from "react";
-import {dateHelper, timeHelper} from "../../helpers/dateTime";
+import { dateHelper, timeHelper } from "../../helpers/dateTime";
 import { NavLink } from "react-router-dom";
 
 const ProjectView = () => {
@@ -24,7 +24,7 @@ const ProjectView = () => {
   console.log("project", project);
 
   useEffect(() => {
-    setCheckBox(project && project.completed ? true : false)
+    setCheckBox(project && project.completed ? true : false);
   }, [project]);
 
   const handleCheckBox = (e) => {
@@ -44,7 +44,10 @@ const ProjectView = () => {
       });
   };
 
-  const creator = users && project ? users.find((user) => user.id === project.creator_id): null
+  const creator =
+    users && project
+      ? users.find((user) => user.id === project.creator_id)
+      : null;
 
   const filteredTasks = () => {
     let newTasks = [];
@@ -84,12 +87,21 @@ const ProjectView = () => {
             </div>
 
             <div className="due-date">
-              <u>Due Date:</u> <p>{dateHelper(project.due_date) + " @ " + timeHelper(project.due_date)}</p>
+              <u>Due Date:</u>{" "}
+              <p>
+                {dateHelper(project.due_date) +
+                  " @ " +
+                  timeHelper(project.due_date)}
+              </p>
             </div>
 
             <div className="created-by">
               <u>Created By:</u>
-              <p>{creator ? `${creator.first_name} ${creator.last_name} `: "Not Found"}</p>
+              <p>
+                {creator
+                  ? `${creator.first_name} ${creator.last_name} `
+                  : "Not Found"}
+              </p>
             </div>
             <div>
               <u>Notes:</u>
@@ -98,25 +110,23 @@ const ProjectView = () => {
             <div>
               <u>Completed:</u>
               <input
-            className="task-completed"
-            type="checkbox"
-            value={checkbox}
-            checked={checkbox}
-            onChange={handleCheckBox}
-          />
+                className="task-completed"
+                type="checkbox"
+                value={checkbox}
+                checked={checkbox}
+                onChange={handleCheckBox}
+              />
             </div>
             <Link className="link" to={`edit`}>
               Edit
             </Link>
           </div>
         </div>
-      ) : <h2>No Project Found</h2>}
-            <ul className="single-button">
-        <NavLink className="project-link" to="/projects/new">
-          <li>New Project</li>
-        </NavLink>
-      </ul>
-      <div className="task-filter">
+      ) : (
+        <h2>No Project Found</h2>
+      )}
+
+      <div className="task-options">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">
             All
@@ -124,7 +134,12 @@ const ProjectView = () => {
           <option value="not_completed">Not complete</option>
           <option value="past_due">Past Due</option>
           <option value="completed">Completed</option>
-        </select>
+        </select>{" "}
+        <ul className="single-button">
+          <NavLink className="project-link" to="/projects/new">
+            <li>New Project</li>
+          </NavLink>
+        </ul>
       </div>
       <div className="task-label">
         <h3 className="task-title">Task</h3>

@@ -396,6 +396,17 @@ li {
   }
 }
 
+.task-options {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+
+  select {
+    height: max-content;
+    align-self: self-end;
+  }
+}
+
 .task-full-view-container,
 .project-details {
   display: flex;

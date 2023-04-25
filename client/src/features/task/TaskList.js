@@ -44,12 +44,8 @@ const TaskList = () => {
   return (
     <div className="full-task-list">
       <h2>Firm's Tasks</h2>
-      <ul className="single-button">
-        <NavLink className="task-link" to="/new">
-          <li>New Task</li>
-        </NavLink>
-      </ul>
-      <div className="task-filter">
+
+      <div className="task-options">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">
             All
@@ -57,7 +53,12 @@ const TaskList = () => {
           <option value="not_completed">Not complete</option>
           <option value="past_due">Past Due</option>
           <option value="completed">Completed</option>
-        </select>
+        </select>      
+        <ul className="single-button">
+        <NavLink className="task-link" to="/new">
+          <li>New Task</li>
+        </NavLink>
+      </ul>
       </div>
       <div className="task-label">
         <h3 className="task-title">Task</h3>
