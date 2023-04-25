@@ -179,6 +179,21 @@ li {
   margin: 5px;
 }
 
+.task-header {
+  background-color: $accent1;
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 5px 0 15px;
+  padding: 10px;
+  text-align: center;
+
+  @media (min-width: 951px) {
+    display: none;
+  }
+}
+
 .task-label {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -190,6 +205,10 @@ li {
   border-radius: 10px;
   margin: 5px 0 15px;
   padding: 0 10px;
+
+  @media (max-width: 950px) {
+    display: none;
+  }
 
   .task-title {
     grid-column-start: span 4;
@@ -216,6 +235,12 @@ li {
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   gap: 15px;
+
+  @media (max-width: 950px) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .checkbox > input {
@@ -228,6 +253,10 @@ li {
   grid-template-columns: repeat(12, 1fr);
   background-color: #ffffff;
   border-radius: 10px;
+
+  @media (max-width: 950px) {
+    display: none;
+  }
 
   .task-title-container {
     display: flex;
@@ -291,6 +320,81 @@ li {
     }
   }
 }
+
+.task-card-mobile {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 40%;
+  min-width: 230px;
+
+  @media (min-width: 951px) {
+    display: none;
+  }
+
+  .task-title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    input {
+      height: 24px;
+    }
+
+    .title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  .assigned {
+    grid-column-start: span 2;
+    position: relative;
+    cursor: pointer;
+    .assigned-title {
+      &:hover {
+        color: $accent1;
+      }
+    }
+    .assigned-list {
+      color: $font-color;
+      cursor: default;
+    }
+  }
+
+  .date-due {
+    grid-column-start: span 2;
+  }
+
+  .task-card-project {
+    grid-column-start: span 3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+    .link {
+      display: flex;
+      justify-self: self-end;
+      justify-content: center;
+      align-items: center;
+      margin-right: 5px;
+      background-color: $accent1;
+      color: #ffffff;
+      border-radius: 25px;
+      padding: 5px;
+      height: 30px;
+      margin-top: 8px;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
 .task-full-view-container,
 .project-details {
   display: flex;

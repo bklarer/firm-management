@@ -132,6 +132,7 @@ const ProjectView = () => {
         <h3 className="task-date">Due Date</h3>
         <h3 className="task-project">Project</h3>
       </div>
+      <div className="task-header">Tasks</div>
       <div className="task-list">
         {project && tasks.length > 0
           ? filteredTasks().map((task) => {

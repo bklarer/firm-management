@@ -44,45 +44,94 @@ const Task = ({ task }) => {
   };
 
   return (
-    <div className="task-card">
-      <div className="task-title-container">
-        <input
-          className="task-completed"
-          type="checkbox"
-          value={checkbox}
-          checked={checkbox}
-          onChange={handleCheckBox}
-        />
-        <div className="title">{title}</div>
+    <>
+      <div className="task-card">
+        <div className="task-title-container">
+          <input
+            className="task-completed"
+            type="checkbox"
+            value={checkbox}
+            checked={checkbox}
+            onChange={handleCheckBox}
+          />
+          <div className="title">{title}</div>
+        </div>
+        <div className="assigned">
+          <p className="assigned-title" onClick={toggleDropdown}>
+            {assignedUsers.length} Assigned ▼
+          </p>
+          {dropdownOpen && (
+            <div className="assigned-list">
+              {assignedUsers.length > 0
+                ? assignedUsers.map((user) => {
+                    return (
+                      <p key={user.id}>
+                        {user.first_name + " " + user.last_name}
+                      </p>
+                    );
+                  })
+                : "No one assigned"}
+            </div>
+          )}
+        </div>
+        <div className="date-due">
+          <p>{task ? dateHelper(due_date) : null}</p>
+        </div>
+        <div className="task-card-project">
+          <p>Project</p>
+        </div>
+        <Link className="link" to={`/${id}`}>
+          <p>View</p>
+        </Link>
       </div>
-      <div className="assigned">
-        <p className="assigned-title" onClick={toggleDropdown}>
-          {assignedUsers.length} Assigned ▼
-        </p>
-        {dropdownOpen && (
-          <div className="assigned-list">
-            {assignedUsers.length > 0
-              ? assignedUsers.map((user) => {
-                  return (
-                    <p key={user.id}>
-                      {user.first_name + " " + user.last_name}
-                    </p>
-                  );
-                })
-              : "No one assigned"}
-          </div>
-        )}
+
+      <div className="task-card-mobile">
+        <div className="task-title-container">
+          <strong>Task: </strong>
+          <div className="title">{title}</div>{" "}
+          <input
+            className="task-completed"
+            type="checkbox"
+            value={checkbox}
+            checked={checkbox}
+            onChange={handleCheckBox}
+          />
+        </div>
+        <div className="assigned">
+          <p className="assigned-title" onClick={toggleDropdown}>
+            <strong>Assignments: </strong>
+            {assignedUsers.length} Assigned ▼
+          </p>
+          {dropdownOpen && (
+            <div className="assigned-list">
+              {assignedUsers.length > 0
+                ? assignedUsers.map((user) => {
+                    return (
+                      <p key={user.id}>
+                        {user.first_name + " " + user.last_name}
+                      </p>
+                    );
+                  })
+                : "No one assigned"}
+            </div>
+          )}
+        </div>
+        <div className="date-due">
+          <p>
+            <strong>Due Date: </strong>
+            {task ? dateHelper(due_date) : null}
+          </p>
+        </div>
+        <div className="task-card-project">
+          <p>
+            <strong>Project: </strong>Project
+          </p>
+        </div>
+        <Link className="link" to={`/${id}`}>
+          <p>View</p>
+        </Link>
       </div>
-      <div className="date-due">
-        <p>{task ? dateHelper(due_date) : null}</p>
-      </div>
-      <div className="task-card-project">
-        <p>Project</p>
-      </div>
-      <Link className="link" to={`/${id}`}>
-        <p>View</p>
-      </Link>
-    </div>
+    </>
   );
 };
 
