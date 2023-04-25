@@ -38,6 +38,7 @@ li {
 .dynamic-container {
   flex: 1;
   min-height: 85vh;
+  width: 100%;
 }
 
 .profile {
@@ -302,18 +303,18 @@ li {
     text-overflow: ellipsis;
   }
 
-    .link {
-      display: flex;
-      justify-self: self-end;
-      justify-content: center;
-      align-items: center;
-      margin-right: 5px;
-      background-color: $accent1;
-      color: #ffffff;
-      border-radius: 25px;
-      padding: 5px;
-      height: 30px;
-      margin-top: 8px;
+  .link {
+    display: flex;
+    justify-self: self-end;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    background-color: $accent1;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 5px;
+    height: 30px;
+    margin-top: 8px;
 
     p {
       margin: 0;
@@ -376,18 +377,18 @@ li {
     text-overflow: ellipsis;
   }
 
-    .link {
-      display: flex;
-      justify-self: self-end;
-      justify-content: center;
-      align-items: center;
-      margin-right: 5px;
-      background-color: $accent1;
-      color: #ffffff;
-      border-radius: 25px;
-      padding: 5px;
-      height: 30px;
-      margin-top: 8px;
+  .link {
+    display: flex;
+    justify-self: self-end;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    background-color: $accent1;
+    color: #ffffff;
+    border-radius: 25px;
+    padding: 5px;
+    height: 30px;
+    margin-top: 8px;
 
     p {
       margin: 0;
@@ -442,7 +443,6 @@ li {
     .task-view-assigned {
       display: block;
     }
-
   }
 }
 
@@ -466,7 +466,7 @@ li {
     animation: fadeInAnimation ease 2s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-  
+
     @keyframes fadeInAnimation {
       0% {
         opacity: 0;
@@ -477,13 +477,13 @@ li {
     }
 
     &.active {
-        background-color: $accent1;
-        color: #ffffff;
+      background-color: $accent1;
+      color: #ffffff;
     }
-  
+
     &:hover {
-        background-color: $accent1;
-        color: #ffffff;
+      background-color: $accent1;
+      color: #ffffff;
     }
 
     .data-container {
@@ -491,35 +491,54 @@ li {
       justify-content: space-between;
       align-items: center;
       height: 100%;
-      
+
       span {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
       }
-
     }
   }
 }
 
 .left-bar {
   justify-content: center;
-  position: sticky;
   top: 0;
   margin: 0;
   height: 100vh;
   border-right: solid 10px white;
-  position: relative;
   width: 250px;
+  transition: transform 0.5s;
+}
+
+.menu-icon {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  svg {
+    width: 30px;
+
+    &:hover {
+      cursor: pointer;
+      fill: $accent1;
+    }
+  }
+}
+
+.left-bar.hidden {
+  width: 5vw;
+}
+
+.hide-content {
+  display: none;
 }
 
 .contact-list {
   overflow: auto;
-  position: sticky;
   top: 0;
   margin: 0;
   height: 100vh;
-  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -747,7 +766,6 @@ li {
 }
 
 .assigned {
-
   button {
     background-color: red;
     color: #ffffff;
