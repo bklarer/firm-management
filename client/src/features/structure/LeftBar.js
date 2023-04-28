@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import React, { useState } from "react";
 
 const LeftBar = () => {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
 
   const handleClick = () => {
     setIsHidden(!isHidden);
@@ -13,17 +13,12 @@ const LeftBar = () => {
   return (
     
     <div
-      className={`left-bar ${isHidden ? "hidden" : ""}`}
-    >
+      className={`left-bar ${isHidden ? "hidden" : ""}`}>
       <div className="menu-icon" >
-        
-        <svg onClick={handleClick} viewBox="0 0 100 80" width="40" height="40">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
+        <p onClick={handleClick}>{isHidden ? "Show Contacts": "Hide Contacts"}</p>
       </div>
-      <div className={isHidden ? "hide-content" : ""}>
+      
+      <div className={isHidden ? "hide-content" : "" }>
       <Outlet />
       </div>
     </div>

@@ -33,6 +33,7 @@ li {
   min-width: 100%;
   min-height: 100vh;
   flex: 1;
+  position: relative;
 }
 
 .dynamic-container {
@@ -178,6 +179,12 @@ li {
 .edit-form h1,
 .new-project-form h1 {
   margin: 5px;
+}
+
+.full-task-list {
+  h2 {
+    text-align: center;
+  }
 }
 
 .task-header {
@@ -397,7 +404,7 @@ li {
 }
 
 .task-options {
-  display:flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
 
@@ -516,29 +523,41 @@ li {
   justify-content: center;
   top: 0;
   margin: 0;
-  height: 100vh;
-  border-right: solid 10px white;
+  height: 100%;
   width: 250px;
   transition: transform 0.5s;
+  position: absolute;
+  background-color: #ffffff;
 }
 
 .menu-icon {
   display: flex;
   justify-content: center;
   width: 100%;
+  align-items: center;
 
-  svg {
-    width: 30px;
+  p {
+    margin-left: 10px;
+    background-color: $accent1;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 5px;
+    border-radius: 25px;
+    line-height: 1;
 
     &:hover {
       cursor: pointer;
-      fill: $accent1;
+      background-color: #ffffff;
+      color: $accent1;
     }
   }
 }
 
 .left-bar.hidden {
-  width: 5vw;
+  float: left;
+  width: auto;
+  background-color: transparent;
+  margin-left: 10px;
 }
 
 .hide-content {
