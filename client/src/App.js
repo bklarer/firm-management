@@ -1,8 +1,8 @@
 import "./App.scss";
 import { Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { checkLogin } from "./slices/loginSlice";
+import { clearLoginError } from "./slices/loginSlice";
 import Navbar from "./features/structure/Navbar";
 import LeftBar from "./features/structure/LeftBar";
 import DynamicContainer from "./features/structure/DynamicContainer";
@@ -15,18 +15,21 @@ import EditTask from "./features/task/EditTask";
 import Profile from "./features/user/Profile";
 import NewProject from "./features/project/NewProject";
 import EditProject from "./features/project/EditProject";
-import { fetchUsers } from "./slices/userSlice";
-import { fetchTasks } from "./slices/taskSlice";
+import { fetchUsers, clearUserError } from "./slices/userSlice";
+import { fetchTasks, clearTaskError } from "./slices/taskSlice";
 import ContactList from "./features/user/ContactList";
 import ProfileEdit from "./features/user/ProfileEdit";
 import FullTaskView from "./features/task/FullTaskView";
 import Loading from "./features/structure/Loading";
 import UserInfo from "./features/user/UserInfo";
-import { fetchProjects } from "./slices/projectSlice";
+import { fetchProjects, clearProjectError } from "./slices/projectSlice";
 import ProjectList from "./features/project/ProjectList";
 import ProjectView from "./features/project/ProjectView";
 import MainProjectPage from "./features/project/MainProjectPage";
-import { fetchAssignments } from "./slices/assignmentSlice";
+import {
+  fetchAssignments,
+  clearAssignmentError,
+} from "./slices/assignmentSlice";
 
 //Update new forms to update state
 //Create Edit form
@@ -47,23 +50,45 @@ function App() {
   const userLoading = useSelector((state) => state.tasks.loading);
   const loginLoading = useSelector((state) => state.users.loading);
   const projectLoading = useSelector((state) => state.projects.loading);
-  const assignmentLoading = useSelector((state) => state.assignments.loading)
+  const assignmentLoading = useSelector((state) => state.assignments.loading);
+  const taskError = useSelector((state) => state.tasks.error);
+  const loginError = useSelector((state) => state.login.error);
+  const userError = useSelector((state) => state.users.error);
+  const projectError = useSelector((state) => state.projects.error);
+  const assignmentError = useSelector((state) => state.assignments.error);
 
   useEffect(() => {
     if (userInfo) {
       dispatch(fetchTasks());
       dispatch(fetchUsers());
-      dispatch(fetchProjects())
-      dispatch(fetchAssignments())
+      dispatch(fetchProjects());
+      dispatch(fetchAssignments());
     }
   }, [dispatch, userInfo]);
 
-  //BUG: Need to handle all errors
-  //TODO Show user name at top
+  useEffect(() => {
+    if (taskError || userError || projectError || assignmentError || loginError) {
+      const interval = setTimeout(() => {
+        dispatch(
+          clearUserError(),
+          clearTaskError(),
+          clearAssignmentError(),
+          clearProjectError(),
+          clearLoginError()
+        );
+      }, 5000);
+
+      return () => clearTimeout(interval);
+    }
+  }, [dispatch, taskError, userError, projectError, assignmentError, loginError]);
 
   return (
     <div className="App">
-      {taskLoading || userLoading || loginLoading ||  projectLoading || assignmentLoading? (
+      {taskLoading ||
+      userLoading ||
+      loginLoading ||
+      projectLoading ||
+      assignmentLoading ? (
         <Loading />
       ) : (
         <>
@@ -78,7 +103,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<LeftBar />}>
                   <Route index element={<ContactList />} />
-                  <Route path="projects/*" element={<ProjectList/>}/>
+                  <Route path="projects/*" element={<ProjectList />} />
                   <Route path="*" element={<ContactList />} />
                 </Route>
               </Routes>
@@ -93,12 +118,12 @@ function App() {
                     <Route path="edit" element={<EditTask />} />
                   </Route>
                   <Route path="projects">
-                    <Route index element={<MainProjectPage/>}/>
-                    <Route path="new" element={<NewProject/>}/>
-                    <Route path=":projectId" element={<ProjectView/>}/>
-                    <Route path=":projectId/edit" element={<EditProject/>}/>
+                    <Route index element={<MainProjectPage />} />
+                    <Route path="new" element={<NewProject />} />
+                    <Route path=":projectId" element={<ProjectView />} />
+                    <Route path=":projectId/edit" element={<EditProject />} />
                   </Route>
-                  <Route path="user/:userId" element={<UserInfo/>}/>
+                  <Route path="user/:userId" element={<UserInfo />} />
                   <Route path="profile">
                     <Route index element={<Profile />} />
                     <Route path="edit" element={<ProfileEdit />} />

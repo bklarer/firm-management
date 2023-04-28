@@ -44,6 +44,12 @@ const projectsSlice = createSlice({
       );
       state.projects.splice(index, 1);
     },
+    addProjectError: (state, action) => {
+      state.error = action.error.message;
+    },
+    clearProjectError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -64,6 +70,12 @@ const projectsSlice = createSlice({
 export const selectProjectById = (state, projectId) =>
   state.projects.projects.find((project) => project.id === projectId);
 
-export const { projectAdded, projectUpdated, projectRemoved } = projectsSlice.actions;
+export const {
+  projectAdded,
+  projectUpdated,
+  projectRemoved,
+  clearProjectError,
+  addProjectError,
+} = projectsSlice.actions;
 
 export default projectsSlice.reducer;

@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { taskUpdated } from "../../slices/taskSlice";
-import { dateHelper, timeHelper } from "../../helpers/dateTime";
+import { taskUpdated, addTaskError } from "../../slices/taskSlice";
+import { dateHelper} from "../../helpers/dateTime";
 import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
-  const { title, id, creator_id, due_date, project_id, completed } = task;
+  const { title, id, due_date, project_id, completed } = task;
   const [checkbox, setCheckBox] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userAssignments = useSelector((state) =>
@@ -33,11 +33,13 @@ const Task = ({ task }) => {
       },
       body: JSON.stringify({ completed: newValue }),
     })
-      .then((resp) => resp.json())
-      .then((changedTask) => {
+      .then((resp) => {
+      if (resp.ok) {
+      resp.json().then((changedTask) => {
         dispatch(taskUpdated(changedTask));
       });
-  };
+  } else resp.json().then((error) => dispatch(addTaskError(error)));
+})};
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);

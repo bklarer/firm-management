@@ -27,15 +27,25 @@ const assignmentsSlice = createSlice({
   initialState,
   reducers: {
     assignmentAdded(state, action) {
-      if (!state.assignments.find((assignment) => assignment.id === action.payload.id)) {
+      if (
+        !state.assignments.find(
+          (assignment) => assignment.id === action.payload.id
+        )
+      ) {
         state.assignments.push(action.payload);
       }
     },
     assignmentRemoved(state, action) {
       const index = state.assignments.findIndex(
         (assignment) => assignment.id === action.payload
-      )
+      );
       state.assignments.splice(index, 1);
+    },
+    addAssignmentError: (state, action) => {
+      state.error = action.error.message;
+    },
+    clearAssignmentError: (state) => {
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
@@ -58,8 +68,13 @@ export const selectAssignmentsByTaskId = (state, taskId) => {
   return state.assignments.assignments.filter(
     (assignment) => assignment.task_id === taskId
   );
-}
+};
 
-export const { assignmentAdded, assignmentRemoved } = assignmentsSlice.actions;
+export const {
+  assignmentAdded,
+  assignmentRemoved,
+  clearAssignmentError,
+  addAssignmentError,
+} = assignmentsSlice.actions;
 
 export default assignmentsSlice.reducer;

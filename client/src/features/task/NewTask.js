@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { taskAdded } from "../../slices/taskSlice";
+import { taskAdded, addTaskError } from "../../slices/taskSlice";
 import { assignmentAdded } from "../../slices/assignmentSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -52,8 +52,9 @@ const NewTask = () => {
       },
       body: JSON.stringify(finalTask),
     })
-      .then((resp) => resp.json())
-      .then((data) => {
+      .then((resp) => {
+        if (resp.ok) { 
+      resp.json().then((data) => {
         navigate("/");
         dispatch(taskAdded(data.task));
 
@@ -63,7 +64,8 @@ const NewTask = () => {
           });
         }
       });
-  };
+  } else resp.json().then((error) => dispatch(addTaskError(error)));
+})};
 
   const handleFormChange = (e) => {
     setFormData((formData) => ({

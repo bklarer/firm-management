@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
+  addTaskError,
   selectTaskById,
   taskRemoved,
   taskUpdated,
@@ -67,8 +68,8 @@ const EditTask = () => {
   }, [initialized, task, users, userAssignments, assignedUsers]);
 
   const goBack = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   useEffect(() => {
     const unassignedUsers =
@@ -104,12 +105,14 @@ const EditTask = () => {
         Accept: "application/json",
       },
       body: JSON.stringify(updatedTask),
-    })
-      .then((resp) => resp.json())
-      .then((changedTask) => {
-        navigate(-1);
-        dispatch(taskUpdated(changedTask));
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((changedTask) => {
+          navigate(-1);
+          dispatch(taskUpdated(changedTask));
+        });
+      } else resp.json().then((error) => dispatch(addTaskError(error)));
+    });
   };
 
   const handleDeleteClick = () => {
@@ -139,7 +142,6 @@ const EditTask = () => {
         setAssignedUsers(
           assignedUsers.filter((assignedUser) => assignedUser.id !== user.id)
         );
-        // usersDropdown.push(user)
         setUsersDropdown([...usersDropdown, user]);
         dispatch(assignmentRemoved(assignment));
       });
@@ -151,19 +153,19 @@ const EditTask = () => {
           Accept: "application/json",
         },
         body: JSON.stringify({ user_id: user.id, task_id: taskId }),
-      })
-        .then((resp) => resp.json())
-        .then((assignment) => {
-          setAssignedUsers([...assignedUsers, user]);
-          // usersDropdown.filter((updatedUser) => updatedUser.id !== user.id )
-          setUsersDropdown(
-            usersDropdown.filter((updatedUser) => updatedUser.id !== user.id)
-          );
-          dispatch(assignmentAdded(assignment));
-        });
+      }).then((resp) => {
+        if (resp.ok) {
+          resp.json().then((assignment) => {
+            setAssignedUsers([...assignedUsers, user]);
+            setUsersDropdown(
+              usersDropdown.filter((updatedUser) => updatedUser.id !== user.id)
+            );
+            dispatch(assignmentAdded(assignment));
+          });
+        } else resp.json().then((error) => dispatch(addTaskError(error)));
+      });
     }
   };
-
 
   const handleUnassign = (userId) => {
     const assignment = userAssignments.find(
@@ -193,7 +195,9 @@ const EditTask = () => {
   return (
     <div className="edit-form">
       <h1>Edit Task</h1>
-      <button style={{"margin": "5px"}} onClick={goBack}>Go back</button>
+      <button style={{ margin: "5px" }} onClick={goBack}>
+        Go back
+      </button>
       <form className="edit-task" onSubmit={handleSubmit}>
         <input
           required
@@ -213,7 +217,7 @@ const EditTask = () => {
           <label>
             Due Date:{" "}
             <input
-            required
+              required
               name="due_date"
               onChange={handleFormChange}
               value={updatedTask.due_date}
@@ -224,7 +228,7 @@ const EditTask = () => {
           <label>
             Due Time:{" "}
             <input
-            required
+              required
               name="due_time"
               onChange={handleFormChange}
               value={updatedTask.due_time}
@@ -264,8 +268,6 @@ const EditTask = () => {
         <input className="submit" type="submit" />
       </form>
 
-      
-
       <div className="assign-users">
         <select onChange={handleAssignedUsers} value="">
           <option default disabled value="">
@@ -284,10 +286,14 @@ const EditTask = () => {
       {assignedUsers.map((user) => (
         <div className="assigned" key={user.id}>
           <span>{`${user.first_name} ${user.last_name}`}</span>
-          <button className="xdelete" onClick={() => handleUnassign(user.id)}>x</button>
+          <button className="xdelete" onClick={() => handleUnassign(user.id)}>
+            x
+          </button>
         </div>
       ))}
-      <button className="delete" onClick={handleDeleteClick}>Delete Task</button>
+      <button className="delete" onClick={handleDeleteClick}>
+        Delete Task
+      </button>
     </div>
   );
 };

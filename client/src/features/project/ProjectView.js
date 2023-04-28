@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { selectProjectById, projectUpdated } from "../../slices/projectSlice";
+import { selectProjectById, projectUpdated, addProjectError } from "../../slices/projectSlice";
 import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
 import { useState, useEffect } from "react";
@@ -37,11 +37,15 @@ const ProjectView = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({ completed: newValue }),
-    })
-      .then((resp) => resp.json())
-      .then((changedProject) => {
-        dispatch(projectUpdated(changedProject));
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((changedProject) => {
+          dispatch(projectUpdated(changedProject));
+        });
+      } else {
+        resp.json().then((error) => dispatch(addProjectError(error)));
+      }
+    });
   };
 
   const creator =

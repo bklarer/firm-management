@@ -74,18 +74,24 @@ const loginSlice = createSlice({
       state.userInfo = null;
       state.error = null;
     },
-    clearUserError(state){
+    clearUserError(state) {
       state.error = null;
     },
     loginUpdated(state, action) {
-      const loggedInUser = state.userInfo
+      const loggedInUser = state.userInfo;
       if (loggedInUser) {
-        loggedInUser.first_name = action.payload.first_name
-        loggedInUser.last_name = action.payload.last_name
-        loggedInUser.username = action.payload.username
-        loggedInUser.email = action.payload.email
+        loggedInUser.first_name = action.payload.first_name;
+        loggedInUser.last_name = action.payload.last_name;
+        loggedInUser.username = action.payload.username;
+        loggedInUser.email = action.payload.email;
       }
-    }
+    },
+    addLoginError: (state, action) => {
+      state.error = action.error.message;
+    },
+    clearLoginError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -130,6 +136,7 @@ const loginSlice = createSlice({
   },
 });
 
-export const { logout, loginUpdated } = loginSlice.actions;
+export const { logout, loginUpdated, clearLoginError, addLoginError } =
+  loginSlice.actions;
 
 export default loginSlice.reducer;

@@ -5,6 +5,7 @@ import {
   projectRemoved,
   projectUpdated,
   selectProjectById,
+  addProjectError
 } from "../../slices/projectSlice";
 import { selectTasksByProject, taskUpdated } from "../../slices/taskSlice";
 const EditProject = () => {
@@ -17,7 +18,6 @@ const EditProject = () => {
     due_date: "",
     due_time: "",
   });
-
 
   const tasks = useSelector((state) =>
     selectTasksByProject(state, parseInt(projectId))
@@ -65,12 +65,14 @@ const EditProject = () => {
         Accept: "application/json",
       },
       body: JSON.stringify(formattedProject),
-    })
-      .then((resp) => resp.json())
-      .then((changedProject) => {
-        navigate(-1);
-        dispatch(projectUpdated(changedProject));
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((changedProject) => {
+          navigate(-1);
+          dispatch(projectUpdated(changedProject));
+        });
+      } else resp.json().then((errors) => dispatch(addProjectError(errors)));
+    });
   };
 
   const handleDeleteClick = () => {
@@ -80,12 +82,10 @@ const EditProject = () => {
         "Content-Type": "application/json",
       },
     }).then(() => {
-   
-
       tasks.forEach((task) => {
         dispatch(taskUpdated({ ...task, project_id: null }));
       });
-      dispatch(projectRemoved(parseInt(projectId)));   
+      dispatch(projectRemoved(parseInt(projectId)));
       navigate("/projects");
     });
   };

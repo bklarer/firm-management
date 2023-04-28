@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { projectAdded } from "../../slices/projectSlice";
+import { projectAdded, addProjectError } from "../../slices/projectSlice";
 import { useNavigate } from "react-router-dom";
 
 const NewProject = () => {
@@ -30,12 +30,14 @@ const NewProject = () => {
         Accept: "application/json",
       },
       body: JSON.stringify(formattedProject),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        navigate(-1);
-        dispatch(projectAdded(data));
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((data) => {
+          navigate(-1);
+          dispatch(projectAdded(data));
+        });
+      } else resp.json().then((error) => dispatch(addProjectError(error)));
+    });
   };
 
   const handleFormChange = (e) => {

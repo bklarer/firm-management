@@ -38,11 +38,15 @@ const usersSlice = createSlice({
       }
     },
     userRemoved(state, action) {
-      const index = state.users.findIndex(
-        (user) => user.id === action.payload
-      );
-      state.users.splice(index, 1)
-    }
+      const index = state.users.findIndex((user) => user.id === action.payload);
+      state.users.splice(index, 1);
+    },
+    addUserError: (state, action) => {
+      state.error = action.error.message;
+    },
+    clearUserError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -63,6 +67,7 @@ const usersSlice = createSlice({
 export const selectUserById = (state, userId) =>
   state.users.users.find((user) => user.id === userId);
 
-export const { userUpdated, userRemoved } = usersSlice.actions;
+export const { userUpdated, userRemoved, clearUserError, addUserError } =
+  usersSlice.actions;
 
 export default usersSlice.reducer;

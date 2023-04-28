@@ -6,7 +6,7 @@ export const fetchTasks = createAsyncThunk(
     const response = await fetch("/api/tasks");
     if (response.ok) {
       const tasks = await response.json();
-      console.log("tasks", tasks)
+      console.log("tasks", tasks);
       return tasks;
     } else {
       const error = await response.json();
@@ -33,7 +33,7 @@ const tasksSlice = createSlice({
     taskUpdated(state, action) {
       const existingTask = state.tasks.find(
         (task) => task.id === action.payload.id
-      )
+      );
       if (existingTask) {
         existingTask.title = action.payload.title;
         existingTask.notes = action.payload.notes;
@@ -43,11 +43,15 @@ const tasksSlice = createSlice({
       }
     },
     taskRemoved(state, action) {
-      const index = state.tasks.findIndex(
-        (task) => task.id === action.payload
-      );
+      const index = state.tasks.findIndex((task) => task.id === action.payload);
       state.tasks.splice(index, 1);
-    }
+    },
+    addTaskError: (state, action) => {
+      state.error = action.error.message;
+    },
+    clearTaskError: (state) => {
+      state.error = null;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -71,6 +75,12 @@ export const selectTaskById = (state, taskId) =>
 export const selectTasksByProject = (state, projectId) =>
   state.tasks.tasks.filter((task) => task.project_id === projectId);
 
-export const { taskAdded, taskUpdated, taskRemoved } = tasksSlice.actions;
+export const {
+  taskAdded,
+  taskUpdated,
+  taskRemoved,
+  clearTaskError,
+  addTaskError,
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { loginUpdated, logout } from "../../slices/loginSlice";
-import { userRemoved, userUpdated } from "../../slices/userSlice";
+import { addUserError, userRemoved, userUpdated } from "../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const ProfileEdit = () => {
@@ -38,13 +38,18 @@ const ProfileEdit = () => {
 
   const handleImageSubmit = (e) => {
     e.preventDefault();
-    console.log("image submit", image);
     const formData = new FormData();
     formData.append("image", image);
-    console.log("formData", formData);
     fetch(`/api/upload`, {
       method: "PATCH",
       body: formData,
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((changedUser) => {
+          dispatch(userUpdated(changedUser));
+          dispatch(loginUpdated(changedUser));
+        });
+      } else resp.json().then((error) => addUserError(error));
     });
   };
 
@@ -66,12 +71,14 @@ const ProfileEdit = () => {
         Accept: "application/json",
       },
       body: JSON.stringify(updatedUser),
-    })
-      .then((resp) => resp.json())
-      .then((changedUser) => {
-        dispatch(userUpdated(changedUser));
-        dispatch(loginUpdated(changedUser));
-      });
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((changedUser) => {
+          dispatch(userUpdated(changedUser));
+          dispatch(loginUpdated(changedUser));
+        });
+      } else resp.json().then((error) => addUserError(error));
+    });
   };
 
   const handleDeleteClick = () => {
