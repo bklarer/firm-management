@@ -89,12 +89,19 @@ li {
 .profile-edit {
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   .image-form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
 
-    .submit {
+    .image-input {
+      padding: 0;
+      width: 175px;
+    }
+    .image-submit {
       width: 150px;
     }
   }
@@ -102,6 +109,10 @@ li {
   .profile-edit-form {
     display: flex;
     flex-direction: column;
+
+    h3 {
+      text-align: center;
+    }
 
     div {
       display: flex;
@@ -113,37 +124,41 @@ li {
       input {
         width: 200px;
       }
+
+      .submit-2 {
+        width: 100px;
+        border-radius: 30px;
+        background-color: $accent1;
+        color: #ffffff;
+        font-weight: 900;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .delete {
+        width: 100px;
+        border-radius: 30px;
+        background-color: red;
+        color: #ffffff;
+        font-weight: 900;
+        margin: 5px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
+    .button-container {
+      display:flex;
+      justify-content: center;
+    }
+
   }
 
   * {
-    // padding: 10px;
     margin: 5px;
-  }
-
-  .submit {
-    width: 100px;
-    border-radius: 30px;
-    background-color: $accent1;
-    color: #ffffff;
-    font-weight: 900;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  .delete {
-    width: 100px;
-    border-radius: 30px;
-    background-color: red;
-    color: #ffffff;
-    font-weight: 900;
-    margin: 5px 10px;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 }
 
@@ -163,7 +178,9 @@ li {
 
 .project-task-list {
   margin: 5px;
-
+  h2 {
+    text-align: center;
+  }
   .task-label {
     margin-bottom: 15px;
   }
@@ -179,6 +196,11 @@ li {
 .edit-form h1,
 .new-project-form h1 {
   margin: 5px;
+  text-align: center;
+}
+
+.userInfo h2 {
+  text-align: center;
 }
 
 .full-task-list {
@@ -414,6 +436,10 @@ li {
   }
 }
 
+.task-full-view-container {
+  margin-top: 50px;
+}
+
 .task-full-view-container,
 .project-details {
   display: flex;
@@ -538,7 +564,7 @@ li {
   align-items: center;
 
   p {
-    margin-left: 10px;
+    margin-left: 5px;
     background-color: $accent1;
     color: #ffffff;
     font-weight: 600;
@@ -559,7 +585,8 @@ li {
   float: left;
   width: auto;
   background-color: transparent;
-  margin-left: 10px;
+  margin: 0;
+  height: 50px;
 }
 
 .hide-content {
@@ -764,6 +791,10 @@ li {
 .new-task-form {
   .title-box {
     margin: 5px;
+  }
+
+  h1 {
+    text-align: center;
   }
 }
 

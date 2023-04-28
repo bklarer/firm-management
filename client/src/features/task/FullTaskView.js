@@ -25,7 +25,9 @@ const FullTaskView = () => {
     : null;
 
   return (
+
     <div className="task-full-view-container">
+      
       <div className="task-full-view">
         <h2 className="title">{task ? task.title : "none"}</h2>
         <div className="project">

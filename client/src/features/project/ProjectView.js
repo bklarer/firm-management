@@ -82,6 +82,7 @@ const ProjectView = () => {
 
   return (
     <div className="project-task-list">
+      <h2>Project</h2>
       {project ? (
         <div className="project-details">
           <div className="project-details-container">

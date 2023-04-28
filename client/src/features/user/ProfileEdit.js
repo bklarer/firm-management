@@ -93,11 +93,12 @@ const ProfileEdit = () => {
 
   return (
     <div className="profile-edit">
+      <h1>Profile Edit</h1>
       <img src={userInfo.image} alt="profile" style={{ width: "200px" }} />
       <form className="image-form" onSubmit={handleImageSubmit}>
         <h3>Image upload</h3>
-        <input type="file" name="image" onChange={handleImageChange} />
-        <input className="submit" type="submit" value="Upload Image" />
+        <input className="image-input" type="file" name="image" onChange={handleImageChange} />
+        <input className="image-submit" type="submit" value="Upload Image" />
       </form>
       <form className="profile-edit-form" onSubmit={handleSubmit}>
         <h3>Change Profile Info</h3>
@@ -141,11 +142,13 @@ const ProfileEdit = () => {
             placeholder="Email"
           />
         </div>
-        <input className="submit" type="submit" />
+        <div className="button-container">
+          <input className="submit-2" type="submit" />{" "}
+          <button className="delete" onClick={handleDeleteClick}>
+            Delete
+          </button>
+        </div>
       </form>
-      <button className="delete" onClick={handleDeleteClick}>
-        Delete
-      </button>
     </div>
   );
 };
