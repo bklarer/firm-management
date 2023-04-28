@@ -15,7 +15,7 @@ const LeftBar = () => {
     <div
       className={`left-bar ${isHidden ? "hidden" : ""}`}>
       <div className="menu-icon" >
-        <p onClick={handleClick}>{isHidden ? "Show Contacts": "Hide Contacts"}</p>
+        <p onClick={handleClick}>{isHidden ? "Show Sidebar": "Hide Sidebar"}</p>
       </div>
       
       <div className={isHidden ? "hide-content" : "" }>

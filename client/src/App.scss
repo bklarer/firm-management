@@ -544,6 +544,7 @@ li {
     padding: 5px;
     border-radius: 25px;
     line-height: 1;
+    border: solid 1px $accent1;
 
     &:hover {
       cursor: pointer;
