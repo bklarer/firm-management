@@ -528,6 +528,7 @@ li {
   transition: transform 0.5s;
   position: absolute;
   background-color: #ffffff;
+  z-index: 2;
 }
 
 .menu-icon {
