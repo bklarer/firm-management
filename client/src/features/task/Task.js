@@ -2,8 +2,9 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { taskUpdated, addTaskError } from "../../slices/taskSlice";
-import { dateHelper} from "../../helpers/dateTime";
+import { dateHelper } from "../../helpers/dateTime";
 import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
+import { selectProjectById } from "../../slices/projectSlice";
 
 const Task = ({ task }) => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const Task = ({ task }) => {
   const assignedUsers = users.filter((user) =>
     userAssignments.find((assignment) => assignment.user_id === user.id)
   );
+  const project = useSelector((state) => selectProjectById(state, project_id));
 
   useEffect(() => {
     setCheckBox(completed ? true : false);
@@ -32,14 +34,14 @@ const Task = ({ task }) => {
         Accept: "application/json",
       },
       body: JSON.stringify({ completed: newValue }),
-    })
-      .then((resp) => {
+    }).then((resp) => {
       if (resp.ok) {
-      resp.json().then((changedTask) => {
-        dispatch(taskUpdated(changedTask));
-      });
-  } else resp.json().then((error) => dispatch(addTaskError(error)));
-})};
+        resp.json().then((changedTask) => {
+          dispatch(taskUpdated(changedTask));
+        });
+      } else resp.json().then((error) => dispatch(addTaskError(error)));
+    });
+  };
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -80,7 +82,7 @@ const Task = ({ task }) => {
           <p>{task ? dateHelper(due_date) : null}</p>
         </div>
         <div className="task-card-project">
-          <p>Project</p>
+          <p>{project ? project.title : "No Project Assigned"}</p>
         </div>
         <Link className="link" to={`/${id}`}>
           <p>View</p>
@@ -89,7 +91,6 @@ const Task = ({ task }) => {
 
       <div className="task-card-mobile">
         <div className="task-title-container">
-          <strong>Task: </strong>
           <div className="title">{title}</div>{" "}
           <input
             className="task-completed"
@@ -126,7 +127,8 @@ const Task = ({ task }) => {
         </div>
         <div className="task-card-project">
           <p>
-            <strong>Project: </strong>Project
+            <strong>Project: </strong>
+            {project ? project.title : "No Project Assigned"}
           </p>
         </div>
         <Link className="link" to={`/${id}`}>

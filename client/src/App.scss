@@ -359,6 +359,8 @@ li {
   border-radius: 10px;
   width: 40%;
   min-width: 230px;
+  align-items: flex-start;
+  text-align: left;
 
   @media (min-width: 951px) {
     display: none;
@@ -366,11 +368,15 @@ li {
 
   .task-title-container {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content:center;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    
 
     input {
-      height: 24px;
+      // height: 24px;
+
     }
 
     .title {
@@ -381,26 +387,27 @@ li {
   }
 
   .assigned {
-    grid-column-start: span 2;
+    // grid-column-start: span 2;
     position: relative;
+    text-align: left;
     cursor: pointer;
     .assigned-title {
+
+
       &:hover {
         color: $accent1;
       }
     }
     .assigned-list {
       color: $font-color;
+      text-align: center;
       cursor: default;
     }
   }
 
-  .date-due {
-    grid-column-start: span 2;
-  }
 
   .task-card-project {
-    grid-column-start: span 3;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -408,10 +415,9 @@ li {
 
   .link {
     display: flex;
-    justify-self: self-end;
+    align-self: center;
     justify-content: center;
     align-items: center;
-    margin-right: 5px;
     background-color: $accent1;
     color: #ffffff;
     border-radius: 25px;
