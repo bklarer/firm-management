@@ -26,22 +26,11 @@ import { fetchProjects, clearProjectError } from "./slices/projectSlice";
 import ProjectList from "./features/project/ProjectList";
 import ProjectView from "./features/project/ProjectView";
 import MainProjectPage from "./features/project/MainProjectPage";
+import Error from "./features/structure/Error";
 import {
   fetchAssignments,
   clearAssignmentError,
 } from "./slices/assignmentSlice";
-
-//Update new forms to update state
-//Create Edit form
-//When clicking on contact, bring up contacts tasks
-//Show All tasks, My tasks, and then the rest of the tasks.
-//Create Modal for view and edit task buttons
-//Bring down users and tasks separately nest tasks to users
-//Automatically filter tasks when complete
-//Show completed tasks
-//Implement CSS ideas... light/dark mode, switch between card view and list view
-
-//Remember to make conditionals for when arrays are 0
 
 function App() {
   const { userInfo } = useSelector((state) => state.login);
@@ -67,20 +56,31 @@ function App() {
   }, [dispatch, userInfo]);
 
   useEffect(() => {
-    if (taskError || userError || projectError || assignmentError || loginError) {
+    if (
+      taskError ||
+      userError ||
+      projectError ||
+      assignmentError ||
+      loginError
+    ) {
       const interval = setTimeout(() => {
-        dispatch(
-          clearUserError(),
-          clearTaskError(),
-          clearAssignmentError(),
-          clearProjectError(),
-          clearLoginError()
-        );
+        dispatch(clearTaskError());
+        dispatch(clearUserError());
+        dispatch(clearProjectError());
+        dispatch(clearAssignmentError());
+        dispatch(clearLoginError());
       }, 5000);
 
       return () => clearTimeout(interval);
     }
-  }, [dispatch, taskError, userError, projectError, assignmentError, loginError]);
+  }, [
+    dispatch,
+    taskError,
+    userError,
+    projectError,
+    assignmentError,
+    loginError,
+  ]);
 
   return (
     <div className="App">
@@ -132,6 +132,7 @@ function App() {
               </Routes>
             </div>
           )}
+          <Error />
           <Footer />
         </>
       )}

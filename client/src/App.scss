@@ -151,10 +151,9 @@ li {
       }
     }
     .button-container {
-      display:flex;
+      display: flex;
       justify-content: center;
     }
-
   }
 
   * {
@@ -368,15 +367,13 @@ li {
 
   .task-title-container {
     display: flex;
-    justify-content:center;
+    justify-content: center;
     width: 100%;
     font-size: 18px;
     font-weight: 600;
-    
 
     input {
       // height: 24px;
-
     }
 
     .title {
@@ -392,8 +389,6 @@ li {
     text-align: left;
     cursor: pointer;
     .assigned-title {
-
-
       &:hover {
         color: $accent1;
       }
@@ -405,9 +400,7 @@ li {
     }
   }
 
-
   .task-card-project {
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -871,6 +864,30 @@ li {
 .name {
   padding-left: 10px;
   padding-right: 5px;
+}
+
+.error-section {
+  position: relative;
+
+  .error-container {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    
+    .error {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 100px;
+      background-color: rgba(255, 0, 0, 0.527);
+      color: #000000;
+      font-weight: 600;
+      margin: 0 10px 10px 0;
+      border-radius: 25px;
+      padding: 10px;
+    }
+  }
 }
 
 .footer {
