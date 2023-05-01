@@ -555,8 +555,11 @@ li {
   position: sticky;
   background-color: #ffffff;
   z-index: 2;
-}
 
+  @media (max-width: 700px) {
+    position: absolute;
+  }
+}
 .menu-icon {
   display: flex;
   justify-content: center;
@@ -875,7 +878,7 @@ li {
     position: fixed;
     bottom: 0;
     right: 0;
-    
+
     .error {
       display: flex;
       align-items: center;
