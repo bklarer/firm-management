@@ -1,6 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-import { selectProjectById, projectUpdated, addProjectError } from "../../slices/projectSlice";
+import {
+  selectProjectById,
+  projectUpdated,
+  addProjectError,
+} from "../../slices/projectSlice";
 import { selectTasksByProject } from "../../slices/taskSlice";
 import Task from "../task/Task";
 import { useState, useEffect } from "react";
@@ -20,8 +24,6 @@ const ProjectView = () => {
   const [dropdown, setDropdown] = useState("all");
   const [checkbox, setCheckBox] = useState(false);
   let date = new Date().toISOString();
-
-  console.log("project", project);
 
   useEffect(() => {
     setCheckBox(project && project.completed ? true : false);
@@ -77,8 +79,6 @@ const ProjectView = () => {
     }
     return newTasks;
   };
-
-  console.log("project tasks", tasks);
 
   return (
     <div className="project-task-list">

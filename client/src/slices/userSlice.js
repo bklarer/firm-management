@@ -14,8 +14,6 @@ export const fetchUsers = createAsyncThunk(
   }
 );
 
-//reject with value
-
 const initialState = {
   users: [],
   loading: false,

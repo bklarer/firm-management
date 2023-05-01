@@ -1,23 +1,11 @@
-import { Outlet } from "react-router-dom"
-import TaskList from "../task/TaskList"
-
+import { Outlet } from "react-router-dom";
 
 const DynamicContainer = () => {
+  return (
+    <div className="dynamic-container">
+      <Outlet />
+    </div>
+  );
+};
 
-
-
-
-    return (
-
-
-        <div className="dynamic-container">
-            <Outlet/>
-        </div>
-
-
-    )
-
-
-}
-
-export default DynamicContainer
+export default DynamicContainer;

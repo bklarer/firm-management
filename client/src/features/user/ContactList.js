@@ -1,7 +1,5 @@
 import Contact from "./Contact";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { fetchUsers } from "../../slices/userSlice";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 const ContactList = () => {
@@ -17,16 +15,18 @@ const ContactList = () => {
       ? contacts.filter((contact) => contact.id !== userInfo.id)
       : [];
 
-  const sortedContacts = filteredContacts ? filteredContacts.sort((a, b) => {
-    return a.first_name.localeCompare(b.name)}) : null;
-
+  const sortedContacts = filteredContacts
+    ? filteredContacts.sort((a, b) => {
+        return a.first_name.localeCompare(b.name);
+      })
+    : null;
 
   const firmImage =
     "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681615804/firm-management-firm_1_ydfurw.jpg";
 
   return (
     <div className="contact-list">
-        <h2>Contacts</h2>
+      <h2>Contacts</h2>
       <NavLink className="contact-card-link link" to={`/`}>
         <div className="contact-card">
           <div className="middle-container">

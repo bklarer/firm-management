@@ -1,16 +1,17 @@
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
-
 const Contact = ({ contact }) => {
   const { userInfo } = useSelector((state) => state.login);
   const assignments = useSelector((state) => state.assignments.assignments);
   const tasks = useSelector((state) => state.tasks.tasks);
   const addDefaultSrc = (e) => {
-    e.target.src = "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg"
-  }
+    e.target.src =
+      "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg";
+  };
 
-  const imagePlaceholder = "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg"
+  const imagePlaceholder =
+    "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg";
 
   if (!contact)
     return (
@@ -42,7 +43,11 @@ const Contact = ({ contact }) => {
       <div className="contact-card">
         <div className="middle-container">
           <div className="image-container">
-            <img onError={addDefaultSrc} src={contact.image ? contact.image : imagePlaceholder} alt="profile"/>
+            <img
+              onError={addDefaultSrc}
+              src={contact.image ? contact.image : imagePlaceholder}
+              alt="profile"
+            />
           </div>
           <div className="task-number">
             <h3>Tasks</h3>
@@ -51,7 +56,6 @@ const Contact = ({ contact }) => {
         </div>
         <h3>{name}</h3>
       </div>
-      
     </NavLink>
   );
 };

@@ -5,7 +5,7 @@ import {
   projectRemoved,
   projectUpdated,
   selectProjectById,
-  addProjectError
+  addProjectError,
 } from "../../slices/projectSlice";
 import { selectTasksByProject, taskUpdated } from "../../slices/taskSlice";
 const EditProject = () => {
@@ -25,8 +25,6 @@ const EditProject = () => {
   const project = useSelector((state) =>
     selectProjectById(state, parseInt(projectId))
   );
-
-  console.log("tasks5", tasks);
 
   const formattedProject = {
     title: updatedProject.title,
@@ -56,7 +54,6 @@ const EditProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit project", formattedProject);
 
     fetch(`/api/projects/${projectId}`, {
       method: "PATCH",

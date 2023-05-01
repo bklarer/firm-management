@@ -29,8 +29,8 @@ const NewTask = () => {
   const [assignedCheckbox, setAssignedCheckbox] = useState(false);
 
   const goBack = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,21 +51,21 @@ const NewTask = () => {
         Accept: "application/json",
       },
       body: JSON.stringify(finalTask),
-    })
-      .then((resp) => {
-        if (resp.ok) { 
-      resp.json().then((data) => {
-        navigate("/");
-        dispatch(taskAdded(data.task));
+    }).then((resp) => {
+      if (resp.ok) {
+        resp.json().then((data) => {
+          navigate("/");
+          dispatch(taskAdded(data.task));
 
-        if (data.assignments.length) {
-          data.assignments.forEach((assignment) => {
-            dispatch(assignmentAdded(assignment));
-          });
-        }
-      });
-  } else resp.json().then((error) => dispatch(addTaskError(error)));
-})};
+          if (data.assignments.length) {
+            data.assignments.forEach((assignment) => {
+              dispatch(assignmentAdded(assignment));
+            });
+          }
+        });
+      } else resp.json().then((error) => dispatch(addTaskError(error)));
+    });
+  };
 
   const handleFormChange = (e) => {
     setFormData((formData) => ({
@@ -97,8 +97,6 @@ const NewTask = () => {
     }
     setAssignedCheckbox(e.target.checked);
   };
-
-  console.log("assigned users", assignedUsers);
 
   //left off of dropbox, trying to figure adding a user, removing from dropbox and adding below with an x
   //will need to handle reseting the dropbox and assigned array when clicking the checkbox for assigned

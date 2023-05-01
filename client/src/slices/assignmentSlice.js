@@ -14,8 +14,6 @@ export const fetchAssignments = createAsyncThunk(
   }
 );
 
-//check if waiting for promise
-
 const initialState = {
   assignments: [],
   loading: false,

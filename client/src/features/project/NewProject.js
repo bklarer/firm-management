@@ -21,7 +21,6 @@ const NewProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("formatted project", formattedProject);
 
     fetch("/api/projects", {
       method: "POST",

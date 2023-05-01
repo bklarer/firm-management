@@ -51,7 +51,7 @@ const UserInfo = () => {
 
   return (
     <div className="userInfo">
-        <h2>{user ? `${user.first_name} ${user.last_name}'s Tasks` : null}</h2>
+      <h2>{user ? `${user.first_name} ${user.last_name}'s Tasks` : null}</h2>
       <div className="task-filter">
         <select onChange={(e) => setDropdown(e.target.value)} value={dropdown}>
           <option default value="all">

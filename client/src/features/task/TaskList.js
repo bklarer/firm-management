@@ -1,6 +1,5 @@
 import Task from "./Task";
-import { fetchUsers } from "../../slices/userSlice";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 

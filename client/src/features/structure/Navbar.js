@@ -1,11 +1,9 @@
-import { NavLink, useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../slices/loginSlice";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { userInfo } = useSelector((state) => state.login);
 
   if (!userInfo) {

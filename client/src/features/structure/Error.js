@@ -8,15 +8,13 @@ const Error = () => {
   const userErrors = useSelector((state) => state.users.error);
   const taskErrors = useSelector((state) => state.tasks.error);
 
-
-
   return (
     <div className="error-section">
       <div className="error-container">
         {loginErrors
           ? loginErrors.map((error) => (
               <div key={uuid()} className="error">
-                <p >{error}</p>
+                <p>{error}</p>
               </div>
             ))
           : null}

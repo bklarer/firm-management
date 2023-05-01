@@ -161,7 +161,6 @@ li {
   }
 }
 
-// .side-tasks,
 .project-list {
   display: grid;
   grid-template-columns: 1fr;
@@ -192,7 +191,6 @@ li {
   &::-webkit-scrollbar-thumb:hover {
     background: $accent1;
   }
-
 }
 
 .project-task-list {
@@ -392,10 +390,6 @@ li {
     font-size: 18px;
     font-weight: 600;
 
-    input {
-      // height: 24px;
-    }
-
     .title {
       white-space: nowrap;
       overflow: hidden;
@@ -404,7 +398,6 @@ li {
   }
 
   .assigned {
-    // grid-column-start: span 2;
     position: relative;
     text-align: left;
     cursor: pointer;

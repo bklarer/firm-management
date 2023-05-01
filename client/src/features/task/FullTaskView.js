@@ -1,6 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectTaskById } from "../../slices/taskSlice";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { dateHelper, timeHelper } from "../../helpers/dateTime";
 import { selectAssignmentsByTaskId } from "../../slices/assignmentSlice";
 
@@ -25,9 +25,7 @@ const FullTaskView = () => {
     : null;
 
   return (
-
     <div className="task-full-view-container">
-      
       <div className="task-full-view">
         <h2 className="title">{task ? task.title : "none"}</h2>
         <div className="project">

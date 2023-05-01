@@ -29,8 +29,6 @@ const ProfileEdit = () => {
     [userInfo]
   );
 
-  console.log("image", image);
-
   const handleImageChange = (e) => {
     e.persist();
     setImage(e.target.files[0]);
@@ -62,7 +60,6 @@ const ProfileEdit = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("submit", updatedUser);
 
     fetch(`/api/update`, {
       method: "PATCH",
@@ -97,7 +94,12 @@ const ProfileEdit = () => {
       <img src={userInfo.image} alt="profile" style={{ width: "200px" }} />
       <form className="image-form" onSubmit={handleImageSubmit}>
         <h3>Image upload</h3>
-        <input className="image-input" type="file" name="image" onChange={handleImageChange} />
+        <input
+          className="image-input"
+          type="file"
+          name="image"
+          onChange={handleImageChange}
+        />
         <input className="image-submit" type="submit" value="Upload Image" />
       </form>
       <form className="profile-edit-form" onSubmit={handleSubmit}>
