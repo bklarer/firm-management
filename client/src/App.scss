@@ -552,7 +552,7 @@ li {
   height: 100%;
   width: 250px;
   transition: transform 0.5s;
-  position: absolute;
+  position: sticky;
   background-color: #ffffff;
   z-index: 2;
 }
@@ -587,6 +587,7 @@ li {
   background-color: transparent;
   margin: 0;
   height: 50px;
+  position: absolute;
 }
 
 .hide-content {
@@ -595,6 +596,7 @@ li {
 
 .contact-list {
   overflow: auto;
+  position: sticky;
   top: 0;
   margin: 0;
   height: 100vh;

@@ -43,7 +43,6 @@ const ContactList = () => {
       </NavLink>
       <Contact contact={currentUser} />
 
-
       {sortedContacts.length > 0
         ? sortedContacts.map((contact) => {
             return <Contact key={contact.id} contact={contact} />;
