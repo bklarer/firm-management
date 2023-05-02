@@ -56,10 +56,13 @@ li {
   }
 
   .link {
+    width: 100px;
+    border-radius: 30px;
     background-color: $accent1;
     color: #ffffff;
-    padding: 0 20px;
-    border-radius: 25px;
+    font-weight: 600;
+    border: none;
+    font-size: 16px;
   }
 }
 
@@ -75,7 +78,6 @@ li {
     color: #ffffff;
     text-decoration: none;
     background-color: $accent1;
-    margin: 5px;
     border-radius: 25px;
     padding: 5px;
 
@@ -103,6 +105,15 @@ li {
     }
     .image-submit {
       width: 150px;
+      border-radius: 30px;
+      background-color: $accent1;
+      color: #ffffff;
+      font-weight: 600;
+      border: none;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -130,7 +141,8 @@ li {
         border-radius: 30px;
         background-color: $accent1;
         color: #ffffff;
-        font-weight: 900;
+        font-weight: 600;
+        border: none;
 
         &:hover {
           cursor: pointer;
@@ -142,7 +154,7 @@ li {
         border-radius: 30px;
         background-color: red;
         color: #ffffff;
-        font-weight: 900;
+        font-weight: 600;
         margin: 5px;
 
         &:hover {
@@ -194,22 +206,25 @@ li {
 }
 
 .project-task-list {
-  margin: 5px;
   h2 {
     text-align: center;
   }
   .task-label {
-    margin-bottom: 15px;
+    margin: 5px 5px 15px;
   }
 
   .task-list {
     margin: 10px 5px;
   }
+
+  .task-options {
+    margin: 0 5px;
+  }
+
 }
 
 .userInfo,
 .full-task-list,
-.task-list,
 .edit-form h1,
 .new-project-form h1 {
   margin: 5px;
@@ -248,7 +263,6 @@ li {
   color: #ffffff;
   font-size: 20px;
   font-weight: bold;
-  border: 1px solid $base-color;
   border-radius: 10px;
   margin: 5px 0 15px;
   padding: 0 10px;
@@ -573,6 +587,12 @@ li {
     position: absolute;
   }
 }
+
+.project-filter {
+  display: flex;
+  justify-content: center;
+}
+
 .menu-icon {
   display: flex;
   justify-content: center;
@@ -580,7 +600,7 @@ li {
   align-items: center;
 
   p {
-    margin-left: 5px;
+    margin: 5px;
     background-color: $accent1;
     color: #ffffff;
     font-weight: 600;
@@ -621,6 +641,11 @@ li {
   right: 0;
   padding-right: 10px;
   margin-right: -10px;
+
+  @media (max-width: 700px) {
+    overflow: auto;
+    height: auto;
+  }
 
   &::-webkit-scrollbar {
     width: 10px;
@@ -784,7 +809,7 @@ li {
     background-color: $accent1;
     color: #ffffff;
     font-size: 20px;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 
@@ -806,7 +831,20 @@ li {
   padding: 5px;
   margin: 5px;
 }
+.go-back {
+  width: 100px;
+  border-radius: 30px;
+  background-color: $accent1;
+  color: #ffffff;
+  font-weight: 600;
+  border: solid 1px $accent1;
 
+  &:hover {
+    cursor: pointer;
+    background-color: #ffffff;
+    color: $accent1;
+  }
+}
 .new-task-form {
   .title-box {
     margin: 5px;
@@ -829,25 +867,40 @@ li {
     border-radius: 30px;
     background-color: $accent1;
     color: #ffffff;
-    font-weight: 900;
+    font-weight: 600;
     border: none;
+    margin: 5px;
+    padding: 0;
 
     &:hover {
       cursor: pointer;
     }
   }
 
-  * {
+  input {
     padding: 10px;
+    margin: 5px;
+  }
+
+  textarea {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  div input, label {
     margin: 5px;
   }
 }
 
 .assign-users {
   margin: 5px;
+
+
 }
 
 .assigned {
+  margin-left: 5px;
+
   button {
     background-color: red;
     color: #ffffff;
@@ -866,9 +919,10 @@ li {
   background-color: red;
   color: #ffffff;
   margin-left: 5px;
-  margin-top: 20px;
   border: none;
   border-radius: 25px;
+  width: 100px;
+  font-weight: 600;
 
   &:hover {
     background-color: #000000;

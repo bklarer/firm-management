@@ -107,7 +107,7 @@ const NewTask = () => {
     <div className="new-task-form">
       <div className="title-box">
         <h1>New Task</h1>
-        <button onClick={goBack}>Go back</button>
+        <button className="go-back" onClick={goBack}>Go back</button>
       </div>
       <form onSubmit={handleSubmit} className="new-task">
         <input
@@ -203,7 +203,7 @@ const NewTask = () => {
             })}
           </select>
           {assignedUsers.map((user) => (
-            <div key={user.id}>
+            <div className="assigned" key={user.id}>
               <span>{`${user.first_name} ${user.last_name}`}</span>
               <button onClick={() => handleUnassign(user.id)}>x</button>
             </div>

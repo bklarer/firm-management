@@ -130,11 +130,11 @@ const EditProject = () => {
             />
           </label>
         </div>
-        <input className="submit" type="submit" />
+        <div><input className="submit" type="submit" />      <button className="delete" onClick={handleDeleteClick}>
+        Delete
+      </button></div>
       </form>
-      <button className="delete" onClick={handleDeleteClick}>
-        Delete Project
-      </button>
+
     </div>
   );
 };

@@ -195,7 +195,7 @@ const EditTask = () => {
   return (
     <div className="edit-form">
       <h1>Edit Task</h1>
-      <button style={{ margin: "5px" }} onClick={goBack}>
+      <button className="go-back" style={{ margin: "5px" }} onClick={goBack}>
         Go back
       </button>
       <form className="edit-task" onSubmit={handleSubmit}>

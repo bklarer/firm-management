@@ -11,11 +11,10 @@ const Profile = () => {
       <p>{`Username: ${userInfo.username}`}</p>
       <p>{`Name: ${userInfo.first_name} ${userInfo.last_name}`}</p>
       <p>{`email: ${userInfo.email}`}</p>
-      <div className="buttons">
         <Link className="link" to="edit">
           Edit
         </Link>
-      </div>
+
     </div>
   );
 };
