@@ -29,6 +29,14 @@ const ProfileEdit = () => {
     [userInfo]
   );
 
+  const addDefaultSrc = (e) => {
+    e.target.src =
+      "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg";
+  };
+
+  const imagePlaceholder =
+    "https://res.cloudinary.com/dnahj1ggn/image/upload/v1681614097/face_sktddp.jpg";
+
   const handleImageChange = (e) => {
     e.persist();
     setImage(e.target.files[0]);
@@ -91,7 +99,12 @@ const ProfileEdit = () => {
   return (
     <div className="profile-edit">
       <h1>Profile Edit</h1>
-      <img src={userInfo.image} alt="profile" style={{ width: "200px" }} />
+      <img
+        src={userInfo.image ? userInfo.image : imagePlaceholder}
+        alt="profile"
+        style={{ width: "200px" }}
+        onError={addDefaultSrc}
+      />
       <form className="image-form" onSubmit={handleImageSubmit}>
         <h3>Image upload</h3>
         <input
