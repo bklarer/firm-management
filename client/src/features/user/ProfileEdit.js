@@ -113,7 +113,7 @@ const ProfileEdit = () => {
           name="image"
           onChange={handleImageChange}
         />
-        <input className="image-submit" type="submit" value="Upload Image" />
+
       </form>
       <form className="profile-edit-form" onSubmit={handleSubmit}>
         <h3>Change Profile Info</h3>
