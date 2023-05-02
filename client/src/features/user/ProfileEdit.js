@@ -81,6 +81,7 @@ const ProfileEdit = () => {
         resp.json().then((changedUser) => {
           dispatch(userUpdated(changedUser));
           dispatch(loginUpdated(changedUser));
+          navigate(-1);
         });
       } else resp.json().then((error) => addUserError(error));
     });
