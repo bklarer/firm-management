@@ -3,7 +3,7 @@
 ## Summary
 This project is to fulfill the last phase of the Flatiron School bootcamp. The inspiration for this project came from working in a tax firm where tasks could be divided up. I designed this app to mimic a small piece of what that could look like.
 
-Overall, this project has been a learning opportunity to learn more on redux and other tools available to add to react and rails. I also used it as an opportunity to learn css and try scss with it. I also implemented uploading photos, sending them to cloudinary to crop and focus on the phase and serve as content a delivery network for those photos. I also added automatic emailing for when a user is assigned a task. 
+Overall, this project has been a learning opportunity to learn more on redux and other tools available to add to react and rails. I also used it as an opportunity to learn css through The Odin Project and try scss with it. I also implemented uploading photos, sending them to cloudinary to crop,focus on the face and serve as a content delivery network for those photos. I also added automatic emailing for when a user is assigned a task. 
 
 For the next project, I plan to dig deeper into scss to expand my usage of organization, variables and functions in order to make it more consistent and be able to make global changes if need be. I also want to start separating more functions out of my components to be reused, add custom hooks, and create more helpers to separate and dry up the code more and make it more consistent.
 
