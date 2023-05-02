@@ -213,7 +213,7 @@ const EditTask = () => {
           value={updatedTask.notes}
           placeholder="Notes"
         />
-        <div>
+        <div className="due-container">
           <label>
             Due Date:{" "}
             <input

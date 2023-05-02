@@ -124,7 +124,7 @@ const NewTask = () => {
           value={formData.notes}
           placeholder="Notes"
         />
-        <div>
+        <div className="due-container">
           <label>
             Due Date:{" "}
             <input

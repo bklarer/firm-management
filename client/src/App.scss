@@ -215,6 +215,7 @@ li {
 .edit-form h1,
 .new-project-form h1 {
   margin: 5px;
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -225,6 +226,7 @@ li {
 .full-task-list {
   h2 {
     text-align: center;
+    margin-top: 30px;
   }
 }
 
@@ -836,11 +838,20 @@ li {
 .new-task-form {
   .title-box {
     margin: 5px;
+    margin-top: 30px;
   }
 
   h1 {
     text-align: center;
   }
+}
+
+.due-container {
+  @media (max-width: 700px) {
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 .new-task,

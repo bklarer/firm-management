@@ -107,7 +107,7 @@ const EditProject = () => {
           value={updatedProject.notes}
           placeholder="Notes"
         />
-        <div>
+        <div className="due-container">
           <label>
             Due Date:{" "}
             <input
