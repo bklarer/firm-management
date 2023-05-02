@@ -2,8 +2,7 @@ export const timeHelper = (dateTime) => {
   const date = new Date(dateTime);
   const hours = date.getHours();
   const minutes = date.getMinutes();
-  console.log("minutes", minutes)
-  console.log("datetime", dateTime)
+
   if (hours < 12) {
     return `${hours}:${minutes < 10 ? `0${minutes}`: minutes} AM`;
   } else {
